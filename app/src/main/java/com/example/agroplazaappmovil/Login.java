@@ -47,7 +47,7 @@ public class Login extends AppCompatActivity {
 
         // Instrucciones de Volley
         RequestQueue hilo = Volley.newRequestQueue(this);
-        String url = "https://agroplaza.solucionsoftware.co/inicio/validarDatosMovil";
+        String url = "https://agroplaza.solucionsoftware.co/inicio/validarDatosIngreso";
 
         StringRequest solicitud = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
