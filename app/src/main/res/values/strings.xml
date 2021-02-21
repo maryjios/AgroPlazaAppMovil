@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">AgroPlazaAppMovil</string>
+    <string name="app_name">AgroPlaza</string>
+
+    <string name="text_olvideContraseña"><u>Olvide mi contraseña</u></string>
+    <string name="text_Registrar"><u>Crear una cuenta</u></string>
 </resources>

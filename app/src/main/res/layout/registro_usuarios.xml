@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/backgroundregistrar"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Crear Cuenta"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:background="#8BC34A"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Correo Electronico"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        ></TextView>
+    <EditText
+        android:id="@+id/campo_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/edit_style"
+        android:drawablePadding="4dp"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:text="Nombres"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            ></TextView>
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Apellidos"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="5dp"
+            ></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/campo_nombres"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/edit_style"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="textPassword" />
+
+        <EditText
+            android:id="@+id/campo_apellidos"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/edit_style"
+            android:drawablePadding="4dp"
+            android:paddingLeft="10dp"
+            android:layout_marginLeft="10dp"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Telefono"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="5dp"/>
+
+    <EditText
+        android:id="@+id/campo_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/edit_style"
+        android:drawablePadding="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp" />
+
+
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+
+
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Contraseña"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="5dp"/>
+
+    <EditText
+        android:id="@+id/campo_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/edit_style"
+        android:drawablePadding="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"/>
+
+
+    <TextView
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:text="Confirmar Contraseña"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="5dp"/>
+
+    <EditText
+        android:id="@+id/confir_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="14dp"
+        android:background="@drawable/edit_style"
+        android:drawablePadding="4dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Genero"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        ></TextView>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edit_style"
+        android:id="@+id/spinner"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrarme Ahora"
+        android:backgroundTint="#8BC34A"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:padding="15dp"
+
+        />
+
+
+
+
+
+
+
+</LinearLayout>

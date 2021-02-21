@@ -6,78 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".Login"
     android:orientation="vertical"
-    android:paddingTop="10dp"
-    android:background="@drawable/background_login"
+    android:padding="5dp"
+    android:background="@drawable/backgroundlogin"
     >
 
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/agroplaza"/>
+        android:src="@drawable/logo41"
+        />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
 
         <EditText
             android:id="@+id/campo_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/edit_style"
             android:drawableLeft="@drawable/icono_email"
             android:drawablePadding="4dp"
-            android:hint="Correo Electronico"
             android:elevation="6dp"
-            android:paddingLeft="8dp"
-            android:background="@drawable/edit_style"
-           android:inputType="textEmailAddress"
-            android:layout_margin="14dp"
-            android:layout_marginBottom="10dp"
-            />
+            android:hint="Correo Electronico"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="8dp" />
 
 
         <EditText
             android:id="@+id/campo_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/edit_style"
             android:drawableLeft="@drawable/icono_password"
             android:drawablePadding="4dp"
             android:elevation="6dp"
-            android:paddingLeft="8dp"
             android:hint="Contraseña"
-            android:background="@drawable/edit_style"
             android:inputType="textPassword"
-            android:layout_margin="14dp"/>
+            android:paddingLeft="8dp" />
+
+
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txt_btnPasswordOlvidada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:text="@string/text_olvideContraseña"
+        android:textColor="#515C5C"
+        android:textAppearance="?android:attr/textAppearanceSmall" />>
+
 
     <Button
-        android:id="@+id/btn_ingresar"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/edit_style"
         android:text="Ingresar"
-        app:backgroundTint="#6D983A" />
+        app:backgroundTint="#6D983A"
+        android:id="@+id/btn_ingresar"/>
+
 
 
     <TextView
-        android:id="@+id/textViewSubrayado"
+        android:id="@+id/txt_btnRegistro"
         android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="13dp"
-        android:textSize="15dp"
-        android:text="Olvide mi contraseña / Registrarme"
-        android:textColor="#143FD6"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_marginBottom="40dp"
+        android:text="@string/text_Registrar"
+        android:textColor="#515C5C"
+        android:textAppearance="?android:attr/textAppearanceSmall" />>
+
 
 </LinearLayout>

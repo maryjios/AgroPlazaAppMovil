@@ -3,11 +3,13 @@ package com.example.agroplazaappmovil;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -20,9 +22,12 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class Login extends AppCompatActivity {
 
     EditText campo_email, campo_password;
+    TextView btn_resgistrar;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -31,12 +36,22 @@ public class Login extends AppCompatActivity {
 
         campo_email = findViewById(R.id.campo_email);
         campo_password = findViewById(R.id.campo_password);
+        btn_resgistrar = findViewById(R.id.txt_btnRegistro);
+
 
         Button btn_ingresar = findViewById(R.id.btn_ingresar);
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validarDatosSesion();
+            }
+        });
+
+        btn_resgistrar.setOnClickListener(new View.OnClickListener (){
+            @Override
+            public void onClick(View view) {
+               registrarUsuario();
+
             }
         });
     }
@@ -53,15 +68,24 @@ public class Login extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        // Codigo de lo que quieran con la respuesta del servidor
-                        Toast.makeText(getApplicationContext(), "Respuesta Serv: " + response, Toast.LENGTH_LONG).show();
-                        Log.i("Ok Servidor: ", response);
+
 
                         if (response.trim().equalsIgnoreCase("OK##DATA##LOGIN")) {
                             campo_email.setText("");
                             campo_password.setText("");
 
                             Toast.makeText(getApplicationContext(), "La sesion ha sido iniciada!", Toast.LENGTH_LONG).show();
+
+                        } else if (response.trim().equalsIgnoreCase("ERROR##INVALID##DATA")) {
+                            Button buttonDanger = findViewById(R.id.btn_ingresar);
+                            buttonDanger.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    new SweetAlertDialog (Login.this, SweetAlertDialog.ERROR_TYPE)
+                                            .setTitleText("Oops...")
+                                            .setContentText("Correo o Contraseña Incorrectos!")
+                                            .show();
+                                }
+                            });
                         }
                     }
                 },
@@ -86,5 +110,15 @@ public class Login extends AppCompatActivity {
             }
         };
         hilo.add(solicitud);
+    }
+
+    public void registrarUsuario(){
+
+        Intent intent = new Intent(getApplicationContext (), RegistroUsuarios.class);
+
+        startActivity(intent);
+
+        finish();
+
     }
 }
