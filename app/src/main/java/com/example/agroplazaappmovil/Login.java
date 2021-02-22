@@ -82,8 +82,6 @@ public class Login extends AppCompatActivity {
 
                             finish();
 
-
-
                             Toast.makeText(getApplicationContext(), "La sesion ha sido iniciada!", Toast.LENGTH_LONG).show();
 
                         } else if (response.trim().equalsIgnoreCase("ERROR##INVALID##DATA")) {
@@ -122,8 +120,6 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext (), RegistroUsuarios.class);
 
         startActivity(intent);
-
-        finish();
 
     }
 }
