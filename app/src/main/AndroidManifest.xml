@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroPlazaAppMovil">
-        <activity android:name=".RegistroUsuarios"></activity>
+        <activity android:name=".inicio"></activity>
+        <activity android:name=".RegistroUsuarios" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">
             <intent-filter>

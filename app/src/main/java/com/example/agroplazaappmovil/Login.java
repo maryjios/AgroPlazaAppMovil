@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity {
 
     EditText campo_email, campo_password;
     TextView btn_resgistrar;
+    Button btn_ingresar;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -36,24 +37,25 @@ public class Login extends AppCompatActivity {
 
         campo_email = findViewById(R.id.campo_email);
         campo_password = findViewById(R.id.campo_password);
+        btn_ingresar = findViewById(R.id.btn_ingresar);
         btn_resgistrar = findViewById(R.id.txt_btnRegistro);
 
 
-        Button btn_ingresar = findViewById(R.id.btn_ingresar);
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validarDatosSesion();
+                    validarDatosSesion();
             }
         });
 
         btn_resgistrar.setOnClickListener(new View.OnClickListener (){
             @Override
             public void onClick(View view) {
-               registrarUsuario();
 
+                    registrarUsuario ();
             }
         });
+
     }
 
     public void validarDatosSesion() {
@@ -74,18 +76,21 @@ public class Login extends AppCompatActivity {
                             campo_email.setText("");
                             campo_password.setText("");
 
+                            Intent intent = new Intent(getApplicationContext (), inicio.class);
+
+                            startActivity(intent);
+
+                            finish();
+
+
+
                             Toast.makeText(getApplicationContext(), "La sesion ha sido iniciada!", Toast.LENGTH_LONG).show();
 
                         } else if (response.trim().equalsIgnoreCase("ERROR##INVALID##DATA")) {
-                            Button buttonDanger = findViewById(R.id.btn_ingresar);
-                            buttonDanger.setOnClickListener(new View.OnClickListener() {
-                                public void onClick(View v) {
-                                    new SweetAlertDialog (Login.this, SweetAlertDialog.ERROR_TYPE)
-                                            .setTitleText("Oops...")
-                                            .setContentText("Correo o Contraseña Incorrectos!")
-                                            .show();
-                                }
-                            });
+                            new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText("Datos Incorrectos!")
+                                    .show();
                         }
                     }
                 },

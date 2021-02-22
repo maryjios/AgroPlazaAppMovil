@@ -69,6 +69,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         android:text="@string/text_olvideContraseña"
+        android:textSize="16dp"
         android:textColor="#515C5C"
         android:textAppearance="?android:attr/textAppearanceSmall" />>
 
@@ -92,6 +93,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
         android:text="@string/text_Registrar"
+        android:textSize="16dp"
         android:textColor="#515C5C"
         android:textAppearance="?android:attr/textAppearanceSmall" />>
 
