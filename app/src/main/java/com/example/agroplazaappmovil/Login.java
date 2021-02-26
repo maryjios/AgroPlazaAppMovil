@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
                             campo_email.setText("");
                             campo_password.setText("");
 
-                            Intent intent = new Intent(getApplicationContext (), inicio.class);
+                            Intent intent = new Intent(getApplicationContext (), MenuInicio.class);
 
                             startActivity(intent);
 
