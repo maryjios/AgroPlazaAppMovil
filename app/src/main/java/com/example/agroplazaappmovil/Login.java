@@ -1,9 +1,7 @@
 package com.example.agroplazaappmovil;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DownloadManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,40 +27,51 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class Login extends AppCompatActivity {
 
     EditText campo_email, campo_password;
-    TextView btn_resgistrar;
+    TextView btn_registrar;
     Button btn_ingresar;
 
     @Override
-    protected void onCreate (Bundle savedInstanceState) {
-        super.onCreate (savedInstanceState);
-        setContentView (R.layout.login);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.login);
 
         campo_email = findViewById(R.id.campo_email);
         campo_password = findViewById(R.id.campo_password);
         btn_ingresar = findViewById(R.id.btn_ingresar);
-        btn_resgistrar = findViewById(R.id.txt_btnRegistro);
-
+        btn_registrar = findViewById(R.id.txt_btn_registro);
 
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    validarDatosSesion();
+                validarDatosSesion();
             }
         });
 
-        btn_resgistrar.setOnClickListener(new View.OnClickListener (){
+        btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                    registrarUsuario ();
+                registrarUsuario();
             }
         });
 
+        Bundle mensaje = this.getIntent().getExtras();
+        if (mensaje != null) {
+            new SweetAlertDialog(Login.this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("EXITO!")
+                    .setContentText("Has sido registrado satisfactoriamente!")
+                    .show();
+        }
     }
 
     public void validarDatosSesion() {
         String valor_email = campo_email.getText().toString();
         String valor_password = campo_password.getText().toString();
+
+        SweetAlertDialog pDialog = new SweetAlertDialog(Login.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.GREEN);
+        pDialog.setTitleText("Cargando ...");
+        pDialog.setCancelable(true);
+        pDialog.show();
 
         // Instrucciones de Volley
         RequestQueue hilo = Volley.newRequestQueue(this);
@@ -71,20 +82,12 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
 
-
                         if (response.trim().equalsIgnoreCase("OK##DATA##LOGIN")) {
-                            campo_email.setText("");
-                            campo_password.setText("");
-
-                            Intent intent = new Intent(getApplicationContext (), MenuInicio.class);
-
+                            Intent intent = new Intent(getApplicationContext(), MenuInicio.class);
                             startActivity(intent);
-
                             finish();
-
-                            Toast.makeText(getApplicationContext(), "La sesion ha sido iniciada!", Toast.LENGTH_LONG).show();
-
                         } else if (response.trim().equalsIgnoreCase("ERROR##INVALID##DATA")) {
+                            pDialog.dismiss();
                             new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText("Datos Incorrectos!")
@@ -115,9 +118,9 @@ public class Login extends AppCompatActivity {
         hilo.add(solicitud);
     }
 
-    public void registrarUsuario(){
+    public void registrarUsuario() {
 
-        Intent intent = new Intent(getApplicationContext (), RegistroUsuarios.class);
+        Intent intent = new Intent(getApplicationContext(), RegistroUsuarios.class);
 
         startActivity(intent);
 

@@ -4,20 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
+    android:background="@drawable/backgroundlogin"
     android:orientation="vertical"
     android:padding="5dp"
-    android:background="@drawable/backgroundlogin"
-    >
-
+    tools:context=".Login">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/logo41"
-        />
-
+        android:src="@drawable/logo41" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +23,6 @@
         android:layout_marginBottom="2dp"
         android:gravity="center"
         android:orientation="vertical">
-
 
         <EditText
             android:id="@+id/campo_email"
@@ -43,12 +38,11 @@
             android:inputType="textEmailAddress"
             android:paddingLeft="8dp" />
 
-
         <EditText
             android:id="@+id/campo_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="20dp"
             android:layout_marginBottom="14dp"
             android:background="@drawable/edit_style"
             android:drawableLeft="@drawable/icono_password"
@@ -57,8 +51,6 @@
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:paddingLeft="8dp" />
-
-
 
     </LinearLayout>
 
@@ -69,33 +61,30 @@
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
         android:text="@string/text_olvideContraseña"
-        android:textSize="16dp"
-        android:textColor="#515C5C"
-        android:textAppearance="?android:attr/textAppearanceSmall" />>
-
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/blue"
+        android:textSize="16dp" />
 
     <Button
+        android:id="@+id/btn_ingresar"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/edit_style"
         android:text="Ingresar"
-        app:backgroundTint="#6D983A"
-        android:id="@+id/btn_ingresar"/>
-
-
+        app:backgroundTint="#6D983A" />
 
     <TextView
-        android:id="@+id/txt_btnRegistro"
+        android:id="@+id/txt_btn_registro"
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
         android:text="@string/text_Registrar"
-        android:textSize="16dp"
-        android:textColor="#515C5C"
-        android:textAppearance="?android:attr/textAppearanceSmall" />>
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/blue"
+        android:textSize="16dp" />
 
 
 </LinearLayout>
