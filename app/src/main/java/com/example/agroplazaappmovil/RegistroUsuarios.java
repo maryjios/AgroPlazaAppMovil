@@ -123,7 +123,7 @@ public class RegistroUsuarios extends AppCompatActivity {
         String valor_apellidos = campo_apellidos.getText().toString();
         String valor_telefono = campo_telefono.getText().toString();
         String valor_password = campo_password.getText().toString();
-        String valor_confirm_password = campo_password.getText().toString();
+        String valor_confirm_password = confirm_password.getText().toString();
         String valor_genero = spinner_genero.getSelectedItem().toString();
         int cod_ciudad = cod_ciudades[spinner_ciudad.getSelectedItemPosition()];
 
