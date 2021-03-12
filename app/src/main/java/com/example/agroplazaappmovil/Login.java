@@ -1,6 +1,8 @@
 package com.example.agroplazaappmovil;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,12 +35,24 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences persistencia = getSharedPreferences("datos_login", Context.MODE_PRIVATE);
+        String email = persistencia.getString("email", "NaN");
+        if (!email.equalsIgnoreCase("NaN")) {
+            Intent intent = new Intent(getApplicationContext(), Principal.class);
+            startActivity(intent);
+            finish();
+        }
+
         setContentView(R.layout.login);
 
         campo_email = findViewById(R.id.campo_email);
         campo_password = findViewById(R.id.campo_password);
         btn_ingresar = findViewById(R.id.btn_ingresar);
         btn_registrar = findViewById(R.id.txt_btn_registro);
+
+        campo_email.setText("perro@mail.com");
+        campo_password.setText("12345");
 
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,23 +89,58 @@ public class Login extends AppCompatActivity {
 
         // Instrucciones de Volley
         RequestQueue hilo = Volley.newRequestQueue(this);
-        String url = "https://agroplaza.solucionsoftware.co/inicio/validarDatosIngreso";
+        String url = "https://agroplaza.solucionsoftware.co/inicio/validarDatosIngresoMovil";
 
         StringRequest solicitud = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
-                        if (response.trim().equalsIgnoreCase("OK##DATA##LOGIN")) {
-                            Intent intent = new Intent(getApplicationContext(), MenuInicio.class);
-                            startActivity(intent);
-                            finish();
-                        } else if (response.trim().equalsIgnoreCase("ERROR##INVALID##DATA")) {
+                        if (response.trim().equalsIgnoreCase("ERROR##INVALID##DATA")) {
                             pDialog.dismiss();
                             new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText("Datos Incorrectos!")
                                     .show();
+                        } else {
+                            String[] mensaje = response.split("#&&#");
+
+                            if (mensaje[0].equalsIgnoreCase("OK##DATA##LOGIN")) {
+                                String[] datos = mensaje[1].split("##");
+
+                                String id = datos[0];
+                                String email = datos[1];
+                                String documento = datos[2];
+                                String nombres = datos[3];
+                                String apellidos = datos[4];
+                                String id_ciudad = datos[5];
+                                String direccion = datos[6];
+                                String telefono = datos[7];
+                                String genero = datos[8];
+
+                                SharedPreferences persistencia = getSharedPreferences("datos_login", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = persistencia.edit();
+                                editor.putString("id", id);
+                                editor.putString("email", email);
+                                editor.putString("documento", documento);
+                                editor.putString("nombres", nombres);
+                                editor.putString("apellidos", apellidos);
+                                editor.putString("id_ciudad", id_ciudad);
+                                editor.putString("direccion", direccion);
+                                editor.putString("telefono", telefono);
+                                editor.putString("genero", genero);
+
+                                editor.commit();
+
+                                Intent intent = new Intent(getApplicationContext(), Principal.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Algo ha fallado...")
+                                        .setContentText("Error en el servidor.")
+                                        .show();
+                            }
                         }
                     }
                 },
