@@ -4,39 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_btn_bg_color"
     android:orientation="vertical"
     android:paddingVertical="20dp"
+    android:fontFamily="@font/open_sans_semibold"
+
     tools:context=".ui.perfil.PerfilFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="160dp"
         android:layout_marginVertical="50dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/nombre_perfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="20sp"
+            android:text="Nombre"
 
             android:textColor="@color/black"
-            android:text="Nombre" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/correo_perfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="15sp"
-            android:text="Correo" />
+            android:text="Correo"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,11 +67,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Cambiar Region/Ciudad"
                 android:textColor="@color/black" />
@@ -78,10 +82,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Actualizar datos de perfil"
                 android:textColor="@color/black" />
@@ -91,11 +95,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Cambiar Correo Electronico"
                 android:textColor="@color/black" />
@@ -104,12 +108,12 @@
                 android:id="@+id/btn_cambiar_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Cambiar Contraseña"
                 android:textColor="@color/black" />
@@ -118,12 +122,12 @@
                 android:id="@+id/btn_desactivar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/red"
                 android:gravity="left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Desactivar Cuenta"
                 android:textColor="@color/white" />
@@ -131,14 +135,14 @@
             <Button
                 android:id="@+id/btn_cerrar_sesion"
                 android:layout_width="match_parent"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
                 android:drawableLeft="@drawable/ic_location"
                 android:gravity="left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Cerrar Sesion"
                 android:textColor="@color/red" />
