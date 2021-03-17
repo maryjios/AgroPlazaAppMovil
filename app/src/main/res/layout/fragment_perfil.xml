@@ -4,20 +4,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".ui.perfil.PerfilFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="@string/hello_blank_fragment" />
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="70dp"
+        android:text="Mi Perfil" />
+
+    <Button
+        android:id="@+id/btn_editar_datos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar datos de perfil"
+        android:backgroundTint="@color/float_transparent"
+        android:paddingVertical="15dp"
+        android:layout_marginVertical="0dp"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btn_cambiar_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cambiar Correo Electronico"
+        android:backgroundTint="@color/float_transparent"
+        android:paddingVertical="15dp"
+        android:layout_marginVertical="0dp"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/btn_cambiar_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cambiar Contraseña"
+        android:backgroundTint="@color/float_transparent"
+        android:paddingVertical="15dp"
+        android:layout_marginVertical="0dp"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:layout_marginTop="20dp"/>
+    
+    <Button
+        android:id="@+id/btn_desactivar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Desactivar Cuenta"
+        android:backgroundTint="@color/red"
+        android:paddingVertical="15dp"
+        android:layout_marginVertical="0dp"
+        android:textColor="@color/white"
+        android:gravity="left"
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:id="@+id/btn_cerrar_sesion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cerrar Sesion"
-        android:layout_gravity="center"
+        android:backgroundTint="@color/float_transparent"
+        android:paddingVertical="15dp"
+        android:layout_marginVertical="0dp"
+        android:textColor="@color/red"
+        android:gravity="left"
         android:layout_marginTop="20dp"/>
 
 </LinearLayout>
