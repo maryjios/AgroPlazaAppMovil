@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="20sp"
+
             android:textColor="@color/black"
             android:text="Nombre" />
 
@@ -49,15 +51,20 @@
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Mis Preguntas"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                app:elevation="0sp" />
 
             <Button
                 android:id="@+id/btn_cambiar_ciudad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
@@ -71,6 +78,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
                 android:paddingVertical="15dp"
@@ -82,6 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
                 android:gravity="left"
@@ -93,6 +104,8 @@
                 android:id="@+id/btn_cambiar_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
@@ -105,6 +118,8 @@
                 android:id="@+id/btn_desactivar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/red"
@@ -116,10 +131,13 @@
             <Button
                 android:id="@+id/btn_cerrar_sesion"
                 android:layout_width="match_parent"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
+                android:drawableLeft="@drawable/ic_location"
                 android:gravity="left"
                 android:paddingVertical="15dp"
                 android:text="Cerrar Sesion"
