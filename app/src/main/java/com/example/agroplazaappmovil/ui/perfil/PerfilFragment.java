@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -29,6 +30,17 @@ public class PerfilFragment extends Fragment {
                 cerrarSesion();
             }
         });
+
+        TextView etiqueta_nombre, etiqueta_correo;
+        etiqueta_nombre = actividad.findViewById(R.id.nombre_perfil);
+        etiqueta_correo = actividad.findViewById(R.id.correo_perfil);
+
+        SharedPreferences persistencia = actividad.getContext().getSharedPreferences("datos_login", Context.MODE_PRIVATE);
+        String nombre = persistencia.getString("nombres", "NaN");
+        String correo = persistencia.getString("email", "NaN");
+
+        etiqueta_nombre.setText(nombre);
+        etiqueta_correo.setText(correo);
 
         return actividad;
     }
