@@ -23,14 +23,6 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         actividad = inflater.inflate(R.layout.fragment_perfil, container, false);
 
-        Button cerrar_sesion = actividad.findViewById(R.id.btn_cerrar_sesion);
-        cerrar_sesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cerrarSesion();
-            }
-        });
-
         TextView etiqueta_nombre, etiqueta_correo;
         etiqueta_nombre = actividad.findViewById(R.id.nombre_perfil);
         etiqueta_correo = actividad.findViewById(R.id.correo_perfil);
@@ -41,6 +33,23 @@ public class PerfilFragment extends Fragment {
 
         etiqueta_nombre.setText(nombre);
         etiqueta_correo.setText(correo);
+
+        Button cerrar_sesion = actividad.findViewById(R.id.btn_cerrar_sesion);
+        cerrar_sesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cerrarSesion();
+            }
+        });
+
+        Button editar_perfil = actividad.findViewById(R.id.btn_editar_datos);
+        editar_perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), EditarDatos.class);
+                startActivity(intent);
+            }
+        });
 
         return actividad;
     }
