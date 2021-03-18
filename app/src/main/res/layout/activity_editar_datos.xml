@@ -3,14 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".ui.perfil.EditarDatos">
 
-    <ImageView
+    <Button
         android:id="@+id/perfil_atras"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/atras"/>
+        android:backgroundTint="@color/float_transparent"
+        android:background="@color/float_transparent"
+        android:drawableLeft="@drawable/ic_arrow_back"
+        android:drawableTint="@color/black"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"/>
 
 </LinearLayout>

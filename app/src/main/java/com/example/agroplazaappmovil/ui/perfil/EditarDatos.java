@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.agroplazaappmovil.R;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class EditarDatos extends AppCompatActivity {
@@ -14,8 +15,10 @@ public class EditarDatos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_datos);
 
-        ImageView regresar;
+        Button regresar;
         regresar = findViewById(R.id.perfil_atras);
+
+
 
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
