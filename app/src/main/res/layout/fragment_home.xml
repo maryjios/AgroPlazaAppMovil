@@ -92,6 +92,7 @@
 
 
     <LinearLayout
+        android:id="@+id/contentTipos"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:paddingLeft="100dp"
@@ -144,6 +145,15 @@
 
     </LinearLayout>
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:id="@+id/mi_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/contentTipos">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
 
