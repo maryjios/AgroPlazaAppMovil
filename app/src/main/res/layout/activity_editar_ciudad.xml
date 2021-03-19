@@ -14,7 +14,7 @@
         android:background="#8BC34A">
 
         <Button
-            android:id="@+id/perfil_atras"
+            android:id="@+id/btn_atras"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/float_transparent"

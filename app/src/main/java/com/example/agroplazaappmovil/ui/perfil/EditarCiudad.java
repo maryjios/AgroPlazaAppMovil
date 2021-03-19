@@ -46,7 +46,7 @@ public class EditarCiudad extends AppCompatActivity {
 
         lista_ciudades = findViewById(R.id.lista_ciudades);
 
-        Button regresar = findViewById(R.id.perfil_atras);
+        Button regresar = findViewById(R.id.btn_atras);
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
