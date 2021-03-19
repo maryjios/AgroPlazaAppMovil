@@ -27,7 +27,7 @@ public class EditarDatos extends AppCompatActivity {
         edit_direccion = findViewById(R.id.editar_direccion);
         edit_telefono = findViewById(R.id.editar_telefono);
 
-        Button regresar = findViewById(R.id.perfil_atras);
+        Button regresar = findViewById(R.id.btn_atras);
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
