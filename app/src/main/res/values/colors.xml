@@ -10,6 +10,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#004DFF</color>
     <color name="red">#FF0000</color>
+    <color name="green">#329632</color>
+    <color name="gray">#C8C8C8</color>
 
     <!-- Colores agroplaza -->
     <color name="verde">#8BC34A</color>

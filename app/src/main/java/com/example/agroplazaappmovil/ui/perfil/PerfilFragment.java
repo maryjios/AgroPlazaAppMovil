@@ -51,6 +51,15 @@ public class PerfilFragment extends Fragment {
             }
         });
 
+        Button cambiar_ciudad = actividad.findViewById(R.id.btn_cambiar_ciudad);
+        cambiar_ciudad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), EditarCiudad.class);
+                startActivity(intent);
+            }
+        });
+
         return actividad;
     }
 

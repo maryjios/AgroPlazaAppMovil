@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_btn_bg_color"
     android:orientation="vertical"
-    android:paddingVertical="20dp"
     android:fontFamily="@font/open_sans_semibold"
-
     tools:context=".ui.perfil.PerfilFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginVertical="50dp"
+        android:layout_height="250dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/purple_200">
 
         <TextView
             android:id="@+id/nombre_perfil"
@@ -24,9 +20,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Nombre"
-
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:id="@+id/correo_perfil"
@@ -34,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Correo"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ScrollView
@@ -54,13 +49,14 @@
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
+                android:drawableLeft="@drawable/ic_ayudar"
+                android:drawableRight="@drawable/ic_navigate_next"
                 android:gravity="left"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:paddingVertical="15dp"
                 android:text="Mis Preguntas"
-                android:textColor="@color/black"
-                app:elevation="0sp" />
+                android:textColor="@color/black" />
 
             <Button
                 android:id="@+id/btn_cambiar_ciudad"
@@ -69,6 +65,8 @@
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
+                android:drawableLeft="@drawable/ic_colombia"
+                android:drawableRight="@drawable/ic_navigate_next"
                 android:gravity="left"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
@@ -83,6 +81,8 @@
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
+                android:drawableLeft="@drawable/ic_profile_user"
+                android:drawableRight="@drawable/ic_navigate_next"
                 android:gravity="left"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
@@ -97,6 +97,8 @@
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
+                android:drawableLeft="@drawable/ic_email"
+                android:drawableRight="@drawable/ic_navigate_next"
                 android:gravity="left"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
@@ -111,6 +113,8 @@
                 android:layout_marginVertical="0dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
+                android:drawableLeft="@drawable/ic_password"
+                android:drawableRight="@drawable/ic_navigate_next"
                 android:gravity="left"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
@@ -123,8 +127,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
-                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/red"
+                android:drawableLeft="@drawable/ic_delete"
+                android:drawableTint="@color/white"
+                android:drawableRight="@drawable/ic_navigate_next"
                 android:gravity="left"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
@@ -137,9 +143,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="0dp"
-                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/float_transparent"
-                android:drawableLeft="@drawable/ic_location"
+                android:drawableLeft="@drawable/ic_logout"
+                android:drawableRight="@drawable/ic_navigate_next"
                 android:gravity="left"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"

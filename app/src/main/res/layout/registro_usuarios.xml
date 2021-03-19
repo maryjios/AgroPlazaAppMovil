@@ -88,6 +88,7 @@
                     android:layout_marginBottom="14dp"
                     android:background="@drawable/edit_style"
                     android:inputType="text"
+                    android:hint="Ingresar nombres"
                     android:paddingLeft="10dp" />
 
                 <EditText
@@ -100,6 +101,7 @@
                     android:background="@drawable/edit_style"
                     android:drawablePadding="4dp"
                     android:inputType="text"
+                    android:hint="Ingresar apellidos"
                     android:paddingLeft="10dp" />
             </LinearLayout>
 
@@ -122,6 +124,7 @@
                 android:background="@drawable/edit_style"
                 android:drawablePadding="4dp"
                 android:inputType="number"
+                android:hint="Ingresar número telefonico"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -143,6 +146,7 @@
                 android:background="@drawable/edit_style"
                 android:drawablePadding="4dp"
                 android:inputType="textPassword"
+                android:hint="Ingresa una contraseña"
                 android:paddingLeft="10dp" />
 
             <TextView
@@ -164,6 +168,7 @@
                 android:background="@drawable/edit_style"
                 android:drawablePadding="4dp"
                 android:inputType="textPassword"
+                android:hint="Repetir la contraseña"
                 android:paddingLeft="10dp" />
 
             <TextView

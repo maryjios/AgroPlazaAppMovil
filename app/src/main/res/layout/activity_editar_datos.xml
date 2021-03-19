@@ -3,14 +3,164 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".ui.perfil.EditarDatos">
 
-    <ImageView
-        android:id="@+id/perfil_atras"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/atras"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="#8BC34A">
+
+        <Button
+            android:id="@+id/perfil_atras"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/float_transparent"
+            android:background="@color/float_transparent"
+            android:drawableLeft="@drawable/ic_arrow_back"
+            android:drawableTint="@color/black"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/float_transparent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Actualizar Datos"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp"
+                android:text="Documento"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/editar_documento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_style"
+                android:drawablePadding="4dp"
+                android:hint="Ingrese número de documento"
+                android:inputType="number"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp"
+                android:text="Nombres"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/editar_nombres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_style"
+                android:drawablePadding="4dp"
+                android:hint="Ingrese los nombres"
+                android:inputType="text"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp"
+                android:text="Apellidos"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/editar_apellidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_style"
+                android:drawablePadding="4dp"
+                android:hint="Ingrese los apellidos"
+                android:inputType="text"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp"
+                android:text="Direccion"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/editar_direccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_style"
+                android:drawablePadding="4dp"
+                android:hint="Ingrese una direccion de domicilio"
+                android:inputType="text"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="16sp"
+                android:text="Telefono"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/editar_telefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_style"
+                android:drawablePadding="4dp"
+                android:hint="Ingrese su numero de teléfono"
+                android:inputType="number"
+                android:paddingLeft="10dp" />
+
+            <Button
+                android:id="@+id/btn_editar_perfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/teal_700"
+                android:padding="15dp"
+                android:text="Actualizar Datos" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
