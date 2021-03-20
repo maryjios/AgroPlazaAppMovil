@@ -155,6 +155,18 @@ public class PerfilFragment extends Fragment {
                     @Override
                     public void onResponse(Bitmap response) {
                         avatar.setImageBitmap(response);
+
+                        Drawable originalDrawable = avatar.getDrawable();
+                        Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
+
+                        //creamos el drawable redondeado
+                        RoundedBitmapDrawable roundedDrawable =
+                                RoundedBitmapDrawableFactory.create(getResources(), originalBitmap);
+
+                        //asignamos el CornerRadius
+                        roundedDrawable.setCornerRadius(originalBitmap.getHeight());
+
+                        avatar.setImageDrawable(roundedDrawable);
                     }
                 }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
             @Override
