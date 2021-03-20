@@ -117,6 +117,7 @@ public class Login extends AppCompatActivity {
                                 String direccion = datos[6];
                                 String telefono = datos[7];
                                 String genero = datos[8];
+                                String avatar = datos[9];
 
                                 SharedPreferences persistencia = getSharedPreferences("datos_login", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = persistencia.edit();
@@ -129,6 +130,7 @@ public class Login extends AppCompatActivity {
                                 editor.putString("direccion", direccion);
                                 editor.putString("telefono", telefono);
                                 editor.putString("genero", genero);
+                                editor.putString("avatar", avatar);
 
                                 editor.commit();
 
