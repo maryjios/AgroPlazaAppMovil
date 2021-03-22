@@ -102,6 +102,18 @@ public class Login extends AppCompatActivity {
                                     .setTitleText("Oops...")
                                     .setContentText("Datos Incorrectos!")
                                     .show();
+                        } else if (response.trim().equalsIgnoreCase("NOT##ACCESS")) {
+                            pDialog.dismiss();
+                            new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("NO PUEDES INGRESAR!")
+                                    .setContentText("Solo los clientes pueden ingresar a la plataforma.")
+                                    .show();
+                        } else if (response.trim().equalsIgnoreCase("NOT##STATUS")) {
+                            pDialog.dismiss();
+                            new SweetAlertDialog(Login.this, SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("ESTAS BLOQUEADO!")
+                                    .setContentText("Tu usuarios se encuentra inactivado. Si quieres recuperar tu usuario contacta con un administrador.")
+                                    .show();
                         } else {
                             String[] mensaje = response.split("#&&#");
 
