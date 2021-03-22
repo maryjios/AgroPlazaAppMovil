@@ -14,8 +14,12 @@ buildscript {
 
 allprojects {
     repositories {
+
         google()
         jcenter()
+        /* Repositorio de libreria utilizada para hacer el slider de las imagenes en las publicaciones */
+        maven {url 'https://jitpack.io'}
+
     }
 }
 

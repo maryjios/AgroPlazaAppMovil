@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:background="#40E3E5EF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contnetHeader"
@@ -25,22 +25,12 @@
             android:fontFamily="@font/open_sans_bold"
             android:text="Hola,"
             android:textColor="@android:color/background_dark"
-            android:textSize="20sp"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintTop_toTopOf="@+id/imageView2"
-            app:srcCompat="@drawable/ic_baseline_notifications_24"
-            android:layout_marginRight="8dp"
-            tools:ignore="VectorDrawableCompat" />
+
 
         <ImageView
             android:id="@+id/imageView2"
@@ -50,7 +40,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/textBienvenidaPincipal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textBienvenidaPincipal"
-            app:srcCompat="@drawable/ic_account"
+            app:srcCompat="@drawable/ic_pqr"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="16dp"
             tools:ignore="VectorDrawableCompat" />
 
@@ -68,6 +60,7 @@
             android:fontFamily="@font/open_sans"
             android:hint="Escribe aqui para buscar..."
             android:inputType="text"
+            android:textSize="14dp"
             android:imeOptions="actionSearch"
             app:layout_constraintTop_toBottomOf="@+id/textBienvenidaPincipal" />
 
@@ -80,7 +73,7 @@
             android:layout_marginTop="5dp"
             android:drawableLeft="@drawable/ic_location"
             android:fontFamily="@font/open_sans"
-            android:text="Ahora mismo estas en - Pereira,Risaralda"
+            android:text=""
             android:textColor="@android:color/tertiary_text_light"
             android:textSize="12sp"
             app:drawableTint="#D1C5C5"
@@ -162,6 +155,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginTop="20dp"
                 android:id="@+id/mi_recycler"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/contentTipos">

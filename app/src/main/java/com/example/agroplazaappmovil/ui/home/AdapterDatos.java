@@ -1,6 +1,7 @@
 package com.example.agroplazaappmovil.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +22,10 @@ import com.example.agroplazaappmovil.R;
 
 import java.util.ArrayList;
 
-public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDatos> {
+public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDatos> implements View.OnClickListener {
 
     ArrayList<Productos> listaDatos;
-
+    private View.OnClickListener listener;
     public AdapterDatos (ArrayList<Productos> listaDatos) {
         this.listaDatos= listaDatos;
     }
@@ -33,6 +34,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
     @Override
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_recycler,null, false);
+        view.setOnClickListener (this);
         return new ViewHolderDatos(view);
     }
 
@@ -46,10 +48,25 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         return listaDatos.size();
     }
 
+    public void setOnclickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
+
+    @Override
+    public void onClick (View v) {
+        if (listener!=null){
+            listener.onClick (v);
+        }
+    }
+
+
+    /* clase Holder */
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
         TextView titulo;
-        TextView descripcion;
+        TextView precio;
+        TextView envio;
+        TextView descuento;
         ImageView imagen;
         RequestQueue request;
         Context contexto;
@@ -57,7 +74,9 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
             titulo = itemView.findViewById(R.id.titulo_publicacion);
-            descripcion = itemView.findViewById(R.id.descripcion_publicacion);
+            precio = itemView.findViewById(R.id.precio_publicacion);
+            envio = itemView.findViewById(R.id.envio_publicacion);
+            descuento = itemView.findViewById(R.id.descuento_publicacion);
             imagen = itemView.findViewById(R.id.imagen_publicacion);
             request = Volley.newRequestQueue(itemView.getContext());
             contexto = itemView.getContext();
@@ -65,7 +84,10 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
 
         public void asignarDatos(Productos datos) {
             titulo.setText(datos.titulo);
-            descripcion.setText(datos.descripcion);
+            precio.setText(datos.precio);
+            envio.setText(datos.envio);
+            descuento.setText(datos.descuento);
+
 
             String url = "https://agroplaza.solucionsoftware.co/public/dist/img/publicaciones/publicacion"+datos.id+"/"+datos.foto;
             url = url.replace(" ","%20");

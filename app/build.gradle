@@ -47,4 +47,8 @@ dependencies {
 
     /* Libreria utilizada para mostrar alerts dialog estilizados */
     implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+
+    /*Libreria utilizada para hacer el slider de imagenes en las publicaciones*/
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'
+
 }
