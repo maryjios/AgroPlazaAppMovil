@@ -84,7 +84,7 @@ public class Login extends AppCompatActivity {
         SweetAlertDialog pDialog = new SweetAlertDialog(Login.this, SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.GREEN);
         pDialog.setTitleText("Cargando ...");
-        pDialog.setCancelable(true);
+        pDialog.setCancelable(false);
         pDialog.show();
 
         // Instrucciones de Volley
