@@ -138,6 +138,7 @@ public class Login extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             } else {
+                                pDialog.dismiss();
                                 new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Algo ha fallado...")
                                         .setContentText("Error en el servidor.")
