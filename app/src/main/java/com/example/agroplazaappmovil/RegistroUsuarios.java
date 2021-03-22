@@ -128,16 +128,15 @@ public class RegistroUsuarios extends AppCompatActivity {
         int cod_ciudad = cod_ciudades[spinner_ciudad.getSelectedItemPosition()];
 
         SweetAlertDialog pDialog = new SweetAlertDialog(RegistroUsuarios.this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.BLUE);
+        pDialog.getProgressHelper().setBarColor(Color.GREEN);
         pDialog.setTitleText("Espera ...");
-        pDialog.setCancelable(true);
+        pDialog.setCancelable(false);
         pDialog.show();
 
         if (!valor_email.isEmpty() && !valor_nombres.isEmpty() && !valor_apellidos.isEmpty()
                 && !valor_telefono.isEmpty() && !valor_password.isEmpty() && !valor_confirm_password.isEmpty() &&
                 spinner_genero.getSelectedItemPosition() > 0 && cod_ciudad > 0) {
             if (valor_password.equals(valor_confirm_password)) {
-                // Instrucciones de Volley
                 RequestQueue hilo = Volley.newRequestQueue(this);
                 String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/InsertarMovil";
 

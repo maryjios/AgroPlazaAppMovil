@@ -72,7 +72,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:text="Nombres"
+                android:text="* Nombres"
                 android:textColor="@color/black" />
 
             <EditText
@@ -93,7 +93,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:text="Apellidos"
+                android:text="* Apellidos"
                 android:textColor="@color/black" />
 
             <EditText
@@ -135,7 +135,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textSize="16sp"
-                android:text="Telefono"
+                android:text="* Telefono"
                 android:textColor="@color/black" />
 
             <EditText
@@ -150,12 +150,22 @@
                 android:inputType="number"
                 android:paddingLeft="10dp" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:text="Los campos con el simbolo * son obligatorios"
+                android:textColor="@color/red" />
+
             <Button
                 android:id="@+id/btn_editar_perfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:backgroundTint="@color/teal_700"
                 android:padding="15dp"
                 android:text="Actualizar Datos" />
