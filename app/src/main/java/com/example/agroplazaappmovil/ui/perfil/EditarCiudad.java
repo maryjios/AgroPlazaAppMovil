@@ -153,7 +153,6 @@ public class EditarCiudad extends AppCompatActivity {
                                     .show();
                         } else {
                             SharedPreferences.Editor editor = persistencia.edit();
-                            editor.putString("id", id_perfil);
                             editor.putString("id_ciudad", ciudad);
 
                             editor.commit();
@@ -162,6 +161,13 @@ public class EditarCiudad extends AppCompatActivity {
                             new SweetAlertDialog(EditarCiudad.this, SweetAlertDialog.SUCCESS_TYPE)
                                     .setTitleText("Datos Actualizados!")
                                     .setContentText("Su ciudad ha sido actualizada.")
+                                    .setConfirmText("Hecho!")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sDialog) {
+                                            EditarCiudad.super.onBackPressed();
+                                        }
+                                    })
                                     .show();
                         }
                     }

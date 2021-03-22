@@ -137,7 +137,6 @@ public class RegistroUsuarios extends AppCompatActivity {
                 && !valor_telefono.isEmpty() && !valor_password.isEmpty() && !valor_confirm_password.isEmpty() &&
                 spinner_genero.getSelectedItemPosition() > 0 && cod_ciudad > 0) {
             if (valor_password.equals(valor_confirm_password)) {
-                // Instrucciones de Volley
                 RequestQueue hilo = Volley.newRequestQueue(this);
                 String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/InsertarMovil";
 
