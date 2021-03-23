@@ -85,7 +85,7 @@ public class EditarEmail extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {
 
-                                String[] mensaje = response.split("\"");    
+                                String[] mensaje = response.split("\"");
 
                                 if (mensaje[1].equalsIgnoreCase("INVALID##EMAIL")) {
                                     pDialog.dismiss();
