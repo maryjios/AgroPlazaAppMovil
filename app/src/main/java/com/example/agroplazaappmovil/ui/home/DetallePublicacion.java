@@ -92,7 +92,6 @@ public class DetallePublicacion extends AppCompatActivity {
         });
 
         hilo.add (solicitud);
-
         Button regresar = findViewById(R.id.btn_atras_detalle);
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override

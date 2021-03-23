@@ -34,9 +34,9 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     View actividad;
-    ArrayList<Productos> listaPublicaciones;
+    ArrayList<Publicaciones> listaPublicaciones;
     RecyclerView recycler;
-    AdapterDatos adapter;
+    AdapterPublicaciones adapter;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         actividad = inflater.inflate(R.layout.fragment_home, container, false);
 
@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment {
 
         TextView nombreUser = actividad.findViewById(R.id.textBienvenidaPincipal);
         nombreUser.setText("Hola, "+""+persistencia.getString ("nombres", "").toString ()+","+" Bienvenido");
-
 
         ConsultarNombreCiudadUser();
         CargarPublicacionesEnFragment();
@@ -55,10 +54,8 @@ public class HomeFragment extends Fragment {
         SharedPreferences persistencia = actividad.getContext().getSharedPreferences("datos_login", Context.MODE_PRIVATE);
         String ciudad = persistencia.getString ("id_ciudad", "");
 
-
         TextView ubicacion = actividad.findViewById(R.id.textUbicacion);
         RequestQueue hilo = Volley.newRequestQueue (this.getActivity());
-
         String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/nombreCiudad/?ciudad="+ciudad;
 
         JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {
@@ -66,18 +63,14 @@ public class HomeFragment extends Fragment {
             public void onResponse (JSONObject response) {
 
                 JSONArray n_ciudadYdepartamento = response.optJSONArray ("nCiudadyDepartamento");
-                Toast.makeText (getActivity (), n_ciudadYdepartamento.toString (), Toast.LENGTH_SHORT).show ();
                 String la_ciudad = "";
                 String el_departamento = "";
                 try {
                     for (int i = 0; i < n_ciudadYdepartamento.length (); i++) {
-
                         JSONObject dato = n_ciudadYdepartamento.getJSONObject (i);
                         la_ciudad = dato.getString ("la_ciudad");
                         el_departamento = dato.getString ("el_departamento").toString ();
-
                     }
-
 
                     SharedPreferences persistencia = getContext ().getSharedPreferences("datos_login", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = persistencia.edit();
@@ -93,12 +86,10 @@ public class HomeFragment extends Fragment {
         }, new Response.ErrorListener () {
             @Override
             public void onErrorResponse (VolleyError error) {
-
             }
         });
 
         hilo.add(solicitud);
-
     }
 
     public void CargarPublicacionesEnFragment(){
@@ -115,14 +106,12 @@ public class HomeFragment extends Fragment {
                 listaPublicaciones = new ArrayList<> ();
 
                 JSONArray lista_clientes = response.optJSONArray ("registros_publicaciones");
-
                 try {
                     for (int i = 0; i < lista_clientes.length (); i++) {
-
+                        
+                        JSONObject temp = lista_clientes.getJSONObject (i);
                         String descuento = "";
                         String envio = "";
-
-                        JSONObject temp = lista_clientes.getJSONObject (i);
                         String id = temp.getString ("id_publicacion");
                         String foto = temp.getString ("imagen");
                         String titulo = temp.getString ("titulo");
@@ -143,11 +132,10 @@ public class HomeFragment extends Fragment {
                             envio = "";
                         }
 
-                        Productos pub = new Productos (titulo, precio, envio, descuento, foto,id, descripcion);
+                        Publicaciones pub = new Publicaciones (titulo, precio, envio, descuento, foto,id, descripcion);
                         listaPublicaciones.add (pub);
                     }
-                    adapter = new AdapterDatos (listaPublicaciones);
-
+                    adapter = new AdapterPublicaciones (listaPublicaciones);
                     adapter.setOnclickListener (new View.OnClickListener () {
                         @Override
                         public void onClick (View v) {
@@ -168,7 +156,6 @@ public class HomeFragment extends Fragment {
             public void onErrorResponse (VolleyError error) {
             }
         });
-
         hilo.add(solicitud);
 
     }

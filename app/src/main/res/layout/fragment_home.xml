@@ -25,12 +25,9 @@
             android:fontFamily="@font/open_sans_bold"
             android:text="Hola,"
             android:textColor="@android:color/background_dark"
-            android:textSize="13dp"
+            android:textSize="15dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -74,16 +71,14 @@
             android:drawableLeft="@drawable/ic_location"
             android:fontFamily="@font/open_sans"
             android:text=""
-            android:textColor="@android:color/tertiary_text_light"
-            android:textSize="12sp"
-            app:drawableTint="#D1C5C5"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:drawableTint="#F3F1F1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextBuscar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -96,7 +91,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <LinearLayout
                 android:id="@+id/contentTipos"
                 android:layout_marginTop="10dp"
@@ -104,23 +98,21 @@
                 android:paddingLeft="100dp"
                 android:paddingRight="100dp"
                 android:layout_height="wrap_content"
-                tools:ignore="MissingConstraints"
-
-                >
+                tools:ignore="MissingConstraints">
                 <LinearLayout
                     android:background="@color/success_stroke_color"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_weight="1.5"
                     android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    >
+                    android:layout_height="50dp">
 
                     <ImageView
                         android:id="@+id/prod"
                         android:layout_width="match_parent"
                         android:layout_height="27dp"
                         app:srcCompat="@drawable/productos" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,6 +120,7 @@
                         android:textSize="18sp"
                         android:textColor="@color/white"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:background="@android:color/holo_orange_light"
                     android:gravity="center"
@@ -141,16 +134,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="27dp"
                         app:srcCompat="@drawable/services" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Servicios"
                         android:textSize="18sp"
                         android:textColor="@color/white"/>
+
                 </LinearLayout>
-
             </LinearLayout>
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_marginTop="20dp"
@@ -159,12 +152,8 @@
                 android:layout_marginRight="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/contentTipos">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
+                app:layout_constraintTop_toBottomOf="@+id/contentTipos"/>
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

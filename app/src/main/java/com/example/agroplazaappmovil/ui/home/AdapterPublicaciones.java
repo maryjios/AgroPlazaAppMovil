@@ -1,7 +1,6 @@
 package com.example.agroplazaappmovil.ui.home;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,18 +21,18 @@ import com.example.agroplazaappmovil.R;
 
 import java.util.ArrayList;
 
-public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDatos> implements View.OnClickListener {
+public class AdapterPublicaciones extends RecyclerView.Adapter<AdapterPublicaciones.ViewHolderDatos> implements View.OnClickListener {
 
-    ArrayList<Productos> listaDatos;
+    ArrayList<Publicaciones> listaDatos;
     private View.OnClickListener listener;
-    public AdapterDatos (ArrayList<Productos> listaDatos) {
+    public AdapterPublicaciones (ArrayList<Publicaciones> listaDatos) {
         this.listaDatos= listaDatos;
     }
 
     @NonNull
     @Override
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_recycler,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_publicaciones,null, false);
         view.setOnClickListener (this);
         return new ViewHolderDatos(view);
     }
@@ -82,7 +81,7 @@ public class AdapterDatos extends RecyclerView.Adapter<AdapterDatos.ViewHolderDa
             contexto = itemView.getContext();
         }
 
-        public void asignarDatos(Productos datos) {
+        public void asignarDatos(Publicaciones datos) {
             titulo.setText(datos.titulo);
             precio.setText(datos.precio);
             envio.setText(datos.envio);
