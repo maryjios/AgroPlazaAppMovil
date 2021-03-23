@@ -100,7 +100,6 @@ public class EditarDatos extends AppCompatActivity {
                         public void onResponse(String response) {
 
                             String[] mensaje = response.split("\"");
-                            Toast.makeText(EditarDatos.this, mensaje[1], Toast.LENGTH_LONG).show();
 
                             if (mensaje[1].equalsIgnoreCase("INVALID##DOCUMENT")) {
                                 pDialog.dismiss();

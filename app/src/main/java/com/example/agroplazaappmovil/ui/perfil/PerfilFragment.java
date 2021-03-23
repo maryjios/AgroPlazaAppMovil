@@ -33,6 +33,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class PerfilFragment extends Fragment {
 
     View actividad;
+    TextView etiqueta_nombre, etiqueta_correo;
     ImageView avatar;
 
     @Override
@@ -41,7 +42,6 @@ public class PerfilFragment extends Fragment {
 
         avatar = actividad.findViewById(R.id.imagen_perfil);
 
-        TextView etiqueta_nombre, etiqueta_correo;
         etiqueta_nombre = actividad.findViewById(R.id.nombre_perfil);
         etiqueta_correo = actividad.findViewById(R.id.correo_perfil);
 
