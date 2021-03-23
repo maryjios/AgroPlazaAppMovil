@@ -41,8 +41,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DetallePublicacion extends AppCompatActivity {
 
-    TextView titulo, precio;
-
+    TextView titulo, precio, descripcion, unidad, stock;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,33 +50,36 @@ public class DetallePublicacion extends AppCompatActivity {
         Intent intent = getIntent();
         titulo = findViewById (R.id.titulo_detalle);
         precio = findViewById (R.id.precio_detalle);
+        descripcion = findViewById (R.id.descripcion_detalle);
+        unidad = findViewById (R.id.unidad_detalle);
+        stock = findViewById (R.id.stock_detalle);
+
+        Float valor_precio = Float.parseFloat (intent.getStringExtra("precio"));
+        int precio_int =  Math.round (valor_precio);
         titulo.setText (intent.getStringExtra("titulo"));
-        precio.setText (intent.getStringExtra("descripcion"));
+        precio.setText (Integer.toString(precio_int));
+        unidad.setText (" x " + intent.getStringExtra("unidad"));
+        stock.setText (intent.getStringExtra("stock"));
+        descripcion.setText (intent.getStringExtra("descripcion"));
 
         ImageSlider imagenes = findViewById (R.id.imagenes_detalle);
         List<SlideModel> imagenes_publicacion = new ArrayList<>();
 
         String id_publicacion = intent.getStringExtra("id");
-
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
         String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/getImagenesPublicacion?id="+id_publicacion;
-
 
         JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {
             @Override
             public void onResponse (JSONObject response) {
-
                 JSONArray imagenesPublicacion = response.optJSONArray ("imagenes");
                 try {
-
                     for (int i = 0; i < imagenesPublicacion.length (); i++) {
 
                         JSONObject dato = imagenesPublicacion.getJSONObject (i);
                         String la_imagen = dato.getString ("imagen");
                         imagenes_publicacion.add (new SlideModel("https://agroplaza.solucionsoftware.co/public/dist/img/publicaciones/publicacion"+id_publicacion+"/"+la_imagen));
-
                     }
-
                     imagenes.setImageList (imagenes_publicacion, true);
 
                 } catch (JSONException e) {
@@ -97,6 +99,20 @@ public class DetallePublicacion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DetallePublicacion.super.onBackPressed();
+            }
+        });
+
+        Button btn_generarPedido = findViewById(R.id.btn_comprar);
+        btn_generarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_compra = new Intent (getApplicationContext (), GenerarPedido.class);
+                /* intent_compra.putExtra ("id_publicacion", intent.getStringExtra("id"));
+                intent_compra.putExtra ("stock", intent.getStringExtra("stock"));
+                intent_compra.putExtra ("precio", intent.getStringExtra("precio"));
+                intent_compra.putExtra ("descuento", intent.getStringExtra("descuento")); */
+                startActivity (intent_compra);
+
             }
         });
     }

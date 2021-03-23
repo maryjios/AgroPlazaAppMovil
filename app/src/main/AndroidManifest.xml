@@ -11,11 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroPlazaAppMovil">
+        <activity android:name=".ui.home.GenerarPedido"></activity>
         <!-- Layouts home -->
-        <activity android:name=".ui.home.DetallePublicacion" />
-
-        <!-- Layaouts perfil -->
-        <activity android:name=".ui.perfil.EditarPassword"></activity>
+        <activity android:name=".ui.home.DetallePublicacion" /> <!-- Layaouts perfil -->
+        <activity android:name=".ui.perfil.EditarPassword" />
         <activity android:name=".ui.perfil.EditarEmail" />
         <activity android:name=".ui.perfil.EditarCiudad" />
         <activity android:name=".ui.perfil.EditarDatos" />

@@ -21,18 +21,18 @@ import com.example.agroplazaappmovil.R;
 
 import java.util.ArrayList;
 
-public class AdapterPublicaciones extends RecyclerView.Adapter<AdapterPublicaciones.ViewHolderDatos> implements View.OnClickListener {
+public class AdapterDescuentos extends RecyclerView.Adapter<AdapterDescuentos.ViewHolderDatos> implements View.OnClickListener {
 
-    ArrayList<Publicaciones> listaDatos;
+    ArrayList<Descuentos> listaDatos;
     private View.OnClickListener listener;
-    public AdapterPublicaciones (ArrayList<Publicaciones> listaDatos) {
+    public AdapterDescuentos (ArrayList<Descuentos> listaDatos) {
         this.listaDatos= listaDatos;
     }
 
     @NonNull
     @Override
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_publicaciones,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_descuntos,null, false);
         view.setOnClickListener (this);
         return new ViewHolderDatos(view);
     }
@@ -57,7 +57,7 @@ public class AdapterPublicaciones extends RecyclerView.Adapter<AdapterPublicacio
             listener.onClick (v);
         }
     }
-    
+
     /* clase Holder */
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
@@ -80,7 +80,7 @@ public class AdapterPublicaciones extends RecyclerView.Adapter<AdapterPublicacio
             contexto = itemView.getContext();
         }
 
-        public void asignarDatos(Publicaciones datos) {
+        public void asignarDatos(Descuentos datos) {
             titulo.setText(datos.titulo);
             precio.setText(datos.precio);
             envio.setText(datos.envio);

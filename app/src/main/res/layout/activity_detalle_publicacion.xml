@@ -45,7 +45,7 @@
 
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/imagenes_detalle"
-        android:layout_width="340dp"
+        android:layout_width="350dp"
         app:auto_cycle="false"
         android:layout_height="300dp"
         android:layout_marginTop="32dp"
@@ -55,26 +55,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_atras_detalle"
         />
+    <LinearLayout
+        android:id="@+id/content_precio_envio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenes_detalle">
+
+        <TextView
+            android:id="@+id/precio_detalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="TextView"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/unidad_detalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="8dp"
+            android:fontFamily="@font/open_sans_light"
+            android:text="TextView"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/titulo_detalle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="@font/open_sans_bold"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagenes_detalle"/>
+        app:layout_constraintTop_toBottomOf="@+id/content_precio_envio"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="32dp"
-
+        android:layout_marginRight="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/titulo_detalle"
@@ -89,12 +119,27 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/precio_detalle"
+            android:id="@+id/descripcion_detalle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans_light"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/stock_detalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans_light"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btn_comprar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/descripcion_detalle"
+            android:text="Comprar" />
     </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
