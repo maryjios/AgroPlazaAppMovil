@@ -99,13 +99,22 @@ public class EditarDatos extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
 
-                            if (response.trim().equalsIgnoreCase("ERROR##UPDATE")) {
+                            String[] mensaje = response.split("\"");
+                            Toast.makeText(EditarDatos.this, mensaje[1], Toast.LENGTH_LONG).show();
+
+                            if (mensaje[1].equalsIgnoreCase("INVALID##DOCUMENT")) {
+                                pDialog.dismiss();
+                                new SweetAlertDialog(EditarDatos.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Ya existe!")
+                                        .setContentText("El documento ingresado ya esta registrado en el sistema.")
+                                        .show();
+                            } else if (mensaje[1].equalsIgnoreCase("ERROR##UPDATE")) {
                                 pDialog.dismiss();
                                 new SweetAlertDialog(EditarDatos.this, SweetAlertDialog.ERROR_TYPE)
                                         .setTitleText("Oops...")
                                         .setContentText("Error al actualizar los campos!")
                                         .show();
-                            } else {
+                            } else if (mensaje[1].trim().equalsIgnoreCase("OK##DATA##UPDATE")) {
                                 SharedPreferences.Editor editor = persistencia.edit();
                                 editor.putString("documento", documento);
                                 editor.putString("nombres", nombres);
