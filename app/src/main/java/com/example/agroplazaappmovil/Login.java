@@ -68,12 +68,19 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        Bundle mensaje = this.getIntent().getExtras();
+        String mensaje = getIntent().getStringExtra("mensaje");
         if (mensaje != null) {
-            new SweetAlertDialog(Login.this, SweetAlertDialog.SUCCESS_TYPE)
-                    .setTitleText("EXITO!")
-                    .setContentText("Has sido registrado satisfactoriamente!")
-                    .show();
+            if (mensaje.equals("registrado")) {
+                new SweetAlertDialog(Login.this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("EXITO!")
+                        .setContentText("Has sido registrado satisfactoriamente!")
+                        .show();
+            } else if (mensaje.equals("desactivado")) {
+                new SweetAlertDialog(Login.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Tu cuenta ha sido desactivada!")
+                        .setContentText("Ya no podras ingresar al sistema con esta cuenta. Si deseas recuperarla debes contactar con un administrador.")
+                        .show();
+            }
         }
     }
 

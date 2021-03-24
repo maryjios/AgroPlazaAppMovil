@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,19 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.agroplazaappmovil.Login;
 import com.example.agroplazaappmovil.R;
+import com.example.agroplazaappmovil.RegistroUsuarios;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -59,7 +66,7 @@ public class PerfilFragment extends Fragment {
         cerrar_sesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cerrarSesion();
+                cerrarSesion(persistencia);
             }
         });
 
@@ -106,33 +113,26 @@ public class PerfilFragment extends Fragment {
                 SweetAlertDialog desactivar = new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE);
                 desactivar.setTitleText("¿Estas seguro?");
                 desactivar.setContentText("Si desactivas tu cuenta no podras acceder a la aplicacion (Si quieres volver a activarlo debes contactar con administracion.)");
-                desactivar.setCancelText("No, gracias");
-                desactivar.setConfirmText("Si, quiero hacerlo!");
                 desactivar.setConfirmButton("Confirmar", new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
-                        Toast.makeText(getActivity(), "Se confirmo", Toast.LENGTH_SHORT).show();
-                        sDialog.cancel();
+                        desactivarCuenta(persistencia);
                     }
                 });
                 desactivar.setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
-                        Toast.makeText(getActivity(), "Se cancelo", Toast.LENGTH_SHORT).show();
-                        sDialog.cancel();
+                        sDialog.dismissWithAnimation();
                     }
                 });
                 desactivar.show();
-
-                desactivar.getButton(SweetAlertDialog.BUTTON_CANCEL).setBackgroundColor(Color.GRAY);
             }
         });
 
         return actividad;
     }
 
-    public void cerrarSesion () {
-        SharedPreferences persistencia = actividad.getContext().getSharedPreferences("datos_login", Context.MODE_PRIVATE);
+    public void cerrarSesion (SharedPreferences persistencia) {
         SharedPreferences.Editor editor = persistencia.edit();
 
         editor.clear();
@@ -177,5 +177,65 @@ public class PerfilFragment extends Fragment {
         );
 
         hilo.add(imageRequest);
+    }
+
+    public void desactivarCuenta(SharedPreferences persistencia) {
+        String id_perfil = persistencia.getString("id", "0");
+
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.GREEN);
+        pDialog.setTitleText("Espera ...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        RequestQueue hilo = Volley.newRequestQueue(getContext());
+        String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/DesactivarCuentaMovil";
+
+        StringRequest solicitud = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        String[] mensaje = response.split("\"");
+
+                        if (mensaje[1].equalsIgnoreCase("OK##STATUS##UPDATE")) {
+                            SharedPreferences.Editor editor = persistencia.edit();
+
+                            editor.clear();
+                            editor.commit();
+
+                            Intent intent = new Intent(getActivity(), Login.class);
+                            intent.putExtra("mensaje", "desactivado");
+                            startActivity(intent);
+                            getActivity().finish();
+                        } else if (mensaje[1].equalsIgnoreCase("ERROR##UPDATE")) {
+                            pDialog.dismiss();
+                            new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText("Hubo un error en el servidor!")
+                                    .show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Codigo de error del servidor
+                        // Se ejecuta cuando no llega el tipo solicitado String.
+                        Toast.makeText(getActivity(), "Error Servidor: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                        if (error.getMessage() != null) {
+                            Log.i("Error Servidor: ", error.getMessage());
+                        } else {
+                            Log.i("Error Servidor: ", "Error desconocido");
+                        }
+                    }
+                }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("id_perfil", id_perfil);
+                return parametros;
+            }
+        };
+        hilo.add(solicitud);
     }
 }

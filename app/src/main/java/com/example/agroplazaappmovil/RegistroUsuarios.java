@@ -147,7 +147,7 @@ public class RegistroUsuarios extends AppCompatActivity {
 
                                 if (response.trim().equalsIgnoreCase("OK#CORRECT#DATA")) {
                                     Intent intent = new Intent(getApplicationContext(), Login.class);
-                                    intent.putExtra("mensaje", "registro");
+                                    intent.putExtra("mensaje", "registrado");
                                     startActivity(intent);
                                     finish();
                                 } else if (response.trim().equalsIgnoreCase("ERROR#INVALID#DATA")) {
