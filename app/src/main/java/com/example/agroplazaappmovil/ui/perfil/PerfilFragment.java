@@ -240,12 +240,14 @@ public class PerfilFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         Toast.makeText(getContext(), "Error: "+volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                        pDialog.dismiss();
                     }
                 }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 //Convertir bits a cadena
                 String imagen = obtenerImagenBase64(bitmap);
+                Log.i("Base64: ", imagen);
 
                 String id_perfil = persistencia.getString("id", "0");
 
@@ -301,6 +303,7 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getContext(), "Error: "+error.getMessage(), Toast.LENGTH_LONG).show();
+                pDialog.dismiss();
             }
         }
         );
