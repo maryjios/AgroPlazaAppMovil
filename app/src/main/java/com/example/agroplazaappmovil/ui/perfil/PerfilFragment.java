@@ -213,6 +213,8 @@ public class PerfilFragment extends Fragment {
     }
 
     private void subirImagen(SharedPreferences persistencia) {
+        String id_perfil = persistencia.getString("id", "0");
+
         SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.GREEN);
         pDialog.setTitleText("Subiendo imagen ...");
@@ -229,11 +231,28 @@ public class PerfilFragment extends Fragment {
 
                         String[] mensaje = response.split("\"");
                         Toast.makeText(getActivity(), response.trim(), Toast.LENGTH_LONG).show();
+                        if (mensaje[1].equalsIgnoreCase("OK##IMAGE##UPDATE")) {
+                            SharedPreferences.Editor editor = persistencia.edit();
+                            editor.putString("avatar", "avatar_user_" + id_perfil + ".png");
 
-                        editar_imagen.setVisibility(View.GONE);
-                        cancel_edit_imagen.setVisibility(View.GONE);
-                        escoger_img.setVisibility(View.VISIBLE);
-                        pDialog.dismiss();
+                            editor.commit();
+
+                            editar_imagen.setVisibility(View.GONE);
+                            cancel_edit_imagen.setVisibility(View.GONE);
+                            escoger_img.setVisibility(View.VISIBLE);
+
+                            pDialog.dismiss();
+                            new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Imagen Actualizada!")
+                                    .setContentText("Tu imagen de avatar a sido actualizado correctamente.")
+                                    .show();
+                        } else {
+                            pDialog.dismiss();
+                            new SweetAlertDialog(getActivity(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText("Ha ocurrido un fallo al guardar la imagen!")
+                                    .show();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -247,9 +266,7 @@ public class PerfilFragment extends Fragment {
             protected Map<String, String> getParams() throws AuthFailureError {
                 //Convertir bits a cadena
                 String imagen = obtenerImagenBase64(bitmap);
-                Log.i("Base64: ", imagen);
-
-                String id_perfil = persistencia.getString("id", "0");
+                Log.i("Base64", imagen);
 
                 //Creación de parámetros
                 Map<String,String> params = new Hashtable<String, String>();
