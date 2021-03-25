@@ -36,165 +36,203 @@
             android:textSize="30dp" />
 
     </LinearLayout>
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imageview"
-            android:src="@drawable/backgroundlogin"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:scaleType="fitXY" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:width="180dp"
-            android:height="180dp"
-            android:scaleType="fitXY"
-            />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="horizontal"
-        android:padding="20dp">
-
-
-        <Button
-            android:id="@+id/btndisminuir"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="13dp"
-            android:layout_marginVertical="4dp"
-            android:background="@drawable/btn_compra"
-            android:gravity="center"
-            android:drawableLeft="@drawable/ic_baseline_horizontal_rule_24"
-            />
-
-        <TextView
-            android:id="@+id/cantidad"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="13dp"
-            android:layout_marginVertical="3dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="3dp"
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/btnaumentar"
-            android:layout_marginRight="9dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginVertical="4dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:background="@drawable/btn_compra"
-            android:drawableLeft="@drawable/ic_baseline_add_24"/>
-
-    </LinearLayout>
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:textSize="16sp"
-            android:text="Vendedor:"
-            android:textColor="@color/black" />
-        <EditText
-            android:id="@+id/vendedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/edit_style"
-            android:drawablePadding="4dp"
-            android:hint="Vendedor"
-            android:inputType="text"
-            android:paddingLeft="10dp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center">
 
-     <LinearLayout
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_gravity="center"
-         android:orientation="horizontal">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Cantidad:"
-            android:textColor="@color/black" />
+                    <ImageView
+                        android:id="@+id/img_view"
+                        android:src="@drawable/img_cargando"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:scaleType="fitXY" />
 
-        <EditText
-            android:id="@+id/cantidad_pedido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/edit_style"
-            android:drawablePadding="4dp"
-            android:hint="cantidad"
-            android:inputType="text"
-            android:paddingLeft="10dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                         >
+
+                        <TextView
+                            android:id="@+id/nom_producto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="Nombre Producto:"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/vl_producto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="Valor :"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/envio_pro"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="Envio :"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/descuento"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:text="Descuento :"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
 
 
+                    <Button
+                        android:id="@+id/btndisminuir"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginHorizontal="13dp"
+                        android:layout_marginVertical="4dp"
+                        android:background="@drawable/btn_compra"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/ic_baseline_horizontal_rule_24"
+                        />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Total:"
-            android:textColor="@color/black" />
+                    <TextView
+                        android:id="@+id/cantidad"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginHorizontal="13dp"
+                        android:layout_marginVertical="3dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="3dp"
+                        android:textSize="25dp" />
 
-        <EditText
-            android:id="@+id/Total_pedido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/edit_style"
-            android:drawablePadding="2dp"
-            android:hint="Valor Total"
-            android:inputType="text"
-            android:paddingLeft="10dp" />
+                    <Button
+                        android:id="@+id/btnaumentar"
+                        android:layout_marginRight="9dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginVertical="4dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:background="@drawable/btn_compra"
+                        android:drawableLeft="@drawable/ic_baseline_add_24"/>
 
-     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textSize="16sp"
-        android:text="Dirección:"
-        android:textColor="@color/black" />
+                </LinearLayout>
 
-    <EditText
-        android:id="@+id/direccion_pedido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/edit_style"
-        android:drawablePadding="4dp"
-        android:hint="Ingrese la direccion de residencia"
-        android:inputType="text"
-        android:paddingLeft="10dp" />
 
-    <Button
-        android:id="@+id/solicitar_pedido"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@color/green"
-        android:padding="10dp"
-        android:text="Genera Pedido" />
+                <EditText
+                    android:id="@+id/vendedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_style"
+                    android:drawableLeft="@drawable/ic_profile_user"
+                    android:drawablePadding="4dp"
+                    android:elevation="6dp"
+                    android:hint="Vendedor"
+                    android:enabled="false"
+                    android:paddingLeft="8dp" />
+
+
+                    <EditText
+                        android:id="@+id/valor_pedido"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/edit_style"
+                        android:drawableLeft="@drawable/ic_monetization"
+                        android:drawablePadding="4dp"
+                        android:elevation="6dp"
+                        android:hint="Valor Pedido"
+                        android:enabled="false"
+                        android:paddingLeft="8dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16sp"
+                    android:text="Documento:"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/documento_cl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_style"
+                    android:drawablePadding="4dp"
+                    android:hint="Ingrese su documento "
+                    android:inputType="text"
+                    android:paddingLeft="10dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16sp"
+                    android:text="Dirección:"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/direccion_pedido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_style"
+                    android:drawablePadding="4dp"
+                    android:hint="Ingrese la direccion de residencia"
+                    android:inputType="text"
+                    android:paddingLeft="10dp" />
+
+
+                <Button
+                    android:id="@+id/solicitar_pedido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:backgroundTint="@color/green"
+                    android:padding="10dp"
+                    android:text="Generar Pedido" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </LinearLayout>
