@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment {
         nombreUser.setText("Hola, "+""+persistencia.getString ("nombres", "").toString ()+","+" Bienvenido");
 
         ConsultarNombreCiudadUser();
-        CargarPublicacionesEnFragment();
         return actividad;
 
     }
@@ -72,14 +71,12 @@ public class HomeFragment extends Fragment {
                 String la_ciudad = "";
                 String el_departamento = "";
                 String id_departamento = "";
-
                 try {
                     for (int i = 0; i < n_ciudadYdepartamento.length (); i++) {
                         JSONObject dato = n_ciudadYdepartamento.getJSONObject (i);
                         la_ciudad = dato.getString ("la_ciudad");
                         el_departamento = dato.getString ("el_departamento");
                         id_departamento = dato.getString ("id_departamento");
-
                     }
 
                     SharedPreferences persistencia = getContext ().getSharedPreferences("datos_login", Context.MODE_PRIVATE);
@@ -87,8 +84,8 @@ public class HomeFragment extends Fragment {
                     editor.putString("departamento", el_departamento);
                     editor.putString("ciudad", la_ciudad);
                     editor.putString("id_departamento", id_departamento);
-
                     editor.commit();
+                    CargarPublicacionesEnFragment();
 
                     ubicacion.setText(la_ciudad+","+el_departamento);
                 } catch (JSONException e) {

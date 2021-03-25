@@ -154,7 +154,6 @@ public class EditarCiudad extends AppCompatActivity {
                         } else {
                             SharedPreferences.Editor editor = persistencia.edit();
                             editor.putString("id_ciudad", ciudad);
-
                             editor.commit();
 
                             pDialog.dismiss();

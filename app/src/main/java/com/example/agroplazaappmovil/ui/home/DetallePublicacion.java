@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.agroplazaappmovil.Login;
 import com.example.agroplazaappmovil.Principal;
 import com.example.agroplazaappmovil.R;
+import com.example.agroplazaappmovil.RegistroUsuarios;
 import com.example.agroplazaappmovil.ui.perfil.EditarCiudad;
 import com.example.agroplazaappmovil.ui.perfil.EditarDatos;
 
@@ -35,13 +38,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DetallePublicacion extends AppCompatActivity {
 
     TextView titulo, precio, descripcion, unidad, stock;
+    EditText pregunta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,10 +118,65 @@ public class DetallePublicacion extends AppCompatActivity {
                 intent_compra.putExtra ("precio", intent.getStringExtra("precio"));
                 intent_compra.putExtra ("descuento", intent.getStringExtra("descuento")); */
                 startActivity (intent_compra);
-
             }
         });
+
+        pregunta = findViewById(R.id.editPregunta);
+        pregunta.setOnKeyListener (new View.OnKeyListener () {
+            @Override
+            public boolean onKey (View v, int keyCode, KeyEvent event) {
+                Log.i ("Tecla", ""+keyCode);
+                return false;
+            }
+        });
+       /* Button preguntar = findViewById(R.id.btnPreguntar);
+        btn_generarPedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registrarPregunta();
+            }
+        }); */
+
     }
+
+    /* public void registrarPregunta(){
+
+        String valor_pregunta = pregunta.getText().toString();
+
+        RequestQueue hilo = Volley.newRequestQueue(this);
+        String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/InsertarPregunta";
+
+        StringRequest solicitud = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                       Toast.makeText (getApplicationContext (), "Registrada", Toast.LENGTH_LONG).show ();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Codigo de error del servidor
+                        // Se ejecuta cuando no llega el tipo solicitado String.
+                        Toast.makeText(getApplicationContext(), "Error Servidor: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                        if (error.getMessage() != null) {
+                            Log.i("Error Servidor: ", error.getMessage());
+                        } else {
+                            Log.i("Error Servidor: ", "Error desconocido");
+                        }
+                    }
+                }) {
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<String, String> ();
+                parametros.put("email", valor_pregunta);
+
+                return parametros;
+            }
+        };
+        hilo.add(solicitud);
+
+    } */
 }
 
 
