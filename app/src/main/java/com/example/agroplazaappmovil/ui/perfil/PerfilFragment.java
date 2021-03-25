@@ -299,7 +299,7 @@ public class PerfilFragment extends Fragment {
         SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
         pDialog.getProgressHelper().setBarColor(Color.GREEN);
         pDialog.setTitleText("Cargando ...");
-        pDialog.setCancelable(false);
+        pDialog.setCancelable(true);
         pDialog.show();
 
         RequestQueue hilo = Volley.newRequestQueue(getActivity().getApplicationContext());
