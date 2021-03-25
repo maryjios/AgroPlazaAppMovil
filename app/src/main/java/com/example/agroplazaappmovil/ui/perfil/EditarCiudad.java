@@ -164,6 +164,7 @@ public class EditarCiudad extends AppCompatActivity {
                                     .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                         @Override
                                         public void onClick(SweetAlertDialog sDialog) {
+                                            sDialog.dismiss();
                                             EditarCiudad.super.onBackPressed();
                                         }
                                     })

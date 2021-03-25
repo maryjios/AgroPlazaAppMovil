@@ -118,8 +118,8 @@ public class Login extends AppCompatActivity {
                         } else if (response.trim().equalsIgnoreCase("NOT##STATUS")) {
                             pDialog.dismiss();
                             new SweetAlertDialog(Login.this, SweetAlertDialog.WARNING_TYPE)
-                                    .setTitleText("ESTAS BLOQUEADO!")
-                                    .setContentText("Tu usuarios se encuentra inactivado. Si quieres recuperar tu usuario contacta con un administrador.")
+                                    .setTitleText("ESTAS INACTIVADO!")
+                                    .setContentText("Tu usuarios se encuentra inactivado. Si quieres recuperar tu usuario envia una peticion al correo: agroplaza@gmail.com.")
                                     .show();
                         } else {
                             String[] mensaje = response.split("#&&#");
@@ -152,6 +152,8 @@ public class Login extends AppCompatActivity {
                                 editor.putString("avatar", avatar);
 
                                 editor.commit();
+
+                                pDialog.dismiss();
 
                                 Intent intent = new Intent(getApplicationContext(), Principal.class);
                                 startActivity(intent);

@@ -7,7 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,7 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -32,16 +36,25 @@ import com.example.agroplazaappmovil.Login;
 import com.example.agroplazaappmovil.R;
 import com.example.agroplazaappmovil.RegistroUsuarios;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static android.app.Activity.RESULT_OK;
 
 public class PerfilFragment extends Fragment {
 
     View actividad;
     TextView etiqueta_nombre, etiqueta_correo;
     ImageView avatar;
+    Bitmap bitmap;
+    Button editar_imagen, cancel_edit_imagen, escoger_img;
+
+    private static final int SELECT_FILE = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -117,6 +130,7 @@ public class PerfilFragment extends Fragment {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
                         desactivarCuenta(persistencia);
+                        sDialog.dismiss();
                     }
                 });
                 desactivar.setCancelButton("Cancelar", new SweetAlertDialog.OnSweetClickListener() {
@@ -129,7 +143,126 @@ public class PerfilFragment extends Fragment {
             }
         });
 
+        editar_imagen = actividad.findViewById(R.id.btn_edit_imagen);
+        cancel_edit_imagen = actividad.findViewById(R.id.cancel_edit_imagen);
+
+        escoger_img = actividad.findViewById(R.id.btn_escoger_imagen);
+        escoger_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirGaleria();
+            }
+        });
+
+        editar_imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                subirImagen(persistencia);
+            }
+        });
+
+        cancel_edit_imagen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editar_imagen.setVisibility(View.GONE);
+                cancel_edit_imagen.setVisibility(View.GONE);
+                escoger_img.setVisibility(View.VISIBLE);
+
+                cargarImagenPerfil(nom_avatar);
+            }
+        });
+
         return actividad;
+    }
+
+    public String obtenerImagenBase64(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void abrirGaleria() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Imagen"), SELECT_FILE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == SELECT_FILE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+                //Cómo obtener el mapa de bits de la Galería
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                //Configuración del mapa de bits en ImageView
+                avatar.setImageBitmap(bitmap);
+                ajustarImagenPerfil();
+
+                editar_imagen.setVisibility(View.VISIBLE);
+                cancel_edit_imagen.setVisibility(View.VISIBLE);
+                escoger_img.setVisibility(View.GONE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void subirImagen(SharedPreferences persistencia) {
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.GREEN);
+        pDialog.setTitleText("Subiendo imagen ...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        RequestQueue hilo = Volley.newRequestQueue(getActivity().getApplicationContext());
+
+        String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/ActualizarImagenPerfil";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        String[] mensaje = response.split("\"");
+                        Toast.makeText(getActivity(), response.trim(), Toast.LENGTH_LONG).show();
+
+                        editar_imagen.setVisibility(View.GONE);
+                        cancel_edit_imagen.setVisibility(View.GONE);
+                        escoger_img.setVisibility(View.VISIBLE);
+                        pDialog.dismiss();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(getContext(), "Error: "+volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                //Convertir bits a cadena
+                String imagen = obtenerImagenBase64(bitmap);
+
+                String id_perfil = persistencia.getString("id", "0");
+
+                //Creación de parámetros
+                Map<String,String> params = new Hashtable<String, String>();
+
+                //Agregando de parámetros
+                params.put("imagen", imagen);
+                params.put("id_perfil", id_perfil);
+
+                //Parámetros de retorno
+                return params;
+            }
+        };
+
+        //Agregar solicitud a la cola
+        hilo.add(stringRequest);
     }
 
     public void cerrarSesion (SharedPreferences persistencia) {
@@ -144,6 +277,12 @@ public class PerfilFragment extends Fragment {
     }
 
     public void cargarImagenPerfil(String archivo) {
+        SweetAlertDialog pDialog = new SweetAlertDialog(getActivity(), SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.GREEN);
+        pDialog.setTitleText("Cargando ...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
         RequestQueue hilo = Volley.newRequestQueue(getActivity().getApplicationContext());
 
         String url = "https://agroplaza.solucionsoftware.co/public/dist/img/avatar/" + archivo;
@@ -155,18 +294,8 @@ public class PerfilFragment extends Fragment {
                     @Override
                     public void onResponse(Bitmap response) {
                         avatar.setImageBitmap(response);
-
-                        Drawable originalDrawable = avatar.getDrawable();
-                        Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
-
-                        //creamos el drawable redondeado
-                        RoundedBitmapDrawable roundedDrawable =
-                                RoundedBitmapDrawableFactory.create(getResources(), originalBitmap);
-
-                        //asignamos el CornerRadius
-                        roundedDrawable.setCornerRadius(originalBitmap.getHeight());
-
-                        avatar.setImageDrawable(roundedDrawable);
+                        ajustarImagenPerfil();
+                        pDialog.dismiss();
                     }
                 }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
             @Override
@@ -177,6 +306,20 @@ public class PerfilFragment extends Fragment {
         );
 
         hilo.add(imageRequest);
+    }
+
+    public void ajustarImagenPerfil() {
+        Drawable originalDrawable = avatar.getDrawable();
+        Bitmap originalBitmap = ((BitmapDrawable) originalDrawable).getBitmap();
+
+        //creamos el drawable redondeado
+        RoundedBitmapDrawable roundedDrawable =
+                RoundedBitmapDrawableFactory.create(getResources(), originalBitmap);
+
+        //asignamos el CornerRadius
+        roundedDrawable.setCornerRadius(originalBitmap.getHeight());
+
+        avatar.setImageDrawable(roundedDrawable);
     }
 
     public void desactivarCuenta(SharedPreferences persistencia) {
@@ -203,6 +346,8 @@ public class PerfilFragment extends Fragment {
 
                             editor.clear();
                             editor.commit();
+
+                            pDialog.dismiss();
 
                             Intent intent = new Intent(getActivity(), Login.class);
                             intent.putExtra("mensaje", "desactivado");
