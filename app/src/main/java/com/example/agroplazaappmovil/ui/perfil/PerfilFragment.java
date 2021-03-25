@@ -230,7 +230,7 @@ public class PerfilFragment extends Fragment {
                     public void onResponse(String response) {
 
                         String[] mensaje = response.split("\"");
-                        Toast.makeText(getActivity(), response.trim(), Toast.LENGTH_LONG).show();
+
                         if (mensaje[1].equalsIgnoreCase("OK##IMAGE##UPDATE")) {
                             SharedPreferences.Editor editor = persistencia.edit();
                             editor.putString("avatar", "avatar_user_" + id_perfil + ".png");
@@ -244,7 +244,7 @@ public class PerfilFragment extends Fragment {
                             pDialog.dismiss();
                             new SweetAlertDialog(getActivity(), SweetAlertDialog.SUCCESS_TYPE)
                                     .setTitleText("Imagen Actualizada!")
-                                    .setContentText("Tu imagen de avatar a sido actualizado correctamente.")
+                                    .setContentText("Tu imagen de avatar a sido actualizada correctamente.")
                                     .show();
                         } else {
                             pDialog.dismiss();
