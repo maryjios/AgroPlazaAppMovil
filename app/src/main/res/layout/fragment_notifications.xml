@@ -63,14 +63,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                tools:text="Alexander Perez" />
+                tools:text="Alex Perez" />
             <TextView
                 android:id="@+id/notification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/tv_name"
-                android:layout_below="@+id/tv_title"
-                tools:text="A aceptado tu pedido,se encuentra  Pendiente para su envio." />
+                android:layout_marginLeft="10dp"
+                android:text="A aceptado tu pedido,se encuentra  Pendiente para su envio." />
            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -90,14 +89,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    tools:text="Felipe Londoño" />
+                    android:text="Felipe Londoño" />
                 <TextView
                     android:id="@+id/notification2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/tv_name"
-                    android:layout_below="@+id/tv_title"
-                    tools:text="Ha envido exitosamente tu pedido" />
+                    android:layout_marginLeft="10dp"
+                    android:text="Ha envido exitosamente tu pedido" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,14 +115,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    tools:text="Maria Fernandez" />
+                    android:text="Maria Fernandez" />
                 <TextView
                     android:id="@+id/notification3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/tv_name"
-                    android:layout_below="@+id/tv_title"
-                    tools:text="Su solicitud del Producto no fue aceptada " />
+                    android:layout_marginLeft="10dp"
+                    android:text="Su solicitud del Producto no fue aceptada " />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,14 +141,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    tools:text="Maria Fernandez" />
+                    android:text="Maria Fernandez" />
                 <TextView
                     android:id="@+id/notification4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@+id/tv_name"
-                    android:layout_below="@+id/tv_title"
-                    tools:text="Su solicitud del Producto esta en Proceso " />
+                    android:layout_marginLeft="10dp"
+                    android:text="Su solicitud del Producto esta en Proceso " />
             </LinearLayout>
 
             <TextView
@@ -160,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
                 android:layout_gravity="center"
-                tools:text="Notificaciones" />
+                android:text="Notificaciones" />
             <ImageView
                 android:id="@+id/noti"
                 android:layout_width="40dp"
