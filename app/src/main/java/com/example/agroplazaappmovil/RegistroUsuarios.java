@@ -69,6 +69,12 @@ public class RegistroUsuarios extends AppCompatActivity {
     }
 
     public void cargarCiudades() {
+        SweetAlertDialog pDialog = new SweetAlertDialog(RegistroUsuarios.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.GREEN);
+        pDialog.setTitleText("Cargando ...");
+        pDialog.setCancelable(false);
+        pDialog.show();
+
         RequestQueue hilo = Volley.newRequestQueue(getApplicationContext());
         String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/CargarCiudades";
 
@@ -91,6 +97,7 @@ public class RegistroUsuarios extends AppCompatActivity {
                     }
 
                     cargarSpinnerCiudades(ciudades);
+                    pDialog.dismiss();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -106,6 +113,7 @@ public class RegistroUsuarios extends AppCompatActivity {
                 } else {
                     Log.i("Error Servidor: ", "Error desconocido");
                 }
+                pDialog.dismiss();
             }
         });
 

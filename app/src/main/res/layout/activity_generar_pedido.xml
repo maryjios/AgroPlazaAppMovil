@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:background="#8BC34A">
 
         <Button
@@ -20,22 +20,22 @@
             android:backgroundTint="@color/float_transparent"
             android:background="@color/float_transparent"
             android:drawableLeft="@drawable/ic_arrow_back"
-            android:drawableTint="@color/black"
-
-           />
+            android:drawableTint="@color/black" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/float_transparent"
             android:gravity="center"
+            android:layout_gravity="center"
             android:padding="5dp"
-            android:text="Detalle Compra"
+            android:text="Realizar Compra"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="30dp" />
 
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -44,10 +44,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,17 +67,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                         >
+                        android:layout_marginHorizontal="20dp" >
 
                         <TextView
                             android:id="@+id/nom_producto"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans_bold"
-                            android:text="Nombre Producto:"
+                            android:text="Nombre Producto"
                             android:textSize="14sp" />
 
                         <TextView
@@ -83,7 +82,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans_bold"
-                            android:text="Valor :"
+                            android:text="Valor : $ "
                             android:textSize="14sp" />
 
                         <TextView
@@ -91,7 +90,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans_bold"
-                            android:text="Envio :"
+                            android:text="Envio"
                             android:textSize="14sp" />
 
                         <TextView
@@ -99,11 +98,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans_bold"
-                            android:text="Descuento :"
+                            android:text="Descuento"
                             android:textSize="14sp" />
 
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,33 +111,48 @@
                     android:orientation="horizontal"
                     android:padding="20dp">
 
-
                     <Button
                         android:id="@+id/btndisminuir"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_marginHorizontal="13dp"
+                        android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="4dp"
                         android:background="@drawable/btn_compra"
                         android:gravity="center"
                         android:drawableLeft="@drawable/ic_baseline_horizontal_rule_24"
+                        android:enabled="false"
                         />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/cantidad"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginHorizontal="13dp"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="2dp"
                         android:layout_marginVertical="3dp"
                         android:layout_gravity="center"
-                        android:layout_marginRight="3dp"
-                        android:textSize="25dp" />
+                        android:gravity="center"
+                        android:padding="0dp"
+                        android:text="1"
+                        android:inputType="number"
+                        android:enabled="false"
+                        android:background="@drawable/edit_style"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:id="@+id/unidad_pedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black"
+                        android:layout_marginHorizontal="2dp"
+                        android:text="U"/>
 
                     <Button
                         android:id="@+id/btnaumentar"
-                        android:layout_marginRight="9dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginVertical="4dp"
+                        android:layout_marginHorizontal="10dp"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:gravity="center"
@@ -145,7 +160,6 @@
                         android:drawableLeft="@drawable/ic_baseline_add_24"/>
 
                 </LinearLayout>
-
 
                 <EditText
                     android:id="@+id/vendedor"
@@ -155,27 +169,27 @@
                     android:layout_marginBottom="20dp"
                     android:background="@drawable/edit_style"
                     android:drawableLeft="@drawable/ic_profile_user"
+                    android:drawableTint="@color/black"
                     android:drawablePadding="4dp"
-                    android:elevation="6dp"
+                    android:elevation="4dp"
                     android:hint="Vendedor"
                     android:enabled="false"
                     android:paddingLeft="8dp" />
 
-
-                    <EditText
-                        android:id="@+id/valor_pedido"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginBottom="20dp"
-                        android:background="@drawable/edit_style"
-                        android:drawableLeft="@drawable/ic_monetization"
-                        android:drawablePadding="4dp"
-                        android:elevation="6dp"
-                        android:hint="Valor Pedido"
-                        android:enabled="false"
-                        android:paddingLeft="8dp" />
-
+                <EditText
+                    android:id="@+id/valor_pedido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/edit_style"
+                    android:drawableLeft="@drawable/ic_monetization"
+                    android:drawableTint="@color/black"
+                    android:drawablePadding="4dp"
+                    android:elevation="4dp"
+                    android:hint="Valor Pedido"
+                    android:enabled="false"
+                    android:paddingLeft="8dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -195,8 +209,9 @@
                     android:background="@drawable/edit_style"
                     android:drawablePadding="4dp"
                     android:hint="Ingrese su documento "
-                    android:inputType="text"
+                    android:inputType="number"
                     android:paddingLeft="10dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -232,7 +247,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-
 
 </LinearLayout>
