@@ -24,12 +24,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.agroplazaappmovil.R;
+import com.example.agroplazaappmovil.RegistroUsuarios;
+import com.example.agroplazaappmovil.ui.perfil.EditarDatos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -37,9 +43,10 @@ public class GenerarPedido extends AppCompatActivity {
 
     TextView nom_pro, valor_pro, envio_pro, descuento_pro, unidad_pro;
     EditText cantidad, nom_vendedor, valor_total, documento_cl, direccion_cl;
-    Button btnaumntar, btndisminuir, btn_atras_compra;
+    Button btnaumntar, btndisminuir, btn_atras_compra, btn_generar_pedido;
     ImageView img_publicacion;
     int valor = 1;
+    Float precio, descuento;
     String id_publicacion;
 
     SweetAlertDialog pDialog;
@@ -49,11 +56,7 @@ public class GenerarPedido extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_generar_pedido);
 
-        pDialog = new SweetAlertDialog(GenerarPedido.this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.GREEN);
-        pDialog.setTitleText("Cargando ...");
-        pDialog.setCancelable(true);
-        pDialog.show();
+        cargando();
 
         img_publicacion = findViewById(R.id.img_view);
         nom_pro = findViewById(R.id.nom_producto);
@@ -109,6 +112,8 @@ public class GenerarPedido extends AppCompatActivity {
 
                     if (valor > 1)
                         btndisminuir.setEnabled(true);
+
+                    calcularTotal();
                 }
             });
 
@@ -123,11 +128,35 @@ public class GenerarPedido extends AppCompatActivity {
 
                     if (valor < stock)
                         btnaumntar.setEnabled(true);
+
+                    calcularTotal();
                 }
             });
-
-
         }
+
+        btn_generar_pedido = findViewById(R.id.solicitar_pedido);
+        btn_generar_pedido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                realizarPedido(stock, persistencia);
+            }
+        });
+    }
+
+    public void cargando() {
+        pDialog = new SweetAlertDialog(GenerarPedido.this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.GREEN);
+        pDialog.setTitleText("Cargando ...");
+        pDialog.setCancelable(true);
+        pDialog.show();
+    }
+
+    public void calcularTotal() {
+        int cant = Integer.parseInt(cantidad.getText().toString());
+        Float valor_descuento = precio * (descuento / 100);
+        Float total = (precio * cant) - valor_descuento;
+
+        valor_total.setText(String.valueOf(total));
     }
 
     public void cargarImagen(String img) {
@@ -174,17 +203,13 @@ public class GenerarPedido extends AppCompatActivity {
                         envio_pro.setText((dato.getString("envio").equalsIgnoreCase("SI")) ? "Incluye envio" : "Envio gratis");
                         nom_vendedor.setText(dato.getString("nombre_usuario"));
                         unidad_pro.setText(dato.getString("abreviatura"));
+                        
+                        precio = Float.parseFloat(dato.getString("precio"));
+                        
+                        descuento = Float.parseFloat(dato.getString("descuento"));
+                        Float valor_descuento = precio * (descuento / 100);
 
-                        //String[] obtenerValor = valor_pro.getText().toString().split(" : ");
-                        //obtenerValor = obtenerValor[1].split(" ");
-                        Float precio = Float.parseFloat(dato.getString("precio"));
-
-                        //String[] obtenerDescuento = descuento_pro.getText().toString().split(" : ");
-                        //obtenerDescuento = obtenerDescuento[1].split("%");
-                        Float descuento = Float.parseFloat(dato.getString("descuento"));
-                        descuento = precio * (descuento / 100);
-
-                        descuento_pro.setText(descuento_pro.getText() + "(" + dato.getString("descuento") + "%) : $ " + descuento);
+                        descuento_pro.setText(descuento_pro.getText() + "(" + dato.getString("descuento") + "%) : $ " + valor_descuento);
 
                         valor_total.setText(String.valueOf(precio - descuento));
 
@@ -214,5 +239,105 @@ public class GenerarPedido extends AppCompatActivity {
         });
 
         hilo.add(solicitud);
+    }
+
+    public void realizarPedido(int stock, SharedPreferences persistencia) {
+        cargando();
+
+        String id_perfil = persistencia.getString("id", "0");
+        String documento = documento_cl.getText().toString();
+        String direccion = direccion_cl.getText().toString();
+
+        if (!documento.isEmpty() && !direccion.isEmpty()) {
+            String cant_pedido = (stock > 0) ? cantidad.getText().toString() : String.valueOf(stock);
+
+            String precio_pedido = String.valueOf(precio);
+
+            String descuento_pedido = String.valueOf(descuento);
+
+            String total_pedido = valor_total.getText().toString();
+
+            RequestQueue hilo = Volley.newRequestQueue(this);
+            String url = "https://agroplaza.solucionsoftware.co/ModuloPedidos/GenerarPedidoMovil";
+
+            StringRequest solicitud = new StringRequest(Request.Method.POST, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            String[] mensaje = response.split("\"");
+
+                            if (mensaje[1].equalsIgnoreCase("INVALID##DOCUMENT")) {
+                                pDialog.dismiss();
+                                new SweetAlertDialog(GenerarPedido.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("El documento ya existe!")
+                                        .setContentText("El documento ingresado esta registrado con otro usuario.")
+                                        .show();
+                            } else if (mensaje[1].equalsIgnoreCase("ERROR##INSERT")) {
+                                pDialog.dismiss();
+                                new SweetAlertDialog(GenerarPedido.this, SweetAlertDialog.ERROR_TYPE)
+                                        .setTitleText("Oops...")
+                                        .setContentText("Error al generar el pedido!")
+                                        .show();
+                            } else if (mensaje[1].trim().equalsIgnoreCase("OK##DATA##INSERT")) {
+                                SharedPreferences.Editor editor = persistencia.edit();
+                                editor.putString("documento", documento);
+                                editor.putString("direccion", direccion);
+
+                                editor.commit();
+
+                                pDialog.dismiss();
+                                new SweetAlertDialog(GenerarPedido.this, SweetAlertDialog.SUCCESS_TYPE)
+                                        .setTitleText("Pedido Realizado!")
+                                        .setContentText("Tu pedido ha sido enviado.")
+                                        .setConfirmText("Hecho!")
+                                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                            @Override
+                                            public void onClick(SweetAlertDialog sDialog) {
+                                                GenerarPedido.super.onBackPressed();
+                                                sDialog.dismiss();
+                                            }
+                                        })
+                                        .show();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Codigo de error del servidor
+                            // Se ejecuta cuando no llega el tipo solicitado String.
+                            Toast.makeText(getApplicationContext(), "Error Servidor: " + error.getMessage(), Toast.LENGTH_LONG).show();
+                            if (error.getMessage() != null) {
+                                Log.i("Error Servidor: ", error.getMessage());
+                            } else {
+                                Log.i("Error Servidor: ", "Error desconocido");
+                            }
+
+                            pDialog.dismiss();
+                        }
+                    }) {
+                protected Map<String, String> getParams() {
+                    Map<String, String> parametros = new HashMap<String, String>();
+                    parametros.put("cantidad", cant_pedido);
+                    parametros.put("valor_compra", precio_pedido);
+                    parametros.put("descuento", descuento_pedido);
+                    parametros.put("valor_total", total_pedido);
+                    parametros.put("direccion", direccion);
+                    parametros.put("id_usuario", id_perfil);
+                    parametros.put("id_publicacion", id_publicacion);
+                    parametros.put("documento", documento);
+                    return parametros;
+                }
+            };
+
+            hilo.add(solicitud);
+        } else {
+            pDialog.dismiss();
+            new SweetAlertDialog(GenerarPedido.this, SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("FALTAN DATOS!")
+                    .setContentText("Ingresa tu documento y direccion de domicilio.")
+                    .show();
+        }
     }
 }
