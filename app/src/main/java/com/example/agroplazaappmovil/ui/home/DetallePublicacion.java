@@ -11,10 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,6 +48,11 @@ import java.util.Map;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DetallePublicacion extends AppCompatActivity {
+
+    ArrayList<PreguntasRespuestas> listaPreguntasRespuestas;
+    RecyclerView recycler;
+    AdapterPreguntasRespuestas adapter;
+
 
     TextView titulo, precio, descripcion, unidad, stock;
     EditText pregunta;
@@ -77,7 +85,7 @@ public class DetallePublicacion extends AppCompatActivity {
 
         String id_publicacion = intent.getStringExtra ("id");
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
-        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/getImagenesPublicacion?id=" + id_publicacion;
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPreguntasRespuestas/getImagenesPublicacion?id=" + id_publicacion;
 
         JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {
             @Override
@@ -125,7 +133,6 @@ public class DetallePublicacion extends AppCompatActivity {
             }
         });
 
-        consultarPreguntas();
         pregunta = findViewById (R.id.editPregunta);
 
         Button botonEnviar = findViewById (R.id.btnPreguntar);
@@ -135,10 +142,61 @@ public class DetallePublicacion extends AppCompatActivity {
                 registrarPregunta ();
             }
         });
+
+        // consultarPreguntasRespuestas ();
     }
 
-    private void consultarPreguntas () {
 
+    public void consultarPreguntasRespuestas () {
+        recycler = findViewById (R.id.mi_recycler);
+        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.HORIZONTAL, false));
+
+        // Recycler descuento
+        recycler = findViewById (R.id.mi_recycler_descuento);
+        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.HORIZONTAL, false));
+
+        SharedPreferences persistencia = getApplicationContext ().getSharedPreferences ("datos_login", Context.MODE_PRIVATE);
+        String id_departamento = persistencia.getString ("id_departamento", "");
+
+        RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPreguntasRespuestas/ListarPreguntasRespuestasMovil?departamento=" + id_departamento;
+
+        JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {
+            @Override
+            public void onResponse (JSONObject response) {
+                listaPreguntasRespuestas = new ArrayList<> ();
+                listaPreguntasRespuestas = new ArrayList<> ();
+
+
+                JSONArray lista_clientes = response.optJSONArray ("registros_publicaciones");
+                try {
+
+
+                    for (int i = 0; i < lista_clientes.length (); i++) {
+
+                        JSONObject temp = lista_clientes.getJSONObject (i);
+                        String nombre_cliente = "";
+                        String pregunta_cliente = temp.getString ("id_publicacion");
+                        String fecha_pregunta_cliente = temp.getString ("imagen");
+                        String respuesta_vendedor = temp.getString ("titulo");
+                        String fecha_respuesta_vendedor = temp.getString ("precio");
+
+                        PreguntasRespuestas pub = new PreguntasRespuestas (nombre_cliente, pregunta_cliente, fecha_pregunta_cliente, respuesta_vendedor, fecha_respuesta_vendedor);
+                        listaPreguntasRespuestas.add (pub);
+
+                    }
+
+                    recycler.setAdapter (adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace ();
+                }
+            }
+        }, new Response.ErrorListener () {
+            @Override
+            public void onErrorResponse (VolleyError error) {
+            }
+        });
+        hilo.add (solicitud);
     }
 
     public void registrarPregunta () {
@@ -149,7 +207,7 @@ public class DetallePublicacion extends AppCompatActivity {
         String valor_pregunta = pregunta.getText ().toString ();
         Log.i ("Eledido", "Pedido");
         RequestQueue hilo = Volley.newRequestQueue (this);
-        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/RegistrarPregunta";
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPreguntasRespuestas/RegistrarPregunta";
 
         StringRequest solicitud = new StringRequest (Request.Method.POST, url,
                 new Response.Listener<String> () {

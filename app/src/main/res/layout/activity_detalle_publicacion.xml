@@ -44,7 +44,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btn_atras_detalle" />
 
-
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/imagenes_detalle"
                 android:layout_width="350dp"
@@ -57,6 +56,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/btn_atras_detalle"
                 app:placeholder="@drawable/img_cargando" />
 
+            <TextView
+                android:id="@+id/textoDetalleP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/viewParent.headerText.settingsMiniTitle"
+                app:layout_constraintTop_toBottomOf="@+id/imagenes_detalle"
+                android:text="Informacion de publicación"
+                />
+
             <LinearLayout
                 android:id="@+id/content_precio_envio"
                 android:layout_width="match_parent"
@@ -66,7 +75,7 @@
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagenes_detalle">
+                app:layout_constraintTop_toBottomOf="@+id/textoDetalleP">
 
                 <TextView
                     android:id="@+id/precio_detalle"
@@ -143,28 +152,45 @@
                     android:text="Comprar"
                     app:layout_constraintTop_toBottomOf="@+id/descripcion_detalle" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/contentTitutloPyR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/contentBtnComprar">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Preguntas y Respuestas"
+                    style="@style/viewParent.headerText.settingsMiniTitle"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-11dp"
+                    android:text="-----------------------------------------------------------------------------------"
+                    android:gravity="center"/>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginLeft="32dp"
                 android:layout_marginRight="32dp"
-                app:layout_constraintTop_toBottomOf="@+id/contentBtnComprar"
+                app:layout_constraintTop_toBottomOf="@+id/contentTitutloPyR"
                 >
 
                 <TextView
                     android:id="@+id/etiquetaRes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="Escribe una pregunta:"
                     android:textSize="14sp" />
-
-                <EditText
-                    android:id="@+id/editPregunta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
                 <LinearLayout
                     android:id="@+id/botonesPreguntar"
@@ -172,20 +198,31 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
+                    <EditText
+                        android:id="@+id/editPregunta"
+                        android:layout_width="250dp"
+                        android:inputType="text"
+                        android:background="@drawable/edit_style"
+                        android:layout_height="wrap_content" />
+
                     <Button
                         android:id="@+id/btnPreguntar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
+                        android:textSize="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="-4dp"
                         android:backgroundTint="@color/verde"
-                        android:text="Preguntar" />
+                        android:text="Enviar" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/red"
-                        android:text="Cancelar" />
                 </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_preguntas_respuestas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
