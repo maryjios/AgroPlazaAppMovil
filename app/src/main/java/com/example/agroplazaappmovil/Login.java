@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.agroplazaappmovil.ui.perfil.EditarCiudad;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -111,9 +113,20 @@ public class Login extends AppCompatActivity {
                                     .show();
                         } else if (response.trim().equalsIgnoreCase("NOT##ACCESS")) {
                             pDialog.dismiss();
-                            new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                            new SweetAlertDialog(Login.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("NO PUEDES INGRESAR!")
-                                    .setContentText("Solo los clientes pueden ingresar a la plataforma.")
+                                    .setContentText("Solo los clientes pueden ingresar a la app movil. Si quieres acceder con tu usuario hazlo desde la pagina web.")
+                                    .setConfirmText("Ir a la pagina")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sDialog) {
+                                            String url = "http://agroplaza.solucionsoftware.co/";
+                                            Intent i = new Intent(Intent.ACTION_VIEW);
+                                            i.setData(Uri.parse(url));
+                                            startActivity(i);
+                                            sDialog.dismiss();
+                                        }
+                                    })
                                     .show();
                         } else if (response.trim().equalsIgnoreCase("NOT##STATUS")) {
                             pDialog.dismiss();
