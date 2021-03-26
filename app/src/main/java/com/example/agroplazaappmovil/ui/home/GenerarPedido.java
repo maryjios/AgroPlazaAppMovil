@@ -93,6 +93,7 @@ public class GenerarPedido extends AppCompatActivity {
             btndisminuir.setVisibility(View.GONE);
             cantidad.setVisibility(View.GONE);
             btnaumntar.setVisibility(View.GONE);
+            unidad_pro.setVisibility(View.GONE);
         } else {
             if (stock == 1)
                 btnaumntar.setEnabled(false);
