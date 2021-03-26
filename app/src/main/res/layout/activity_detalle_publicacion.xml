@@ -6,190 +6,192 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.DetallePublicacion">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/contentTop"
         app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/btn_atras_detalle"
-            android:layout_width="60dp"
-            android:layout_height="15dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:backgroundTint="@color/float_transparent"
-            android:background="@color/float_transparent"
-            android:drawableLeft="@drawable/ic_atras"
-            tools:ignore="VectorDrawableCompat" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/open_sans"
-            android:text="Detalle de la publicacion"
-            android:textColor="@android:color/background_dark"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_atras_detalle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btn_atras_detalle" />
-
-
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/imagenes_detalle"
-            android:layout_width="350dp"
-            app:auto_cycle="false"
-            android:layout_height="300dp"
-            android:layout_marginTop="32dp"
-            app:placeholder="@drawable/img_cargando"
-            app:error_image="@drawable/img_cargando"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_atras_detalle"
-            />
-        <LinearLayout
-            android:id="@+id/content_precio_envio"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagenes_detalle">
-
-            <TextView
-                android:id="@+id/precio_detalle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="TextView"
-                android:textSize="18sp"/>
-
-            <TextView
-                android:id="@+id/unidad_detalle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="8dp"
-                android:fontFamily="@font/open_sans_light"
-                android:text="TextView"
-                android:textSize="18sp"/>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/titulo_detalle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/open_sans_bold"
-            android:text="TextView"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/content_precio_envio"/>
-
-        <LinearLayout
-            android:id="@+id/contentBtnComprar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/titulo_detalle"
-            app:layout_constraintTop_toBottomOf="@+id/titulo_detalle" >
-
-            <TextView
-                android:id="@+id/etiquetaDescricion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Descripcion:"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/descripcion_detalle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/stock_detalle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_light"
-                android:textSize="14sp" />
+            app:layout_constraintTop_toTopOf="parent">
 
             <Button
-                android:id="@+id/btn_comprar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/descripcion_detalle"
-                android:text="Comprar" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="32dp"
-        android:layout_marginLeft="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/contentTop"
-        >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+                android:id="@+id/btn_atras_detalle"
+                android:layout_width="60dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/float_transparent"
+                android:backgroundTint="@color/float_transparent"
+                android:drawableLeft="@drawable/ic_atras"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="VectorDrawableCompat" />
 
             <TextView
-                android:id="@+id/etiquetaRes"
-                android:layout_width="match_parent"
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_bold"
-                android:text="Escribe una pregunta:"
-                android:layout_marginTop="9dp"
-                android:textSize="14sp" />
+                android:fontFamily="@font/open_sans"
+                android:text="Detalle de la publicacion"
+                android:textColor="@android:color/background_dark"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_atras_detalle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_atras_detalle" />
 
-            <EditText
-                android:id="@+id/editPregunta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imagenes_detalle"
+                android:layout_width="350dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="32dp"
+                app:auto_cycle="false"
+                app:error_image="@drawable/img_cargando"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_atras_detalle"
+                app:placeholder="@drawable/img_cargando" />
 
             <LinearLayout
-                android:id="@+id/botonesPreguntar"
+                android:id="@+id/content_precio_envio"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagenes_detalle">
 
-                <Button
-                    android:id="@+id/btnPreguntar"
+                <TextView
+                    android:id="@+id/precio_detalle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Preguntar"
-                    android:layout_marginRight="10dp"
-                    android:backgroundTint="@color/verde"/>
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="TextView"
+                    android:textSize="18sp" />
 
-                <Button
+                <TextView
+                    android:id="@+id/unidad_detalle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar"
-                    android:backgroundTint="@color/red"/>
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="TextView"
+                    android:textSize="18sp" />
             </LinearLayout>
 
-        </LinearLayout>
-    </ScrollView>
+            <TextView
+                android:id="@+id/titulo_detalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/open_sans_bold"
+                android:text="TextView"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content_precio_envio" />
 
+            <LinearLayout
+                android:id="@+id/contentBtnComprar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="32dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/titulo_detalle"
+                app:layout_constraintTop_toBottomOf="@+id/titulo_detalle">
+
+                <TextView
+                    android:id="@+id/etiquetaDescricion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Descripcion:"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/descripcion_detalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_light"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/stock_detalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_light"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn_comprar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Comprar"
+                    app:layout_constraintTop_toBottomOf="@+id/descripcion_detalle" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                app:layout_constraintTop_toBottomOf="@+id/contentBtnComprar"
+                >
+
+                <TextView
+                    android:id="@+id/etiquetaRes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="Escribe una pregunta:"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/editPregunta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/botonesPreguntar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnPreguntar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:backgroundTint="@color/verde"
+                        android:text="Preguntar" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/red"
+                        android:text="Cancelar" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,32 +48,36 @@ public class DetallePublicacion extends AppCompatActivity {
 
     TextView titulo, precio, descripcion, unidad, stock;
     EditText pregunta;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_publicacion);
+    String id_publicacion;
 
-        Intent intent = getIntent();
+    @Override
+    protected void onCreate (Bundle savedInstanceState) {
+        super.onCreate (savedInstanceState);
+        setContentView (R.layout.activity_detalle_publicacion);
+
+        Intent intent = getIntent ();
         titulo = findViewById (R.id.titulo_detalle);
         precio = findViewById (R.id.precio_detalle);
         descripcion = findViewById (R.id.descripcion_detalle);
         unidad = findViewById (R.id.unidad_detalle);
         stock = findViewById (R.id.stock_detalle);
 
-        Float valor_precio = Float.parseFloat (intent.getStringExtra("precio"));
-        int precio_int =  Math.round (valor_precio);
-        titulo.setText (intent.getStringExtra("titulo"));
-        precio.setText (Integer.toString(precio_int));
-        unidad.setText (" x " + intent.getStringExtra("unidad"));
-        stock.setText (intent.getStringExtra("stock"));
-        descripcion.setText (intent.getStringExtra("descripcion"));
+        Float valor_precio = Float.parseFloat (intent.getStringExtra ("precio"));
+        int precio_int = Math.round (valor_precio);
+        titulo.setText (intent.getStringExtra ("titulo"));
+        precio.setText (Integer.toString (precio_int));
+        unidad.setText (" x " + intent.getStringExtra ("unidad"));
+        stock.setText (intent.getStringExtra ("stock"));
+        descripcion.setText (intent.getStringExtra ("descripcion"));
+        id_publicacion = intent.getStringExtra ("id");
+
 
         ImageSlider imagenes = findViewById (R.id.imagenes_detalle);
-        List<SlideModel> imagenes_publicacion = new ArrayList<>();
+        List<SlideModel> imagenes_publicacion = new ArrayList<> ();
 
-        String id_publicacion = intent.getStringExtra("id");
+        String id_publicacion = intent.getStringExtra ("id");
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
-        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/getImagenesPublicacion?id="+id_publicacion;
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/getImagenesPublicacion?id=" + id_publicacion;
 
         JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {
             @Override
@@ -84,7 +88,7 @@ public class DetallePublicacion extends AppCompatActivity {
 
                         JSONObject dato = imagenesPublicacion.getJSONObject (i);
                         String la_imagen = dato.getString ("imagen");
-                        imagenes_publicacion.add (new SlideModel("https://agroplaza.solucionsoftware.co/public/dist/img/publicaciones/publicacion"+id_publicacion+"/"+la_imagen));
+                        imagenes_publicacion.add (new SlideModel ("https://agroplaza.solucionsoftware.co/public/dist/img/publicaciones/publicacion" + id_publicacion + "/" + la_imagen));
                     }
                     imagenes.setImageList (imagenes_publicacion, true);
 
@@ -100,18 +104,18 @@ public class DetallePublicacion extends AppCompatActivity {
         });
 
         hilo.add (solicitud);
-        Button regresar = findViewById(R.id.btn_atras_detalle);
-        regresar.setOnClickListener(new View.OnClickListener() {
+        Button regresar = findViewById (R.id.btn_atras_detalle);
+        regresar.setOnClickListener (new View.OnClickListener () {
             @Override
-            public void onClick(View v) {
-                DetallePublicacion.super.onBackPressed();
+            public void onClick (View v) {
+                DetallePublicacion.super.onBackPressed ();
             }
         });
 
-        Button btn_generarPedido = findViewById(R.id.btn_comprar);
-        btn_generarPedido.setOnClickListener(new View.OnClickListener() {
+        Button btn_generarPedido = findViewById (R.id.btn_comprar);
+        btn_generarPedido.setOnClickListener (new View.OnClickListener () {
             @Override
-            public void onClick(View v) {
+            public void onClick (View v) {
                 Intent intent_compra = new Intent (getApplicationContext (), GenerarPedido.class);
                 /* intent_compra.putExtra ("id_publicacion", intent.getStringExtra("id"));
                 intent_compra.putExtra ("stock", intent.getStringExtra("stock"));
@@ -121,62 +125,66 @@ public class DetallePublicacion extends AppCompatActivity {
             }
         });
 
-        pregunta = findViewById(R.id.editPregunta);
-        pregunta.setOnKeyListener (new View.OnKeyListener () {
+        consultarPreguntas();
+        pregunta = findViewById (R.id.editPregunta);
+
+        Button botonEnviar = findViewById (R.id.btnPreguntar);
+        botonEnviar.setOnClickListener (new View.OnClickListener () {
             @Override
-            public boolean onKey (View v, int keyCode, KeyEvent event) {
-                Log.i ("Tecla", ""+keyCode);
-                return false;
+            public void onClick (View v) {
+                registrarPregunta ();
             }
         });
-       /* Button preguntar = findViewById(R.id.btnPreguntar);
-        btn_generarPedido.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registrarPregunta();
-            }
-        }); */
+    }
+
+    private void consultarPreguntas () {
 
     }
 
-    /* public void registrarPregunta(){
+    public void registrarPregunta () {
 
-        String valor_pregunta = pregunta.getText().toString();
+        SharedPreferences persistencia = getApplicationContext ().getSharedPreferences ("datos_login", Context.MODE_PRIVATE);
+        String id_user = persistencia.getString ("id", "");
 
-        RequestQueue hilo = Volley.newRequestQueue(this);
-        String url = "https://agroplaza.solucionsoftware.co/ModuloUsuarios/InsertarPregunta";
+        String valor_pregunta = pregunta.getText ().toString ();
+        Log.i ("Eledido", "Pedido");
+        RequestQueue hilo = Volley.newRequestQueue (this);
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/RegistrarPregunta";
 
-        StringRequest solicitud = new StringRequest(Request.Method.POST, url,
-                new Response.Listener<String>() {
+        StringRequest solicitud = new StringRequest (Request.Method.POST, url,
+                new Response.Listener<String> () {
                     @Override
-                    public void onResponse(String response) {
+                    public void onResponse (String response) {
 
-                       Toast.makeText (getApplicationContext (), "Registrada", Toast.LENGTH_LONG).show ();
+                        Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
                     }
                 },
-                new Response.ErrorListener() {
+                new Response.ErrorListener () {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse (VolleyError error) {
                         // Codigo de error del servidor
                         // Se ejecuta cuando no llega el tipo solicitado String.
-                        Toast.makeText(getApplicationContext(), "Error Servidor: " + error.getMessage(), Toast.LENGTH_LONG).show();
-                        if (error.getMessage() != null) {
-                            Log.i("Error Servidor: ", error.getMessage());
+                        Toast.makeText (getApplicationContext (), "Error Servidor: " + error.getMessage (), Toast.LENGTH_LONG).show ();
+                        if (error.getMessage () != null) {
+                            Log.i ("Error Servidor: ", error.getMessage ());
                         } else {
-                            Log.i("Error Servidor: ", "Error desconocido");
+                            Log.i ("Error Servidor: ", "Error desconocido");
                         }
                     }
                 }) {
-            protected Map<String, String> getParams() {
+            protected Map<String, String> getParams () {
                 Map<String, String> parametros = new HashMap<String, String> ();
-                parametros.put("email", valor_pregunta);
+                parametros.put ("id_publicacion", id_publicacion);
+                parametros.put ("id_usuario", id_user);
+                parametros.put ("pregunta", valor_pregunta);
+
 
                 return parametros;
             }
         };
-        hilo.add(solicitud);
+        hilo.add (solicitud);
 
-    } */
+    }
 }
 
 
