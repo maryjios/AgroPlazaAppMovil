@@ -117,10 +117,13 @@ public class DetallePublicacion extends AppCompatActivity {
             @Override
             public void onClick (View v) {
                 Intent intent_compra = new Intent (getApplicationContext (), GenerarPedido.class);
-                /* intent_compra.putExtra ("id_publicacion", intent.getStringExtra("id"));
-                intent_compra.putExtra ("stock", intent.getStringExtra("stock"));
+                intent_compra.putExtra ("id_publicacion", intent.getStringExtra("id"));
+
+                if (!intent.getStringExtra("stock").equals("null"))
+                    intent_compra.putExtra ("stock", intent.getStringExtra("stock"));
+
                 intent_compra.putExtra ("precio", intent.getStringExtra("precio"));
-                intent_compra.putExtra ("descuento", intent.getStringExtra("descuento")); */
+                intent_compra.putExtra ("descuento", intent.getStringExtra("descuento"));
                 startActivity (intent_compra);
             }
         });
