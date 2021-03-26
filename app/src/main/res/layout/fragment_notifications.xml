@@ -55,14 +55,13 @@
                 android:id="@+id/avatar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_profile_user"
+                android:src="@drawable/ic_pendiente"
                 />
 
             <TextView
                 android:id="@+id/Nombre_ven"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
                 android:textAppearance="?attr/textAppearanceListItem"
                 android:layout_marginLeft="10dp"
                 tools:text="Alexander Perez" />
@@ -72,9 +71,108 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/tv_name"
                 android:layout_below="@+id/tv_title"
-                android:text="Compañía"
-                tools:text="Notificacion del pedido" />
+                tools:text="A aceptado tu pedido,se encuentra  Pendiente para su envio." />
            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+
+                >
+                <ImageView
+                    android:id="@+id/avatar2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_solicitado"
+                    />
+
+                <TextView
+                    android:id="@+id/Nombre_ven2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:layout_marginLeft="10dp"
+                    tools:text="Felipe Londoño" />
+                <TextView
+                    android:id="@+id/notification2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_name"
+                    android:layout_below="@+id/tv_title"
+                    tools:text="Ha envido exitosamente tu pedido" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+
+                >
+                <ImageView
+                    android:id="@+id/avatar3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_cancel"
+                    />
+
+                <TextView
+                    android:id="@+id/Nombre_ven3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:layout_marginLeft="10dp"
+                    tools:text="Maria Fernandez" />
+                <TextView
+                    android:id="@+id/notification3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_name"
+                    android:layout_below="@+id/tv_title"
+                    tools:text="Su solicitud del Producto no fue aceptada " />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+
+                >
+                <ImageView
+                    android:id="@+id/avatar4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_add"
+                    />
+
+                <TextView
+                    android:id="@+id/Nombre_ven4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:layout_marginLeft="10dp"
+                    tools:text="Maria Fernandez" />
+                <TextView
+                    android:id="@+id/notification4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/tv_name"
+                    android:layout_below="@+id/tv_title"
+                    tools:text="Su solicitud del Producto esta en Proceso " />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/blanco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:layout_marginTop="100dp"
+                android:layout_gravity="center"
+                tools:text="Notificaciones" />
+            <ImageView
+                android:id="@+id/noti"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_notifications"
+                android:layout_gravity="center"
+                />
         </LinearLayout>
 
     </ScrollView>
