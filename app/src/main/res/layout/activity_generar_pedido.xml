@@ -209,8 +209,9 @@
                     android:background="@drawable/edit_style"
                     android:drawablePadding="4dp"
                     android:hint="Ingrese su documento "
-                    android:inputType="text"
+                    android:inputType="number"
                     android:paddingLeft="10dp" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
