@@ -3,10 +3,8 @@ package com.example.agroplazaappmovil.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,18 +21,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.agroplazaappmovil.Login;
-import com.example.agroplazaappmovil.Principal;
 import com.example.agroplazaappmovil.R;
-import com.example.agroplazaappmovil.RegistroUsuarios;
-import com.example.agroplazaappmovil.ui.perfil.EditarCiudad;
-import com.example.agroplazaappmovil.ui.perfil.EditarDatos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,18 +37,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DetallePublicacion extends AppCompatActivity {
-
-    ArrayList<PreguntasRespuestas> listaPreguntasRespuestas;
-    RecyclerView recycler;
-    AdapterPreguntasRespuestas adapter;
-
 
     TextView titulo, precio, descripcion, unidad, stock;
     EditText pregunta;
     String id_publicacion;
+
+    ArrayList<PreguntasRespuestas> listaPreguntasRespuestas;
+    RecyclerView recycler;
+    AdapterPreguntasRespuestas adapter;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -145,50 +135,47 @@ public class DetallePublicacion extends AppCompatActivity {
                 registrarPregunta ();
             }
         });
-        // consultarPreguntasRespuestas ();
+       consultarPreguntasRespuestas (id_publicacion);
     }
 
 
-    public void consultarPreguntasRespuestas () {
-        recycler = findViewById (R.id.mi_recycler);
-        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.HORIZONTAL, false));
+    public void consultarPreguntasRespuestas (String id_publicacion) {
 
-        // Recycler descuento
-        recycler = findViewById (R.id.mi_recycler_descuento);
-        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.HORIZONTAL, false));
-
-        SharedPreferences persistencia = getApplicationContext ().getSharedPreferences ("datos_login", Context.MODE_PRIVATE);
-        String id_departamento = persistencia.getString ("id_departamento", "");
+        // Recycler preguntas, respuestas
+        recycler = findViewById (R.id.recycler_preguntas_respuestas);
+        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.VERTICAL,false));
+        
 
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
-        String url = "https://agroplaza.solucionsoftware.co/ModuloPreguntasRespuestas/ListarPreguntasRespuestasMovil?departamento=" + id_departamento;
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/ConsultarPreguntas?publicacion=" + id_publicacion;
 
         JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {
             @Override
             public void onResponse (JSONObject response) {
                 listaPreguntasRespuestas = new ArrayList<> ();
-                listaPreguntasRespuestas = new ArrayList<> ();
 
 
-                JSONArray lista_clientes = response.optJSONArray ("registros_publicaciones");
+                JSONArray lista_preguntas_respuestas = response.optJSONArray ("registros_preguntas");
                 try {
+                    Log.i ("DAtos", lista_preguntas_respuestas.toString ());
 
 
-                    for (int i = 0; i < lista_clientes.length (); i++) {
+                    for (int i = 0; i < lista_preguntas_respuestas.length (); i++) {
 
-                        JSONObject temp = lista_clientes.getJSONObject (i);
-                        String nombre_cliente = "";
-                        String pregunta_cliente = temp.getString ("id_publicacion");
-                        String fecha_pregunta_cliente = temp.getString ("imagen");
-                        String respuesta_vendedor = temp.getString ("titulo");
-                        String fecha_respuesta_vendedor = temp.getString ("precio");
+                        JSONObject temp = lista_preguntas_respuestas.getJSONObject (i);
+                        String pregunta_cliente = temp.getString ("pregunta_c");
+                        String fecha_pregunta_cliente = temp.getString ("fecha_pregunta_c");
+                        String respuesta_vendedor = temp.getString ("respuesta_v");
+                        String fecha_respuesta_vendedor = temp.getString ("fecha_pregunta_v");
 
-                        PreguntasRespuestas pub = new PreguntasRespuestas (nombre_cliente, pregunta_cliente, fecha_pregunta_cliente, respuesta_vendedor, fecha_respuesta_vendedor);
+                        PreguntasRespuestas pub = new PreguntasRespuestas (pregunta_cliente, fecha_pregunta_cliente, respuesta_vendedor, fecha_respuesta_vendedor);
                         listaPreguntasRespuestas.add (pub);
 
                     }
 
+                    adapter = new AdapterPreguntasRespuestas (listaPreguntasRespuestas);
                     recycler.setAdapter (adapter);
+
                 } catch (JSONException e) {
                     e.printStackTrace ();
                 }
@@ -209,7 +196,7 @@ public class DetallePublicacion extends AppCompatActivity {
         String valor_pregunta = pregunta.getText ().toString ();
         Log.i ("Eledido", "Pedido");
         RequestQueue hilo = Volley.newRequestQueue (this);
-        String url = "https://agroplaza.solucionsoftware.co/ModuloPreguntasRespuestas/RegistrarPregunta";
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/RegistrarPregunta";
 
         StringRequest solicitud = new StringRequest (Request.Method.POST, url,
                 new Response.Listener<String> () {

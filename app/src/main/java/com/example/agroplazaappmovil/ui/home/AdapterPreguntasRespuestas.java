@@ -24,15 +24,15 @@ import java.util.ArrayList;
 public class AdapterPreguntasRespuestas extends RecyclerView.Adapter<AdapterPreguntasRespuestas.ViewHolderDatos>{
 
     ArrayList<PreguntasRespuestas> listaPreguntasRespuestas;
-    private View.OnClickListener listener;
+
     public AdapterPreguntasRespuestas (ArrayList<PreguntasRespuestas> listaPreguntasRespuestas) {
-        this.listaPreguntasRespuestas= listaPreguntasRespuestas;
+        this.listaPreguntasRespuestas = listaPreguntasRespuestas;
     }
 
     @NonNull
     @Override
     public ViewHolderDatos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_publicaciones,null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_preguntas_respuestas,null, false);
         return new ViewHolderDatos(view);
     }
 
@@ -50,16 +50,13 @@ public class AdapterPreguntasRespuestas extends RecyclerView.Adapter<AdapterPreg
     /* clase Holder */
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
-        TextView nombre_cliente;
         TextView pregunta_cliente;
         TextView fecha_pregunta_cliente;
-        TextView descuento;
         TextView respuesta_vendedor;
         TextView fecha_respuesta_vendedor;
 
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
-            nombre_cliente = itemView.findViewById(R.id.nombre_cliente);
             pregunta_cliente = itemView.findViewById(R.id.pregunta_cliente);
             fecha_pregunta_cliente = itemView.findViewById(R.id.fecha_pregunta_cliente);
             respuesta_vendedor = itemView.findViewById(R.id.respuesta_vendedor);
@@ -67,7 +64,6 @@ public class AdapterPreguntasRespuestas extends RecyclerView.Adapter<AdapterPreg
         }
 
         public void asignarDatos(PreguntasRespuestas datos) {
-            nombre_cliente.setText(datos.nombre_cliente);
             pregunta_cliente.setText(datos.pregunta_cliente);
             fecha_pregunta_cliente.setText(datos.fecha_pregunta_cliente);
             respuesta_vendedor.setText(datos.respuesta_vendedor);

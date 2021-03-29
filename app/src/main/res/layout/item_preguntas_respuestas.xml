@@ -58,4 +58,10 @@
         android:layout_marginRight="20dp"
         tools:text="10/14/2050" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fecha_respuesta_vendedor"
+        android:text="----------------------------------"/>
+
 </RelativeLayout>
