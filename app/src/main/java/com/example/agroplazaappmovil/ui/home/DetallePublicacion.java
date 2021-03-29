@@ -85,7 +85,7 @@ public class DetallePublicacion extends AppCompatActivity {
 
         String id_publicacion = intent.getStringExtra ("id");
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
-        String url = "https://agroplaza.solucionsoftware.co/ModuloPreguntasRespuestas/getImagenesPublicacion?id=" + id_publicacion;
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/getImagenesPublicacion?id=" + id_publicacion;
 
         JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {
             @Override
@@ -145,7 +145,6 @@ public class DetallePublicacion extends AppCompatActivity {
                 registrarPregunta ();
             }
         });
-
         // consultarPreguntasRespuestas ();
     }
 
