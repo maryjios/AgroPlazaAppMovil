@@ -10,7 +10,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="8dp">
 
-
     <TextView
         android:id="@+id/nombre_cliente"
         android:layout_width="wrap_content"
@@ -62,6 +61,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/fecha_respuesta_vendedor"
-        android:text="----------------------------------"/>
+        android:text="---------------------------------------------------------------------------------------------"/>
 
 </RelativeLayout>

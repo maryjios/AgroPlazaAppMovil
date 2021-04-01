@@ -69,6 +69,7 @@ public class AdapterPreguntasRespuestas extends RecyclerView.Adapter<AdapterPreg
             respuesta_vendedor.setText(datos.respuesta_vendedor);
             fecha_respuesta_vendedor.setText(datos.fecha_respuesta_vendedor);
 
+
         }
     }
 }

@@ -63,9 +63,9 @@ public class DetallePublicacion extends AppCompatActivity {
         Float valor_precio = Float.parseFloat (intent.getStringExtra ("precio"));
         int precio_int = Math.round (valor_precio);
         titulo.setText (intent.getStringExtra ("titulo"));
-        precio.setText (Integer.toString (precio_int));
-        unidad.setText (" x " + intent.getStringExtra ("unidad"));
-        stock.setText (intent.getStringExtra ("stock"));
+        precio.setText ("$"+precio_int);
+        unidad.setText ("x " + intent.getStringExtra ("unidad"));
+        stock.setText (" STOCK: "+intent.getStringExtra ("stock")+intent.getStringExtra ("unidad"));
         descripcion.setText (intent.getStringExtra ("descripcion"));
         id_publicacion = intent.getStringExtra ("id");
 
@@ -159,7 +159,11 @@ public class DetallePublicacion extends AppCompatActivity {
                 try {
                     Log.i ("DAtos", lista_preguntas_respuestas.toString ());
 
-
+                    if (lista_preguntas_respuestas.length ()<=0){
+                        TextView conten_vacio = findViewById (R.id.sin_pregunta);
+                        conten_vacio.setVisibility (View.VISIBLE);
+                        conten_vacio.setText ("No hay ninguna pregunta");
+                    }
                     for (int i = 0; i < lista_preguntas_respuestas.length (); i++) {
 
                         JSONObject temp = lista_preguntas_respuestas.getJSONObject (i);
