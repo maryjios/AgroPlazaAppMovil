@@ -45,44 +45,47 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
 
-            >
-            <ImageView
-                android:id="@+id/avatar"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/ic_pendiente"
-                />
-
-            <TextView
-                android:id="@+id/Nombre_ven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                tools:text="Alex Perez" />
-            <TextView
-                android:id="@+id/notification"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="A aceptado tu pedido,se encuentra  Pendiente para su envio." />
-           </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
 
                 >
+
+                <ImageView
+                    android:id="@+id/avatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_pendiente" />
+
+                <TextView
+                    android:id="@+id/Nombre_ven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    tools:text="Alex Perez" />
+
+                <TextView
+                    android:id="@+id/notification"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="A aceptado tu pedido,se encuentra  Pendiente para su envio." />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+
+                >
+
                 <ImageView
                     android:id="@+id/avatar2"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_solicitado"
-                    />
+                    android:src="@drawable/ic_solicitado" />
 
                 <TextView
                     android:id="@+id/Nombre_ven2"
@@ -90,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Felipe Londoño" />
+
                 <TextView
                     android:id="@+id/notification2"
                     android:layout_width="match_parent"
@@ -97,18 +101,19 @@
                     android:layout_marginLeft="10dp"
                     android:text="Ha envido exitosamente tu pedido" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
 
                 >
+
                 <ImageView
                     android:id="@+id/avatar3"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_cancel"
-                    />
+                    android:src="@drawable/ic_cancel" />
 
                 <TextView
                     android:id="@+id/Nombre_ven3"
@@ -116,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Maria Fernandez" />
+
                 <TextView
                     android:id="@+id/notification3"
                     android:layout_width="match_parent"
@@ -123,18 +129,19 @@
                     android:layout_marginLeft="10dp"
                     android:text="Su solicitud del Producto no fue aceptada " />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
 
                 >
+
                 <ImageView
                     android:id="@+id/avatar4"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:src="@drawable/ic_add"
-                    />
+                    android:src="@drawable/ic_add" />
 
                 <TextView
                     android:id="@+id/Nombre_ven4"
@@ -142,6 +149,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:text="Maria Fernandez" />
+
                 <TextView
                     android:id="@+id/notification4"
                     android:layout_width="match_parent"
@@ -154,26 +162,17 @@
                 android:id="@+id/blanco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="100dp"
                 android:text="Notificaciones" />
+
             <ImageView
                 android:id="@+id/noti"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_notifications"
                 android:layout_gravity="center"
-                />
-            <Button
-                android:id="@+id/btn_chat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="-4dp"
-                android:layout_marginRight="10dp"
-                android:backgroundTint="@color/verde"
-                android:text="Chat"
-                android:textSize="10dp" />
+                android:src="@drawable/ic_notifications" />
+
         </LinearLayout>
 
     </ScrollView>
