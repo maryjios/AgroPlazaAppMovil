@@ -27,6 +27,7 @@ import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.agroplazaappmovil.R;
+import com.example.agroplazaappmovil.ui.dashboard.Chat_Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -135,6 +136,15 @@ public class DetallePublicacion extends AppCompatActivity {
                 registrarPregunta ();
             }
         });
+        Button btn_chat = findViewById (R.id.btn_chat);
+        btn_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intencion=new Intent(getApplicationContext(), Chat_Activity.class);
+                startActivity(intencion);
+
+            }
+        });
        consultarPreguntasRespuestas (id_publicacion);
     }
 
@@ -233,6 +243,7 @@ public class DetallePublicacion extends AppCompatActivity {
                 return parametros;
             }
         };
+
         hilo.add (solicitud);
 
     }

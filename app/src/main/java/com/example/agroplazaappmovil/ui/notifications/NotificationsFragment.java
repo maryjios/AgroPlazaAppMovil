@@ -25,5 +25,6 @@ public class NotificationsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
 
         return root;
+
     }
 }
