@@ -28,6 +28,12 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
+    }
+}
+
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
@@ -51,4 +57,7 @@ dependencies {
     /*Libreria utilizada para hacer el slider de imagenes en las publicaciones*/
     implementation 'com.github.denzcoskun:ImageSlideshow:0.0.6'
 
+    /* Libreria utilizada para mandar mensajes por MQTT*/
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
+    implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 }
