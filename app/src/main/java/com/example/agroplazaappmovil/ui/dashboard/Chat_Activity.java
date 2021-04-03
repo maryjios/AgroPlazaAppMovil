@@ -1,11 +1,11 @@
 package com.example.agroplazaappmovil.ui.dashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,47 +14,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.agroplazaappmovil.R;
-import com.example.agroplazaappmovil.ui.home.AdapterDescuentos;
-import com.example.agroplazaappmovil.ui.home.AdapterPublicaciones;
-import com.example.agroplazaappmovil.ui.home.Descuentos;
-import com.example.agroplazaappmovil.ui.home.DetallePublicacion;
-import com.example.agroplazaappmovil.ui.home.Publicaciones;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.DisconnectedBufferOptions;
 import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
-import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class Chat_Activity extends AppCompatActivity {
 
-    ArrayList<Mensajes> listaMensajes;
-
     RecyclerView recycler;
-    AdapterMensajes adapter;
+    RecyclerView.Adapter mensajesAdaptar;
+    RecyclerView.LayoutManager mensajesLayoutManager;
+    List<Mensajes> mensajeList = new ArrayList<Mensajes> ();
 
     private static final String SERVER_URI = "ws://18.221.49.32:8083/mqtt";
     private static final String TOPIC = "prueba_chat";
@@ -121,33 +107,35 @@ public class Chat_Activity extends AppCompatActivity {
 
     public void ListarMensajes () {
 
-        recycler = findViewById (R.id.mi_recycler_chat);
-        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.VERTICAL, false));
+        recycler = (RecyclerView) findViewById(R.id.mi_recycler_chat);
+        recycler.setHasFixedSize(true);
 
-        listaMensajes = new ArrayList<> ();
+        mensajesLayoutManager = new LinearLayoutManager (this);
+        recycler.setLayoutManager(mensajesLayoutManager);
 
+        mensajesAdaptar = new MensajesAdapter (getBaseContext(), mensajeList);
+        recycler.setAdapter(mensajesAdaptar);
 
-        String nombre_destinario = "Mary Jimenez";
-        String mensaje_destinario = "Hola, me gustaria saber cuando llegan los bananos";
-        String fecha_destinario = "Ayer";
-        String mensaje_remitente = "No sea marika que ayer ke llegaron sus bananos";
-        String fecha_remitente = "Hace 10 minutos";
-
-        String nombre_destinario2 = "Mary Jimenez";
-        String mensaje_destinario2 = "Oigan a este, vuelvase serio mijo y mandeme mis focking bananos";
-        String fecha_destinario2 = "Hace nueve minutos";
-        String mensaje_remitente2 = "La abulita de tarzan le va a mandar bananos dos veces mijo, que dijo, navidad";
-        String fecha_remitente2 = "Justo Ahora";
-
-
-        Mensajes mensajito = new Mensajes (nombre_destinario, mensaje_destinario, fecha_destinario, mensaje_remitente, fecha_remitente);
-        listaMensajes.add (mensajito);
-
-        Mensajes mensajito2 = new Mensajes (nombre_destinario2, mensaje_destinario2, fecha_destinario2, mensaje_remitente2, fecha_remitente2);
-        listaMensajes.add (mensajito2);
-
-        adapter = new AdapterMensajes (listaMensajes);
-        recycler.setAdapter (adapter);
+        mensajeList.add(new Mensajes(1,"Wenas", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(2,"Gus mornig", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(3,"Cuando me envia mi pedido", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(4,"Mañana", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(5,"Ah weno, ta bien ps.", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(6,"A las 7 AM, sdihahfahdahkhkskhkhfkdakfdakjczcjkzkjcadjkcdjcjd<c", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(7,"Ta muy temprano esa hora we", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(8,"Ps me vale mergas", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(9,"Devolucion de dinero porfa", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(10,"No se puede", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(11,"Si se puede viejo lesbiano", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(12,"Te reprendo satanas", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(13,"Bueno", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(14,"Ok", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(15,"A las 7 entonces estare esperando mi pedido, sdhsdsdsdsd", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(16,"Ok", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(17,"Ajm", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(18,"Weno", "Ayer","Mary"));
+        mensajeList.add(new Mensajes(19,"Ok, hasta luego", "Ayer","Usuario X"));
+        mensajeList.add(new Mensajes(120,"Gracias por tu compra!", "Ayer","Usuario X"));
     }
 
     public void conexionMqtt (String client_id) {

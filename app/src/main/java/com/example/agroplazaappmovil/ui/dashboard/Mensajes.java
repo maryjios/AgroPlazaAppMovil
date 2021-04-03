@@ -1,20 +1,49 @@
 package com.example.agroplazaappmovil.ui.dashboard;
 
 public class Mensajes {
-    // String avatar_destinario;
-    String nombre_destinario;
-    String mensaje_destinario;
-    String fecha_destinario;
-    String mensaje_remitente;
-    String fecha_remitente;
 
+    protected int id;
+    protected String mensaje;
+    protected String fecha;
+    protected String nombre_remitente;
 
-    public Mensajes (String nombre_destinario, String mensaje_destinario, String fecha_destinario, String mensaje_remitente, String fecha_remitente) {
-        // this.avatar_destinario = avatar_destinario;
-        this.nombre_destinario = nombre_destinario;
-        this.mensaje_destinario = mensaje_destinario;
-        this.fecha_destinario = fecha_destinario;
-        this.mensaje_remitente = mensaje_remitente;
-        this.fecha_remitente = fecha_remitente;
+    public Mensajes(int id, String mensaje, String fecha, String nombre_remitente) {
+        this.id = id;
+        this.mensaje = mensaje;
+        this.fecha = fecha;
+        this.nombre_remitente = nombre_remitente;
     }
+
+    public String getNombreRemitente() {
+        return nombre_remitente;
+    }
+
+    public void setNombreRemitente(String nombre_remitente) {
+        this.nombre_remitente = nombre_remitente;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
