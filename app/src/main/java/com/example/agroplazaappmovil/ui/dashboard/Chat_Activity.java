@@ -131,11 +131,20 @@ public class Chat_Activity extends AppCompatActivity {
         String mensaje_destinario = "Hola, me gustaria saber cuando llegan los bananos";
         String fecha_destinario = "Ayer";
         String mensaje_remitente = "No sea marika que ayer ke llegaron sus bananos";
-        String fecha_remitente = "Justo Ahora";
+        String fecha_remitente = "Hace 10 minutos";
+
+        String nombre_destinario2 = "Mary Jimenez";
+        String mensaje_destinario2 = "Oigan a este, vuelvase serio mijo y mandeme mis focking bananos";
+        String fecha_destinario2 = "Hace nueve minutos";
+        String mensaje_remitente2 = "La abulita de tarzan le va a mandar bananos dos veces mijo, que dijo, navidad";
+        String fecha_remitente2 = "Justo Ahora";
 
 
         Mensajes mensajito = new Mensajes (nombre_destinario, mensaje_destinario, fecha_destinario, mensaje_remitente, fecha_remitente);
         listaMensajes.add (mensajito);
+
+        Mensajes mensajito2 = new Mensajes (nombre_destinario2, mensaje_destinario2, fecha_destinario2, mensaje_remitente2, fecha_remitente2);
+        listaMensajes.add (mensajito2);
 
         adapter = new AdapterMensajes (listaMensajes);
         recycler.setAdapter (adapter);
