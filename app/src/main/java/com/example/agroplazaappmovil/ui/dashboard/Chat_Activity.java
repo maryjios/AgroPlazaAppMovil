@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.agroplazaappmovil.R;
@@ -42,6 +43,8 @@ public class Chat_Activity extends AppCompatActivity {
     RecyclerView.LayoutManager mensajesLayoutManager;
     List<Mensajes> mensajeList = new ArrayList<Mensajes> ();
 
+    int contador = 1;
+
     private static final String SERVER_URI = "ws://18.221.49.32:8083/mqtt";
     private static final String TOPIC = "prueba_chat";
     private static final String TAG = "PruebaMqtt";
@@ -53,7 +56,19 @@ public class Chat_Activity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_chat);
 
-        ListarMensajes ();
+        recycler = (RecyclerView) findViewById(R.id.mi_recycler_chat);
+        recycler.setHasFixedSize(true);
+
+        mensajesLayoutManager = new LinearLayoutManager (this);
+        recycler.setLayoutManager(mensajesLayoutManager);
+
+        SharedPreferences persistencia = getSharedPreferences ("datos_login", Context.MODE_PRIVATE);
+        int id_usuario = Integer.parseInt(persistencia.getString ("id", "0"));
+
+        mensajesAdaptar = new MensajesAdapter (getBaseContext(), mensajeList, id_usuario);
+
+        recycler.setAdapter(mensajesAdaptar);
+
         Button regresar = findViewById (R.id.btn_atras_chat);
         regresar.setOnClickListener (new View.OnClickListener () {
             @Override
@@ -62,7 +77,6 @@ public class Chat_Activity extends AppCompatActivity {
             }
         });
 
-        SharedPreferences persistencia = getSharedPreferences ("datos_login", Context.MODE_PRIVATE);
         String client_id = "user_id_" + persistencia.getString ("id", "NaN");
 
         conexionMqtt (client_id);
@@ -88,54 +102,21 @@ public class Chat_Activity extends AppCompatActivity {
 
                 JSONObject datos_mensaje = new JSONObject ();
                 try {
-                    datos_mensaje.put ("id", client_id);
+                    datos_mensaje.put ("id", id_usuario);
                     datos_mensaje.put ("usuario", usuario);
                     datos_mensaje.put ("mensaje", mensaje);
                     datos_mensaje.put ("fecha", fecha);
                     datos_mensaje.put ("avatar", avatar);
 
                     Log.i (TAG, datos_mensaje.toString ());
+                    mostrarMensaje (datos_mensaje, id_usuario);
                     publishMessage (datos_mensaje);
-                    mostrarMensaje (datos_mensaje);
                 } catch (JSONException e) {
                     e.printStackTrace ();
                 }
 
             }
         });
-    }
-
-    public void ListarMensajes () {
-
-        recycler = (RecyclerView) findViewById(R.id.mi_recycler_chat);
-        recycler.setHasFixedSize(true);
-
-        mensajesLayoutManager = new LinearLayoutManager (this);
-        recycler.setLayoutManager(mensajesLayoutManager);
-
-        mensajesAdaptar = new MensajesAdapter (getBaseContext(), mensajeList);
-        recycler.setAdapter(mensajesAdaptar);
-
-        mensajeList.add(new Mensajes(1,"Wenas", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(2,"Gus mornig", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(3,"Cuando me envia mi pedido", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(4,"Mañana", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(5,"Ah weno, ta bien ps.", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(6,"A las 7 AM, sdihahfahdahkhkskhkhfkdakfdakjczcjkzkjcadjkcdjcjd<c", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(7,"Ta muy temprano esa hora we", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(8,"Ps me vale mergas", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(9,"Devolucion de dinero porfa", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(10,"No se puede", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(11,"Si se puede viejo lesbiano", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(12,"Te reprendo satanas", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(13,"Bueno", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(14,"Ok", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(15,"A las 7 entonces estare esperando mi pedido, sdhsdsdsdsd", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(16,"Ok", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(17,"Ajm", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(18,"Weno", "Ayer","Mary"));
-        mensajeList.add(new Mensajes(19,"Ok, hasta luego", "Ayer","Usuario X"));
-        mensajeList.add(new Mensajes(120,"Gracias por tu compra!", "Ayer","Usuario X"));
     }
 
     public void conexionMqtt (String client_id) {
@@ -162,6 +143,9 @@ public class Chat_Activity extends AppCompatActivity {
             @Override
             public void messageArrived (String topic, MqttMessage message) throws Exception {
                 Log.i (TAG, "Incoming message: " + new String (message.getPayload ()));
+                JSONObject mensaje_obtenido = new JSONObject(new String(message.getPayload()));
+
+                cargarMensage(mensaje_obtenido);
             }
 
             @Override
@@ -236,8 +220,19 @@ public class Chat_Activity extends AppCompatActivity {
         }
     }
 
-    public void mostrarMensaje (JSONObject datos) {
-        RelativeLayout mensage = new RelativeLayout (this);
+    public void mostrarMensaje (JSONObject datos, int id_usuario) throws JSONException {
+        mensajeList.add(new Mensajes(contador, id_usuario, datos.getString("mensaje"), datos.getString("fecha"), datos.getString("usuario")));
 
+        contador++;
+
+        recycler.scrollToPosition(recycler.getAdapter().getItemCount() - 1);
+    }
+
+    public void cargarMensage (JSONObject datos) throws JSONException {
+        mensajeList.add(new Mensajes(contador, Integer.parseInt(datos.getString("id")), datos.getString("mensaje"), datos.getString("fecha"), datos.getString("usuario")));
+
+        contador++;
+
+        recycler.scrollToPosition(recycler.getAdapter().getItemCount() - 1);
     }
 }

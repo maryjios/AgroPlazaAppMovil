@@ -1,6 +1,7 @@
 package com.example.agroplazaappmovil.ui.dashboard;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,11 @@ public class MensajesAdapter extends RecyclerView.Adapter<MensajesAdapter.ViewHo
     public static final int REMITENTE = 0;
     public static final int DESTINARIO = 1;
 
-    public MensajesAdapter (Context context, List<Mensajes> mensajes) {
+    int cliente_id;
+
+    public MensajesAdapter (Context context, List<Mensajes> mensajes, int id_usuario) {
         mensajesList = mensajes;
+        cliente_id = id_usuario;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,7 +88,7 @@ public class MensajesAdapter extends RecyclerView.Adapter<MensajesAdapter.ViewHo
     public int getItemViewType(int position) {
         Mensajes mensaje = mensajesList.get(position);
 
-        if (mensaje.getNombreRemitente ().equals("Mary")) {
+        if (mensaje.getId_usuario () == cliente_id) {
             return REMITENTE;
         } else {
             return DESTINARIO;
