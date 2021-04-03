@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="60dp"
+            android:clipToPadding="false">
+
+            <ImageView
+                android:id="@+id/avatar_destinario"
+                android:layout_alignParentLeft="true"
+                android:scaleType="centerInside"
+                android:background="@drawable/ic_profile_user"
+                android:layout_width="34dp"
+                android:layout_height="34dp" />
+
+            <TextView
+                android:id="@+id/nombre_destinario"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/avatar_destinario"
+                android:layout_alignTop="@+id/avatar_destinario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:text="Nombre quien envia"/>
+
+            <TextView
+                android:id="@+id/mensaje_destinario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nombre_destinario"
+                android:layout_alignLeft="@+id/nombre_destinario"
+                android:background="@drawable/my_message"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="16dp"
+                android:layout_marginRight="50dp"
+                android:elevation="2dp"
+                android:textSize="18dp"
+                android:text="El mensaje que recibo de la persona"
+                />
+
+            <TextView
+                android:id="@+id/fecha_destinario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mensaje_destinario"
+                android:layout_alignRight="@+id/mensaje_destinario"
+                android:textSize="12dp"
+                android:text="Hacer 12 minutos"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="10dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="60dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/mensaje_remitente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:textColor="#7e7474"
+                android:padding="10dp"
+                android:elevation="2dp"
+                android:textSize="18dp"
+                android:layout_alignParentRight="true"
+                android:text="Mi mensaje que envio "
+                />
+            <TextView
+                android:id="@+id/fecha_remitente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/float_transparent"
+                android:textColor="#7e7474"
+                android:layout_below="@+id/mensaje_remitente"
+                android:textSize="12dp"
+                android:layout_alignParentRight="true"
+                android:text="Hace 10 minutos"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
