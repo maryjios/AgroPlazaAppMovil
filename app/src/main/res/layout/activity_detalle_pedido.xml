@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    tools:context=".ui.dashboard.DetallePedido">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/contentIcons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_Atras"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_atras"
+                android:tint="@color/miniTitle"
+                android:backgroundTint="@color/float_transparent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgProducto"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:src="@drawable/productos" />
+
+                <TextView
+                    android:id="@+id/TituloProducto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Tomate de aliño"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/precioPedido"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="$15000"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/envioPedido"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="ENVIO GRATIS"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:drawableRight="@drawable/ic_envio_gratis"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/vendedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/open_sans"
+                    android:gravity="center"
+                    android:text="VENDEDOR"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/verPerfilVendedor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    android:text="Julian Osotio"
+                    android:drawableRight="@drawable/ic_ver"
+                    android:textColor="@color/green"
+                    android:background="@color/float_transparent"/>
+
+                <Button
+                    android:id="@+id/btnChatPedido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:gravity="center"
+                    android:background="@color/float_transparent"
+                    android:textColor="@color/blue_btn_bg_color"
+                    android:text="Ir al chat" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/brnReportar"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/float_transparent"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/ic_pqr" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/detail_page_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/contentPedidoEntregado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Entregamos tu producto!" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="El vendedor notifico que tu paquete fue entregado"
+                    android:textColor="@color/green" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:text="¿Recibiste tu producto?"
+                    android:textColor="@color/green" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:text="Ya recibi mi producto!" />
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp">
+s
+                    <TextView
+                        style="@style/viewParent.headerText"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/work_sans_bold"
+                        android:paddingLeft="10dp"
+                        android:text="DATOS DE ENVIO:"
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/nombreCliente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/work_sans_bold"
+                        android:paddingLeft="7dp"
+                        android:text="Mary Jimenez"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/cedulaCliente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_light"
+                        android:paddingLeft="8dp"
+                        android:text="1001023886"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/direccionCliente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_light"
+                        android:paddingLeft="8dp"
+                        android:text="Manzana 4, Casa 12, Barrio Birmania. Pererira"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/telefonoCliente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans_light"
+                        android:paddingLeft="8dp"
+                        android:text="3145678964"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        style="@style/viewParent.headerText"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="-10dp"
+                        android:enabled="false"
+                        android:fontFamily="@font/open_sans"
+                        android:textColor="@color/gray"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        style="@style/viewParent.headerText"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/work_sans_bold"
+                        android:paddingLeft="10dp"
+                        android:text="DETALLES DE LA COMPRA:"
+                        android:textColor="@android:color/tertiary_text_light"
+                        android:textSize="14dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/etiquetaPrecioU"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_light"
+                            android:paddingLeft="8dp"
+                            android:text="Precio Unit:"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textoPrecioUnit"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:gravity="right"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:text="$4000"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/etiquetaCantidad"
+                            android:layout_width="210dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_light"
+                            android:paddingLeft="8dp"
+                            android:text="Cantidad"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textoCantidad"
+                            android:layout_width="110dp"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:gravity="right"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+                            android:text="10 kg"
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/etiquetaDescento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_light"
+                            android:paddingLeft="8dp"
+                            android:text="Descuento"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textoDescuento"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:gravity="right"
+                            android:paddingRight="8dp"
+                            android:text="0"
+
+                            android:textSize="12sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/etiquetaTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/open_sans_light"
+                            android:paddingLeft="8dp"
+                            android:text="Total"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/textoTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:fontFamily="@font/open_sans_bold"
+                            android:gravity="right"
+                            android:paddingRight="8dp"
+                            android:text="$10000"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#FF9800"
+                android:text="Calificar producto"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

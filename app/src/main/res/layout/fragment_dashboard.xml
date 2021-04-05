@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/float_transparent"
-            android:gravity="center"
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="Historial Pedidos"
@@ -42,15 +41,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mi_recycler_Historial"
+            <TextView
+                android:id="@+id/sin_pedidos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-               />
+                android:text=""
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:textAppearance="?attr/textAppearanceListItem" />
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_historial_pedido"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               />
 
         </LinearLayout>
     </ScrollView>

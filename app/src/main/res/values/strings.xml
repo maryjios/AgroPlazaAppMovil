@@ -16,7 +16,7 @@
     <string name="mi_perfil">Mi Perfil</string>
     <string name="title_activity_principal">MainActivity</string>
     <string name="title_home">Inicio</string>
-    <string name="title_dashboard">Historial</string>
+    <string name="title_dashboard">Historial Pedidos</string>
     <string name="title_notifications">Notificaciones</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
