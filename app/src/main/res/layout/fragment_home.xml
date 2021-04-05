@@ -119,15 +119,18 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         app:cardCornerRadius="15dp"
-                        app:cardPreventCornerOverlap="true">
+                        app:cardPreventCornerOverlap="true"
+                        android:id="@+id/filter_productos">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/gradientLightYellow2"
                             android:minHeight="100dp"
-                            android:padding="15dp">
+                            android:padding="15dp"
+                            >
 
+                            }
                             <ImageView
                                 android:id="@+id/img_productos"
                                 style="@style/homeCardImage"
@@ -162,14 +165,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         app:cardCornerRadius="15dp"
-                        app:cardPreventCornerOverlap="true">
+                        app:cardPreventCornerOverlap="true"
+                        android:id="@+id/filter_servicios">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/gradientLightYellow2"
                             android:minHeight="100dp"
-                            android:padding="10dp">
+                            android:padding="10dp"
+                            >
 
                             <ImageView
                                 android:id="@+id/_servicios"
