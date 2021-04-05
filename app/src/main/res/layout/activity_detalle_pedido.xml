@@ -40,24 +40,26 @@
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgDetallePedido"
+                    android:id="@+id/imgProducto"
                     android:layout_width="96dp"
                     android:layout_height="96dp"
                     android:src="@drawable/productos" />
 
                 <TextView
-                    android:id="@+id/TituloProducto2"
+                    android:id="@+id/TituloProducto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans_bold"
                     android:gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
                     android:text="Tomate de aliño"
                     android:textAllCaps="false"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/precioPedido2"
+                    android:id="@+id/precioPedido"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
@@ -67,17 +69,21 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/envioPedido2"
-                    android:layout_width="match_parent"
+                    android:id="@+id/envioPedido"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
+                    android:visibility="gone"
                     android:text="ENVIO GRATIS"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:drawableRight="@drawable/ic_envio_gratis"
                     android:textColor="@android:color/background_dark"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/vendedor2"
+                    android:id="@+id/vendedor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
@@ -108,7 +114,7 @@
             </LinearLayout>
 
             <ImageButton
-                android:id="@+id/imageView5"
+                android:id="@+id/brnReportar"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_alignParentRight="true"
@@ -165,7 +171,7 @@
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="350dp"
+                android:layout_width="290dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 app:cardCornerRadius="16dp"
@@ -310,7 +316,7 @@ s
                             android:textSize="12sp" />
 
                         <TextView
-                            android:id="@+id/textoDescento"
+                            android:id="@+id/textoDescuento"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
