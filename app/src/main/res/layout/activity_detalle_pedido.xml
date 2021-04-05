@@ -96,11 +96,12 @@
                     android:id="@+id/verPerfilVendedor"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:gravity="center"
-                    android:text="Julian Osotio"
+                    android:background="@color/float_transparent"
                     android:drawableRight="@drawable/ic_ver"
-                    android:textColor="@color/green"
-                    android:background="@color/float_transparent"/>
+                    android:layout_gravity="center"
+                    android:text="Julian Osotio"
+                    android:textSize="14dp"
+                    android:textColor="@color/green" />
 
                 <Button
                     android:id="@+id/btnChatPedido"
@@ -357,6 +358,7 @@ s
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/btnCalificar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

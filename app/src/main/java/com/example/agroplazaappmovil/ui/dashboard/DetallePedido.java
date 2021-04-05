@@ -34,7 +34,7 @@ public class DetallePedido extends AppCompatActivity {
     String id_pedido, titulo_pedido, fecha_pedido, estado_pedido,id_publicacion;
     TextView nombre_consumidor, id_consumidor, direccion_consumidor, telefono_consumidor;
     TextView TituloProducto, precioPedido, envioPedido, vendedor, textoPrecioUnit, textoCantidad, textoDescuento, textoTotal;
-    Button verPerfilVendedor;
+    Button btn_perfilVendedor, boton_calificar;
     ImageView fotoPublicacion;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -52,12 +52,14 @@ public class DetallePedido extends AppCompatActivity {
         id_consumidor = findViewById (R.id.cedulaCliente);
         direccion_consumidor = findViewById (R.id.direccionCliente);
         telefono_consumidor = findViewById (R.id.telefonoCliente);
+        boton_calificar = findViewById (R.id.btnCalificar);
 
         LinearLayout cPedidoEntregado = findViewById (R.id.contentPedidoEntregado);
-        if (estado_pedido.equalsIgnoreCase ("ENTREGADO")){
+        if (estado_pedido.equalsIgnoreCase ("FINALIZADO")){
             cPedidoEntregado.setVisibility (View.VISIBLE);
         }else{
             cPedidoEntregado.setVisibility (View.GONE);
+            boton_calificar.setVisibility (View.GONE);
         }
 
         Button btnChatPedido = findViewById (R.id.btnChatPedido);
@@ -113,12 +115,12 @@ public class DetallePedido extends AppCompatActivity {
         TituloProducto = findViewById (R.id.TituloProducto);
         precioPedido = findViewById (R.id.precioPedido);
         envioPedido = findViewById (R.id.envioPedido);
-        verPerfilVendedor = findViewById (R.id.verPerfilVendedor);
         textoPrecioUnit = findViewById (R.id.textoPrecioUnit);
         textoCantidad = findViewById (R.id.textoCantidad);
         textoDescuento = findViewById (R.id.textoDescuento);
         textoTotal = findViewById (R.id.textoTotal);
-
+        btn_perfilVendedor = findViewById (R.id.verPerfilVendedor);
+        vendedor = findViewById (R.id.vendedor);
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
         String url = "https://agroplaza.solucionsoftware.co/ModuloPedidos/DatosDetallePedido?pedido=" + id_pedido;
 
@@ -137,12 +139,30 @@ public class DetallePedido extends AppCompatActivity {
                         }else {
                             envioPedido.setVisibility (View.VISIBLE);
                         }
-                        verPerfilVendedor.setText (dato.getString ("nombre_vendedor"));
+                        btn_perfilVendedor.setText (dato.getString ("nombre_vendedor"));
                         textoPrecioUnit.setText (dato.getString ("precio_p"));
                         textoCantidad.setText (dato.getString ("cantidad_p"));
                         textoDescuento.setText ("$"+dato.getString ("descuento_p"));
                         textoTotal.setText (dato.getString ("total_p"));
-
+                        // Datos necesarios en la actividad Perfil Vendedor
+                        String tipo_v = dato.getString ("tipo_v");
+                        String ciudad_v = dato.getString ("ciudad_v");
+                        String departamento_v = dato.getString ("departamento_v");
+                        String nombre_v = dato.getString ("nombre_vendedor");
+                        String id_u = dato.getString ("id_u");
+                        vendedor.setText (tipo_v);
+                        btn_perfilVendedor.setOnClickListener (new View.OnClickListener () {
+                            @Override
+                            public void onClick (View v) {
+                                Intent intent = new Intent (getApplicationContext (), PerfilVendedor.class);
+                                intent.putExtra ("tipo_v", tipo_v);
+                                intent.putExtra ("ciudad_v", ciudad_v);
+                                intent.putExtra ("nombre_v", nombre_v);
+                                intent.putExtra ("departamento_v", departamento_v);
+                                intent.putExtra ("id_u", id_u);
+                                startActivity (intent);
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace ();

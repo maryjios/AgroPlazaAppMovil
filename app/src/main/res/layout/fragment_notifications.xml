@@ -13,23 +13,12 @@
         android:layout_marginBottom="30dp"
         android:background="#8BC34A">
 
-        <Button
-            android:id="@+id/btn_atras_compra"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/float_transparent"
-            android:background="@color/float_transparent"
-            android:drawableLeft="@drawable/ic_arrow_back"
-            android:drawableTint="@color/black"
-
-            />
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/float_transparent"
-            android:gravity="center"
             android:padding="5dp"
+            android:gravity="center"
             android:text="Notificaciones"
             android:textColor="@color/white"
             android:textStyle="bold"
