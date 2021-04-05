@@ -45,9 +45,9 @@ public class GenerarPedido extends AppCompatActivity {
     EditText cantidad, nom_vendedor, valor_total, documento_cl, direccion_cl;
     Button btnaumntar, btndisminuir, btn_atras_compra, btn_generar_pedido;
     ImageView img_publicacion;
-    int valor = 1;
     Float precio, descuento;
     String id_publicacion;
+    int valor;
 
     SweetAlertDialog pDialog;
 
@@ -89,6 +89,11 @@ public class GenerarPedido extends AppCompatActivity {
         Intent intent = getIntent();
         int stock = (intent.getStringExtra("stock") != null) ? Integer.parseInt(intent.getStringExtra("stock")) : 0;
         id_publicacion = intent.getStringExtra("id_publicacion");
+        int valor_unidad = Integer.parseInt(intent.getStringExtra("valor_unidad"));
+
+        cantidad.setText(valor_unidad + "");
+
+        valor = valor_unidad;
 
         cargarDatos(documento, direccion);
 
@@ -98,38 +103,38 @@ public class GenerarPedido extends AppCompatActivity {
             btnaumntar.setVisibility(View.GONE);
             unidad_pro.setVisibility(View.GONE);
         } else {
-            if (stock == 1)
+            if (stock == valor_unidad || valor_unidad * 2 > stock)
                 btnaumntar.setEnabled(false);
 
             btnaumntar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (valor < stock)
-                        cantidad.setText(String.valueOf(++valor));
+                        cantidad.setText(String.valueOf(valor += valor_unidad));
 
-                    if (valor == stock)
+                    if (valor == stock || valor_unidad * 2 > stock)
                         btnaumntar.setEnabled(false);
 
-                    if (valor > 1)
+                    if (valor > valor_unidad)
                         btndisminuir.setEnabled(true);
 
-                    calcularTotal();
+                    calcularTotal(valor_unidad);
                 }
             });
 
             btndisminuir.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (valor > 1)
-                        cantidad.setText(String.valueOf(--valor));
+                    if (valor > valor_unidad)
+                        cantidad.setText(String.valueOf(valor -= valor_unidad));
 
-                    if (valor <= 1)
+                    if (valor <= valor_unidad)
                         btndisminuir.setEnabled(false);
 
                     if (valor < stock)
                         btnaumntar.setEnabled(true);
 
-                    calcularTotal();
+                    calcularTotal(valor_unidad);
                 }
             });
         }
@@ -151,8 +156,8 @@ public class GenerarPedido extends AppCompatActivity {
         pDialog.show();
     }
 
-    public void calcularTotal() {
-        int cant = Integer.parseInt(cantidad.getText().toString());
+    public void calcularTotal(int valor_unidad) {
+        int cant = Integer.parseInt(cantidad.getText().toString()) / valor_unidad;
         Float valor_descuento = precio * (descuento / 100);
         Float total = (precio * cant) - valor_descuento;
 
@@ -211,7 +216,7 @@ public class GenerarPedido extends AppCompatActivity {
 
                         descuento_pro.setText(descuento_pro.getText() + "(" + dato.getString("descuento") + "%) : $ " + valor_descuento);
 
-                        valor_total.setText(String.valueOf(precio - descuento));
+                        valor_total.setText(String.valueOf(precio - valor_descuento));
 
                         documento_cl.setText(documento);
                         direccion_cl.setText(direccion);
