@@ -3,13 +3,14 @@ package com.example.agroplazaappmovil.ui.dashboard;
 public class Mensajes {
 
     protected int id;
+    protected int id_pedido;
     protected int id_usuario;
     protected String mensaje;
     protected String fecha;
     protected String nombre_remitente;
 
-    public Mensajes(int id, int id_usuario, String mensaje, String fecha, String nombre_remitente) {
-        this.id = id;
+    public Mensajes(int id_pedido, int id_usuario, String mensaje, String fecha, String nombre_remitente) {
+        this.id_pedido = id_pedido;
         this.id_usuario = id_usuario;
         this.mensaje = mensaje;
         this.fecha = fecha;
@@ -37,11 +38,11 @@ public class Mensajes {
     }
 
     public int getId() {
-        return id;
+        return id_pedido;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int id_pedido) {
+        this.id_pedido = id_pedido;
     }
 
 }
