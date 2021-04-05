@@ -113,7 +113,6 @@ public class DetallePedido extends AppCompatActivity {
                         textoDescuento.setText ("$"+dato.getString ("descuento_p"));
                         textoTotal.setText (dato.getString ("total_p"));
 
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace ();

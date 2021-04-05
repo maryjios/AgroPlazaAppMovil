@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -60,8 +61,11 @@ public class DashboardFragment extends Fragment {
 
                 JSONArray lista_pedidos = response.optJSONArray ("pedidosUser");
                 try {
-
-
+                    if (lista_pedidos.length ()<=0){
+                        TextView conten_vacio = actividad.findViewById (R.id.sin_pedidos);
+                        conten_vacio.setVisibility (View.VISIBLE);
+                        conten_vacio.setText ("No has hecho ningun pedido aun!");
+                    }
                     for (int i = 0; i < lista_pedidos.length (); i++) {
 
                         JSONObject temp = lista_pedidos.getJSONObject (i);

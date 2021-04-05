@@ -41,6 +41,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/sin_pedidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:textAppearance="?attr/textAppearanceListItem" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_historial_pedido"
