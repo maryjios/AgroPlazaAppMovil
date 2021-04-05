@@ -75,7 +75,6 @@ public class DashboardFragment extends Fragment {
                         String estado = temp.getString ("estado_p");
                         String id_publi = temp.getString ("id_publicacion");
 
-
                         Pedidos pub = new Pedidos (id, titulo, fecha, estado, id_publi);
                         listaPedidos.add (pub);
 
@@ -89,6 +88,7 @@ public class DashboardFragment extends Fragment {
                             intent.putExtra("titulo", listaPedidos.get (recycler.getChildAdapterPosition (v)).titulo_publicacion);
                             intent.putExtra("fecha", listaPedidos.get (recycler.getChildAdapterPosition (v)).fecha_pedido);
                             intent.putExtra("estado", listaPedidos.get (recycler.getChildAdapterPosition (v)).estado_pedido);
+                            intent.putExtra("id_publi", listaPedidos.get (recycler.getChildAdapterPosition (v)).id_publi);
                             startActivity(intent);
                         }
                     });
