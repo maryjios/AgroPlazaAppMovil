@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AgroPlazaAppMovil">
+        <activity android:name=".ui.dashboard.DetallePedido"/>
         <activity android:name=".ui.dashboard.Chat_Activity" />
         <activity android:name=".ui.home.GenerarPedido" /> <!-- Layouts home -->
         <activity android:name=".ui.home.DetallePublicacion" /> <!-- Layaouts perfil -->

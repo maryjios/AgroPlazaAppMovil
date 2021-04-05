@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.example.agroplazaappmovil.R;
 
@@ -44,18 +46,22 @@ public class Chat_Activity extends AppCompatActivity {
     List<Mensajes> mensajeList = new ArrayList<Mensajes> ();
 
     int contador = 1;
-
     private static final String SERVER_URI = "ws://18.221.49.32:8083/mqtt";
     private static final String TOPIC = "prueba_chat";
     private static final String TAG = "PruebaMqtt";
-
     private MqttAndroidClient mqttAndroidClient;
 
+    String numeroPedido, tituloPedido;
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_chat);
 
+        Intent intent = getIntent ();
+        numeroPedido = intent.getStringExtra ("numero_pedido");
+        tituloPedido = intent.getStringExtra ("titulo_publicacion");
+
+        Toast.makeText (getApplicationContext (), ""+numeroPedido, Toast.LENGTH_LONG).show ();
         recycler = (RecyclerView) findViewById(R.id.mi_recycler_chat);
         recycler.setHasFixedSize(true);
 

@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/float_transparent"
-            android:gravity="center"
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="Historial Pedidos"
@@ -44,13 +43,10 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/mi_recycler_Historial"
+                android:id="@+id/recycler_historial_pedido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                />
-
 
         </LinearLayout>
     </ScrollView>
