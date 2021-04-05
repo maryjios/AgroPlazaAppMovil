@@ -24,7 +24,8 @@
             />
 
         <TextView
-            android:layout_width="256dp"
+            android:id="@+id/titulo_chat"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/float_transparent"
             android:gravity="center"
