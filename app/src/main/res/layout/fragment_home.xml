@@ -110,7 +110,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="90dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -121,21 +121,14 @@
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true">
 
-                        <RelativeLayout
+                        <LinearLayout
+                            android:id="@+id/filtroProductos"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/gradientLightYellow2"
                             android:minHeight="100dp"
+                            android:orientation="horizontal"
                             android:padding="15dp">
-
-                            <ImageView
-                                android:id="@+id/img_productos"
-                                style="@style/homeCardImage"
-                                android:layout_alignBottom="@id/img_productos"
-                                android:layout_marginRight="-15dp"
-                                android:layout_marginBottom="0dp"
-                                android:maxHeight="70dp"
-                                android:src="@drawable/productos" />
 
                             <TextView
                                 android:id="@+id/textProductos"
@@ -143,18 +136,22 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="56dp"
                                 android:text="Productos"
-                                android:textSize="18sp" />
+                                android:textSize="17sp" />
 
-                        </RelativeLayout>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/productos"/>
+                        </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="90dp"
                     android:layout_weight="1"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
@@ -164,31 +161,28 @@
                         app:cardCornerRadius="15dp"
                         app:cardPreventCornerOverlap="true">
 
-                        <RelativeLayout
+                        <LinearLayout
+                            android:id="@+id/filtroServices"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@color/gradientLightYellow2"
                             android:minHeight="100dp"
-                            android:padding="10dp">
-
-                            <ImageView
-                                android:id="@+id/_servicios"
-                                style="@style/homeCardImage"
-                                android:layout_alignBottom="@id/_servicios"
-                                android:layout_marginRight="-15dp"
-                                android:layout_marginBottom="0dp"
-                                android:maxHeight="70dp"
-                                android:src="@drawable/services" />
+                            android:orientation="horizontal"
+                            android:padding="15dp">
 
                             <TextView
-                                android:id="@+id/servicios"
+                                android:id="@+id/textServicios"
                                 style="@style/viewParent.headerText.HomeCardTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="56dp"
                                 android:text="Servicios"
-                                android:textSize="18sp" />
+                                android:textSize="17sp" />
 
-                        </RelativeLayout>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/services"/>
+                        </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
 

@@ -52,13 +52,23 @@ public class AdapterPublicaciones extends RecyclerView.Adapter<AdapterPublicacio
         this.listener = listener;
     }
 
-    @Override
-    public void onClick (View v) {
-        if (listener != null) {
-            listener.onClick (v);
-        }
+    public void filterList(ArrayList<Publicaciones> filteredList) {
+        this.listaDatos = filteredList;
+        notifyDataSetChanged();
     }
 
+    public void clear(){
+        listaDatos.clear();
+        listaDatos.addAll (listaDatos);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick (View v) {
+        if (this.listener != null) {
+            this.listener.onClick (v);
+        }
+    }
     /* clase Holder */
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
@@ -117,4 +127,5 @@ public class AdapterPublicaciones extends RecyclerView.Adapter<AdapterPublicacio
 
         }
     }
+
 }
