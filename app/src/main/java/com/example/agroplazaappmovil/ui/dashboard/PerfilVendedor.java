@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class PerfilVendedor extends AppCompatActivity {
     TextView nombre_y_ubicacion;
     TextView Total_ventas;
-    TextView Cant_post;
+    TextView Cant_post,Calificacion;
     
     ArrayList<PublicacionesPerfil> listaPublicacionesPerfil;
     RecyclerView recycler;
@@ -49,6 +49,8 @@ public class PerfilVendedor extends AppCompatActivity {
         nombre_y_ubicacion = findViewById (R.id.nombreAndUbicacion);
         Total_ventas=findViewById(R.id.Num_ventas);
         Cant_post=findViewById(R.id.Num_post);
+        Calificacion=findViewById(R.id.Calificacion);
+
 
 
         nombre_y_ubicacion.setText (intent.getStringExtra ("nombre_v") + " | " + intent.getStringExtra ("ciudad_v") + ", " + intent.getStringExtra ("departamento_v"));
@@ -61,6 +63,9 @@ public class PerfilVendedor extends AppCompatActivity {
 
         String publicaciones = intent.getStringExtra("id_u");
         cantidadPost (publicaciones);
+
+        String ValorCalificacion= intent.getStringExtra("id_u");
+        Val_calificacion (ValorCalificacion);
 
 
 
@@ -190,7 +195,9 @@ public class PerfilVendedor extends AppCompatActivity {
                     @Override
                     public void onResponse (String response) {
 
-                        Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
+//                      Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
+                        Total_ventas.setText(response);
+
                     }
                 },
                 new Response.ErrorListener () {
@@ -220,7 +227,39 @@ public class PerfilVendedor extends AppCompatActivity {
                     @Override
                     public void onResponse (String response) {
 
-                        Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
+                        //    Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
+                        Cant_post.setText(response);
+                    }
+                },
+                new Response.ErrorListener () {
+                    @Override
+                    public void onErrorResponse (VolleyError error) {
+                        // Codigo de error del servidor
+                        // Se ejecuta cuando no llega el tipo solicitado String.
+                        Toast.makeText (getApplicationContext (), "Error Servidor: " + error.getMessage (), Toast.LENGTH_LONG).show ();
+                        if (error.getMessage () != null) {
+                            Log.i ("Error Servidor: ", error.getMessage ());
+                        } else {
+                            Log.i ("Error Servidor: ", "Error desconocido");
+                        }
+                    }
+                });
+        hilo.add (solicitud);
+
+    }
+
+    public void Val_calificacion (String  publicaciones) {
+
+        RequestQueue hilo = Volley.newRequestQueue (this);
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPedidos/PromedioPerfil?usuario=" + publicaciones;
+
+        StringRequest solicitud = new StringRequest (Request.Method.GET, url,
+                new Response.Listener<String> () {
+                    @Override
+                    public void onResponse (String response) {
+
+                        //    Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
+                        Calificacion.setText(response);
                     }
                 },
                 new Response.ErrorListener () {
