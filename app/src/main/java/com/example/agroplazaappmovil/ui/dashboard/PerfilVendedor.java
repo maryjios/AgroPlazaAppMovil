@@ -34,6 +34,8 @@ import java.util.ArrayList;
 
 public class PerfilVendedor extends AppCompatActivity {
     TextView nombre_y_ubicacion;
+    TextView Total_ventas;
+    TextView Cant_post;
     
     ArrayList<PublicacionesPerfil> listaPublicacionesPerfil;
     RecyclerView recycler;
@@ -45,13 +47,26 @@ public class PerfilVendedor extends AppCompatActivity {
 
         Intent intent = getIntent ();
         nombre_y_ubicacion = findViewById (R.id.nombreAndUbicacion);
+        Total_ventas=findViewById(R.id.Num_ventas);
+        Cant_post=findViewById(R.id.Num_post);
+
 
         nombre_y_ubicacion.setText (intent.getStringExtra ("nombre_v") + " | " + intent.getStringExtra ("ciudad_v") + ", " + intent.getStringExtra ("departamento_v"));
 
         String id_u = intent.getStringExtra ("id_u");
         consultarEspecializacionVendedor (id_u);
 
-        Toast.makeText (getApplicationContext (), "EEEE: " + id_u, Toast.LENGTH_LONG).show ();
+        String ventas = intent.getStringExtra("id_u");
+        cantidadVentas (ventas);
+
+        String publicaciones = intent.getStringExtra("id_u");
+        cantidadPost (publicaciones);
+
+
+
+        Toast.makeText (getApplicationContext (), "id_us: " + id_u , Toast.LENGTH_LONG).show ();
+//        Toast.makeText (getApplicationContext (), "ventas: " + ventas, Toast.LENGTH_LONG).show ();
+//        Toast.makeText (getApplicationContext (), "publicaciones: " +publicaciones, Toast.LENGTH_LONG).show ();
 
         ImageButton regresar = findViewById (R.id.btn_Atras);
         regresar.setOnClickListener (new View.OnClickListener () {
@@ -139,6 +154,66 @@ public class PerfilVendedor extends AppCompatActivity {
 
         RequestQueue hilo = Volley.newRequestQueue (this);
         String url = "https://agroplaza.solucionsoftware.co/ModuloPedidos/nombreEspecializacionVendedor?usuario=" + id_u;
+
+        StringRequest solicitud = new StringRequest (Request.Method.GET, url,
+                new Response.Listener<String> () {
+                    @Override
+                    public void onResponse (String response) {
+
+                        Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
+                    }
+                },
+                new Response.ErrorListener () {
+                    @Override
+                    public void onErrorResponse (VolleyError error) {
+                        // Codigo de error del servidor
+                        // Se ejecuta cuando no llega el tipo solicitado String.
+                        Toast.makeText (getApplicationContext (), "Error Servidor: " + error.getMessage (), Toast.LENGTH_LONG).show ();
+                        if (error.getMessage () != null) {
+                            Log.i ("Error Servidor: ", error.getMessage ());
+                        } else {
+                            Log.i ("Error Servidor: ", "Error desconocido");
+                        }
+                    }
+                });
+        hilo.add (solicitud);
+
+    }
+
+    public void cantidadVentas (String ventas) {
+
+        RequestQueue hilo = Volley.newRequestQueue (this);
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPedidos/CantVentaPerfil?usuario=" + ventas;
+
+        StringRequest solicitud = new StringRequest (Request.Method.GET, url,
+                new Response.Listener<String> () {
+                    @Override
+                    public void onResponse (String response) {
+
+                        Toast.makeText (getApplicationContext (), "Registrada" + response, Toast.LENGTH_LONG).show ();
+                    }
+                },
+                new Response.ErrorListener () {
+                    @Override
+                    public void onErrorResponse (VolleyError error) {
+                        // Codigo de error del servidor
+                        // Se ejecuta cuando no llega el tipo solicitado String.
+                        Toast.makeText (getApplicationContext (), "Error Servidor: " + error.getMessage (), Toast.LENGTH_LONG).show ();
+                        if (error.getMessage () != null) {
+                            Log.i ("Error Servidor: ", error.getMessage ());
+                        } else {
+                            Log.i ("Error Servidor: ", "Error desconocido");
+                        }
+                    }
+                });
+        hilo.add (solicitud);
+
+    }
+
+    public void cantidadPost (String  publicaciones) {
+
+        RequestQueue hilo = Volley.newRequestQueue (this);
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPedidos/CantPostPerfil?usuario=" + publicaciones;
 
         StringRequest solicitud = new StringRequest (Request.Method.GET, url,
                 new Response.Listener<String> () {

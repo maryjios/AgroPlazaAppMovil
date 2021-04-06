@@ -89,10 +89,10 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/Num_ventas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:text="125"
                         android:textColor="@color/teal_700"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -113,6 +113,7 @@
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/Num_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
@@ -133,10 +134,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Servicios"
+                        android:text="Calificacion"
                         android:textSize="15sp" />
 
                     <TextView
+                        android:id="@+id/Calificacion"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
