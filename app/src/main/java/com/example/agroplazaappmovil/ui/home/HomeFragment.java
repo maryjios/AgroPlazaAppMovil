@@ -265,6 +265,7 @@ public class HomeFragment extends Fragment {
                             intent.putExtra ("descripcion", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).descripcion);
                             intent.putExtra ("stock", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).stock);
                             intent.putExtra ("valor_unidad", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).valor_unidad);
+                            intent.putExtra("tipo_publicacion", tipo);
 
                             startActivity (intent);
                         }

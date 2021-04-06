@@ -87,15 +87,16 @@ public class GenerarPedido extends AppCompatActivity {
         String direccion = persistencia.getString("direccion", "");
 
         Intent intent = getIntent();
-        int stock = (intent.getStringExtra("stock") != null) ? Integer.parseInt(intent.getStringExtra("stock")) : 0;
+        int stock = (!intent.getStringExtra("stock").isEmpty()) ? Integer.parseInt(intent.getStringExtra("stock")) : 0;
         id_publicacion = intent.getStringExtra("id_publicacion");
-        int valor_unidad = Integer.parseInt(intent.getStringExtra("valor_unidad"));
+        int valor_unidad = (!intent.getStringExtra("valor_unidad").isEmpty()) ? Integer.parseInt(intent.getStringExtra("valor_unidad")) : 0;
+        String tipo_publicacion = intent.getStringExtra("tipo_publicacion");
 
         cantidad.setText(valor_unidad + "");
 
         valor = valor_unidad;
 
-        cargarDatos(documento, direccion);
+        cargarDatos(documento, direccion, tipo_publicacion);
 
         if (stock == 0) {
             btndisminuir.setVisibility(View.GONE);
@@ -189,9 +190,9 @@ public class GenerarPedido extends AppCompatActivity {
         hilo.add(imageRequest);
     }
 
-    public void cargarDatos(String documento, String direccion) {
+    public void cargarDatos(String documento, String direccion, String tipo_publicacion) {
         RequestQueue hilo = Volley.newRequestQueue(getApplicationContext());
-        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/getDatosPublicacion?id=" + id_publicacion;
+        String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/getDatosPublicacion?id=" + id_publicacion + "&tipo=" + tipo_publicacion;
 
         JsonObjectRequest solicitud = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -207,7 +208,9 @@ public class GenerarPedido extends AppCompatActivity {
                         valor_pro.setText(valor_pro.getText() + dato.getString("precio"));
                         envio_pro.setText((dato.getString("envio").equalsIgnoreCase("SI")) ? "Incluye envio" : "Envio gratis");
                         nom_vendedor.setText(dato.getString("nombre_usuario"));
-                        unidad_pro.setText(dato.getString("abreviatura"));
+
+                        if (tipo_publicacion.equals("PRODUCTO"))
+                            unidad_pro.setText(dato.getString("abreviatura"));
                         
                         precio = Float.parseFloat(dato.getString("precio"));
                         
@@ -222,6 +225,7 @@ public class GenerarPedido extends AppCompatActivity {
                         direccion_cl.setText(direccion);
 
                         imagen = dato.getString("imagen");
+                        Log.e("prueba", dato.getString("imagen"));
                     }
 
                     cargarImagen(imagen);
@@ -254,7 +258,7 @@ public class GenerarPedido extends AppCompatActivity {
         String direccion = direccion_cl.getText().toString();
 
         if (!documento.isEmpty() && !direccion.isEmpty()) {
-            String cant_pedido = (stock > 0) ? cantidad.getText().toString() : String.valueOf(stock);
+            String cant_pedido = cantidad.getText().toString();
 
             String precio_pedido = String.valueOf(precio);
 
