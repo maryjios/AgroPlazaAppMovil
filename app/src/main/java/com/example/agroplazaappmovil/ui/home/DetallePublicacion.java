@@ -41,7 +41,7 @@ public class DetallePublicacion extends AppCompatActivity {
 
     TextView titulo, precio, descripcion, unidad, stock;
     EditText pregunta;
-    String id_publicacion;
+    String id_publicacion, tipo_publicacion;
 
     ArrayList<PreguntasRespuestas> listaPreguntasRespuestas;
     RecyclerView recycler;
@@ -63,16 +63,23 @@ public class DetallePublicacion extends AppCompatActivity {
         descripcion = findViewById (R.id.descripcion_detalle);
         unidad = findViewById (R.id.unidad_detalle);
         stock = findViewById (R.id.stock_detalle);
+        tipo_publicacion = intent.getStringExtra("tipo_publicacion");
 
         Float valor_precio = Float.parseFloat (intent.getStringExtra ("precio"));
         int precio_int = Math.round (valor_precio);
         titulo.setText (intent.getStringExtra ("titulo"));
         precio.setText ("$" + precio_int);
-        unidad.setText ("x " + intent.getStringExtra ("valor_unidad") + intent.getStringExtra ("unidad"));
-        stock.setText (" STOCK: " + intent.getStringExtra ("stock") + intent.getStringExtra ("unidad"));
+
+        if (!tipo_publicacion.equals("SERVICIO")) {
+            unidad.setText ("x " + intent.getStringExtra("valor_unidad") + intent.getStringExtra ("unidad"));
+            stock.setText (" STOCK: " + intent.getStringExtra ("stock") + intent.getStringExtra ("unidad"));
+        } else {
+            unidad.setVisibility(View.INVISIBLE);
+            stock.setVisibility(View.INVISIBLE);
+        }
+
         descripcion.setText (intent.getStringExtra ("descripcion"));
         id_publicacion = intent.getStringExtra ("id");
-
 
         ImageSlider imagenes = findViewById (R.id.imagenes_detalle);
         List<SlideModel> imagenes_publicacion = new ArrayList<> ();
@@ -124,9 +131,10 @@ public class DetallePublicacion extends AppCompatActivity {
                 if (!intent.getStringExtra ("stock").equals ("null"))
                     intent_compra.putExtra ("stock", intent.getStringExtra ("stock"));
 
-                intent_compra.putExtra ("precio", intent.getStringExtra ("precio"));
-                intent_compra.putExtra ("descuento", intent.getStringExtra ("descuento"));
-                intent_compra.putExtra ("valor_unidad", intent.getStringExtra ("valor_unidad"));
+                intent_compra.putExtra ("precio", intent.getStringExtra("precio"));
+                intent_compra.putExtra ("descuento", intent.getStringExtra("descuento"));
+                intent_compra.putExtra ("valor_unidad", intent.getStringExtra("valor_unidad"));
+                intent_compra.putExtra("tipo_publicacion", tipo_publicacion);
                 startActivity (intent_compra);
             }
         });
