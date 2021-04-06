@@ -165,6 +165,7 @@
                     android:textColor="@color/green" />
 
                 <Button
+                    android:id="@+id/btn_finalizar_pedido"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -186,7 +187,7 @@
                     android:orientation="vertical"
                     android:paddingLeft="10dp"
                     android:paddingTop="5dp">
-s
+
                     <TextView
                         style="@style/viewParent.headerText"
                         android:layout_width="match_parent"
@@ -362,7 +363,7 @@ s
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:backgroundTint="#FF9800"
                 android:text="Calificar producto"/>
         </LinearLayout>

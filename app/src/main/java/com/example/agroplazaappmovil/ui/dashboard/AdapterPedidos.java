@@ -102,8 +102,8 @@ public class AdapterPedidos extends RecyclerView.Adapter<AdapterPedidos.ViewHold
             } else if (datos.estado_pedido.equalsIgnoreCase ("CANCELADO")) {
                 contentEstadoPedido.setBackgroundResource (R.color.red_btn_bg_color);
             } else if (datos.estado_pedido.equalsIgnoreCase ("FINALIZADO")) {
-                contentEstadoPedido.setBackgroundResource (R.color.main_green_color);
-            }else if (datos.estado_pedido.equalsIgnoreCase ("ENTREGADO")) {
+                contentEstadoPedido.setBackgroundResource (R.color.gray);
+            } else if (datos.estado_pedido.equalsIgnoreCase ("ENTREGADO")) {
                 contentEstadoPedido.setBackgroundResource (R.color.main_green_color);
             }
 
