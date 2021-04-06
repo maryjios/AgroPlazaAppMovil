@@ -121,10 +121,8 @@ public class HomeFragment extends Fragment {
                 listaPublicaciones = new ArrayList<> ();
                 listaDescuentos = new ArrayList<> ();
 
-
                 JSONArray lista_clientes = response.optJSONArray ("registros_publicaciones");
                 try {
-
 
                     for (int i = 0; i < lista_clientes.length (); i++) {
 
@@ -139,7 +137,7 @@ public class HomeFragment extends Fragment {
                         String valor_descuento = temp.getString ("descuento");
                         String descripcion = temp.getString ("descripcion");
                         String stock = temp.getString ("stock");
-
+                        String valor_unidad = temp.getString ("valor_unidad");
 
                         String valor_envio = temp.getString ("envio");
                         if (valor_envio.equals ("SI")){
@@ -169,7 +167,7 @@ public class HomeFragment extends Fragment {
                             listaDescuentos.add (des);
                         }
 
-                        Publicaciones pub = new Publicaciones (titulo, precio, envio, descuento, foto,id, descripcion, unidad, stock);
+                        Publicaciones pub = new Publicaciones (titulo, precio, envio, descuento, foto,id, descripcion, unidad, stock, valor_unidad);
                         listaPublicaciones.add (pub);
 
                     }
@@ -184,6 +182,7 @@ public class HomeFragment extends Fragment {
                             intent.putExtra("precio", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).precio);
                             intent.putExtra("descripcion", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).descripcion);
                             intent.putExtra("stock", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).stock);
+                            intent.putExtra("valor_unidad", listaPublicaciones.get(recycler.getChildAdapterPosition(v)).valor_unidad);
 
                             startActivity(intent);
                         }
@@ -200,6 +199,7 @@ public class HomeFragment extends Fragment {
                             intent.putExtra("unidad", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).unidad);
                             intent.putExtra("descripcion", listaDescuentos.get (recycler.getChildAdapterPosition (v)).descripcion);
                             intent.putExtra("stock", listaPublicaciones.get (recycler.getChildAdapterPosition (v)).stock);
+                            intent.putExtra("valor_unidad", listaPublicaciones.get(recycler.getChildAdapterPosition(v)).valor_unidad);
 
                             startActivity(intent);
                         }

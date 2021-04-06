@@ -63,20 +63,6 @@ public class MensajesAdapter extends RecyclerView.Adapter<MensajesAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.mensajeTextView.setText(mensajesList.get(position).getMensaje ());
         holder.fechaTextView.setText(mensajesList.get(position).getFecha ());
-
-        holder.mensajeTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remove(position);
-            }
-        });
-
-        holder.fechaTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                remove(position);
-            }
-        });
     }
 
     @Override

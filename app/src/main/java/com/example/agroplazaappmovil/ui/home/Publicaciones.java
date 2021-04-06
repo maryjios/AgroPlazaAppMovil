@@ -10,8 +10,9 @@ public class Publicaciones{
     String foto;
     String descripcion;
     String stock;
+    String valor_unidad;
 
-    public Publicaciones (String titulo, String precio, String envio, String descuento, String foto, String id, String descripcion, String unidad, String stock) {
+    public Publicaciones (String titulo, String precio, String envio, String descuento, String foto, String id, String descripcion, String unidad, String stock, String valor_unidad) {
         this.id = id;
         this.titulo = titulo;
         this.precio = precio;
@@ -21,5 +22,6 @@ public class Publicaciones{
         this.foto = foto;
         this.descripcion = descripcion;
         this.stock = stock;
+        this.valor_unidad = valor_unidad;
     }
 }

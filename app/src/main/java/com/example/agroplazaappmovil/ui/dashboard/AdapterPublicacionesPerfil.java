@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.RequestQueue;
@@ -23,19 +21,19 @@ import com.example.agroplazaappmovil.R;
 
 import java.util.ArrayList;
 
-public class AdapterPedidos extends RecyclerView.Adapter<AdapterPedidos.ViewHolderDatos> implements View.OnClickListener {
+public class AdapterPublicacionesPerfil extends RecyclerView.Adapter<AdapterPublicacionesPerfil.ViewHolderDatos> implements View.OnClickListener {
 
-    ArrayList<Pedidos> listaDatos;
+    ArrayList<PublicacionesPerfil> listaDatos;
     private View.OnClickListener listener;
 
-    public AdapterPedidos (ArrayList<Pedidos> listaDatos) {
+    public AdapterPublicacionesPerfil (ArrayList<PublicacionesPerfil> listaDatos) {
         this.listaDatos = listaDatos;
     }
 
     @NonNull
     @Override
     public ViewHolderDatos onCreateViewHolder (@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from (parent.getContext ()).inflate (R.layout.item_list_pedido, null, false);
+        View view = LayoutInflater.from (parent.getContext ()).inflate (R.layout.item_list_publicacion_perfil, null, false);
         view.setOnClickListener (this);
         return new ViewHolderDatos (view);
     }
@@ -61,53 +59,44 @@ public class AdapterPedidos extends RecyclerView.Adapter<AdapterPedidos.ViewHold
         }
     }
 
-
     /* clase Holder */
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
 
-        ImageView imagenPedido;
-        TextView numeroPedido;
-        TextView tituloPublicacion;
-        TextView fechaPedido;
-        TextView estadoPedido;
-        LinearLayout contentPedidoEntregado;
-        CardView contentEstadoPedido;
+        TextView titulo;
+        TextView precio;
+        TextView envio;
+        TextView descuento;
+        ImageView imagen;
         RequestQueue request;
         Context contexto;
 
         public ViewHolderDatos (@NonNull View itemView) {
             super (itemView);
 
-            numeroPedido = itemView.findViewById (R.id.numeroPedido);
-            tituloPublicacion = itemView.findViewById (R.id.tituloPublicacion);
-            fechaPedido = itemView.findViewById (R.id.fechaPedido);
-            estadoPedido = itemView.findViewById (R.id.estadoPedido);
-            contentEstadoPedido = itemView.findViewById (R.id.contentEstadoPedido);
-            imagenPedido = itemView.findViewById (R.id.imagenPedido);
+            titulo = itemView.findViewById (R.id.titulo_publicacion);
+            precio = itemView.findViewById (R.id.precio_publicacion);
+            envio = itemView.findViewById (R.id.envio_publicacion);
+            descuento = itemView.findViewById (R.id.descuento_publicacion);
+            imagen = itemView.findViewById (R.id.imagen_publicacion);
             request = Volley.newRequestQueue (itemView.getContext ());
             contexto = itemView.getContext ();
-
         }
 
-        public void asignarDatos (Pedidos datos) {
-            numeroPedido.setText ("Numero de Pedido#: 0000000" + datos.numero_pedido);
-            tituloPublicacion.setText (datos.titulo_publicacion);
-            fechaPedido.setText (datos.fecha_pedido);
-            estadoPedido.setText (datos.estado_pedido);
+        public void asignarDatos (PublicacionesPerfil datos) {
 
-            if (datos.estado_pedido.equalsIgnoreCase ("EN PROCESO")) {
-                contentEstadoPedido.setBackgroundResource (R.color.cardColorYellow);
-            } else if (datos.estado_pedido.equalsIgnoreCase ("SOLICITADO")) {
-                contentEstadoPedido.setBackgroundResource (R.color.blue);
-            } else if (datos.estado_pedido.equalsIgnoreCase ("CANCELADO")) {
-                contentEstadoPedido.setBackgroundResource (R.color.red_btn_bg_color);
-            } else if (datos.estado_pedido.equalsIgnoreCase ("FINALIZADO")) {
-                contentEstadoPedido.setBackgroundResource (R.color.gray);
-            } else if (datos.estado_pedido.equalsIgnoreCase ("ENTREGADO")) {
-                contentEstadoPedido.setBackgroundResource (R.color.main_green_color);
+            String tiutoLengt = datos.titulo;
+
+            if (tiutoLengt.length () >= 12) {
+                titulo.setText(datos.titulo.substring(0, 12) + "...");
+            }else{
+                titulo.setText(datos.titulo);
             }
+            precio.setText (datos.precio);
+            envio.setText (datos.envio);
+            descuento.setText (datos.descuento);
 
-            String url = "https://agroplaza.solucionsoftware.co/public/dist/img/publicaciones/publicacion" + datos.id_publi + "/" + "foto_1.jpg";
+
+            String url = "https://agroplaza.solucionsoftware.co/public/dist/img/publicaciones/publicacion" + datos.id + "/" + datos.foto;
             url = url.replace (" ", "%20");
 
             final String finalUrl = url;
@@ -115,7 +104,7 @@ public class AdapterPedidos extends RecyclerView.Adapter<AdapterPedidos.ViewHold
                     new Response.Listener<Bitmap> () {
                         @Override
                         public void onResponse (Bitmap response) {
-                            imagenPedido.setImageBitmap (response);
+                            imagen.setImageBitmap (response);
                         }
                     }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener () {
                 @Override

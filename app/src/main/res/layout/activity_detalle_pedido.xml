@@ -96,11 +96,12 @@
                     android:id="@+id/verPerfilVendedor"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
-                    android:gravity="center"
-                    android:text="Julian Osotio"
+                    android:background="@color/float_transparent"
                     android:drawableRight="@drawable/ic_ver"
-                    android:textColor="@color/green"
-                    android:background="@color/float_transparent"/>
+                    android:layout_gravity="center"
+                    android:text="Julian Osotio"
+                    android:textSize="14dp"
+                    android:textColor="@color/green" />
 
                 <Button
                     android:id="@+id/btnChatPedido"
@@ -164,6 +165,7 @@
                     android:textColor="@color/green" />
 
                 <Button
+                    android:id="@+id/btn_finalizar_pedido"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
@@ -185,7 +187,7 @@
                     android:orientation="vertical"
                     android:paddingLeft="10dp"
                     android:paddingTop="5dp">
-s
+
                     <TextView
                         style="@style/viewParent.headerText"
                         android:layout_width="match_parent"
@@ -357,10 +359,11 @@ s
             </androidx.cardview.widget.CardView>
 
             <Button
+                android:id="@+id/btnCalificar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:backgroundTint="#FF9800"
                 android:text="Calificar producto"/>
         </LinearLayout>

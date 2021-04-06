@@ -62,9 +62,9 @@ public class DetallePublicacion extends AppCompatActivity {
         Float valor_precio = Float.parseFloat (intent.getStringExtra ("precio"));
         int precio_int = Math.round (valor_precio);
         titulo.setText (intent.getStringExtra ("titulo"));
-        precio.setText ("$"+precio_int);
-        unidad.setText ("x " + intent.getStringExtra ("unidad"));
-        stock.setText (" STOCK: "+intent.getStringExtra ("stock")+intent.getStringExtra ("unidad"));
+        precio.setText ("$" + precio_int);
+        unidad.setText ("x " + intent.getStringExtra("valor_unidad") + intent.getStringExtra ("unidad"));
+        stock.setText (" STOCK: " + intent.getStringExtra ("stock") + intent.getStringExtra ("unidad"));
         descripcion.setText (intent.getStringExtra ("descripcion"));
         id_publicacion = intent.getStringExtra ("id");
 
@@ -121,6 +121,7 @@ public class DetallePublicacion extends AppCompatActivity {
 
                 intent_compra.putExtra ("precio", intent.getStringExtra("precio"));
                 intent_compra.putExtra ("descuento", intent.getStringExtra("descuento"));
+                intent_compra.putExtra ("valor_unidad", intent.getStringExtra("valor_unidad"));
                 startActivity (intent_compra);
             }
         });
@@ -134,15 +135,7 @@ public class DetallePublicacion extends AppCompatActivity {
                 registrarPregunta ();
             }
         });
-        Button btn_chat = findViewById (R.id.btn_chat);
-        btn_chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intencion=new Intent(getApplicationContext(), Chat_Activity.class);
-                startActivity(intencion);
 
-            }
-        });
        consultarPreguntasRespuestas (id_publicacion);
     }
 
