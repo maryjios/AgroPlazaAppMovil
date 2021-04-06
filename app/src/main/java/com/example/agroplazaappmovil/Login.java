@@ -53,9 +53,6 @@ public class Login extends AppCompatActivity {
         btn_ingresar = findViewById(R.id.btn_ingresar);
         btn_registrar = findViewById(R.id.txt_btn_registro);
 
-        campo_email.setText("perro@mail.com");
-        campo_password.setText("12345");
-
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
