@@ -7,4 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="headerTextSize">25sp</dimen>
 
+    <dimen name="margin_value_10dp">10dp</dimen>
+    <dimen name="margin_value_5dp">5dp</dimen>
 </resources>

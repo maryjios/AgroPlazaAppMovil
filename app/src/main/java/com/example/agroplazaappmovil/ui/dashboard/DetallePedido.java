@@ -115,7 +115,7 @@ public class DetallePedido extends AppCompatActivity {
             }
         });
 
-        llenarDatosDetallePedido();
+        llenarDatosDetallePedido(id_pedido);
         llenarDatosConsumidorDetallePedido();
         setFotoDetalle();
     }
@@ -144,7 +144,7 @@ public class DetallePedido extends AppCompatActivity {
         request.add (imageRequest);
     }
 
-    public void llenarDatosDetallePedido () {
+    public void llenarDatosDetallePedido (String id_pedido) {
         TituloProducto = findViewById (R.id.TituloProducto);
         precioPedido = findViewById (R.id.precioPedido);
         envioPedido = findViewById (R.id.envioPedido);
@@ -155,6 +155,8 @@ public class DetallePedido extends AppCompatActivity {
         btn_perfilVendedor = findViewById (R.id.verPerfilVendedor);
         vendedor = findViewById (R.id.vendedor);
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
+        Log.i ("Datos V", id_pedido);
+
         String url = "https://agroplaza.solucionsoftware.co/ModuloPedidos/DatosDetallePedido?pedido=" + id_pedido;
 
         JsonObjectRequest solicitud = new JsonObjectRequest (Request.Method.GET, url, null, new Response.Listener<JSONObject> () {

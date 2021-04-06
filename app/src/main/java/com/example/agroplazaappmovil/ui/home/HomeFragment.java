@@ -37,12 +37,10 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     View actividad;
     ArrayList<Publicaciones> listaPublicaciones;
-    ArrayList<Descuentos> listaDescuentos;
 
     RecyclerView recycler;
     RecyclerView recycler_descuentos;
     AdapterPublicaciones adapter;
-    AdapterDescuentos adapter_des;
 
     String tipo;
 
@@ -130,7 +128,6 @@ public class HomeFragment extends Fragment {
         }
     }
 
-
     public void ConsultarNombreCiudadUser () {
 
         SharedPreferences persistencia = actividad.getContext ().getSharedPreferences ("datos_login", Context.MODE_PRIVATE);
@@ -162,7 +159,6 @@ public class HomeFragment extends Fragment {
                     editor.putString ("ciudad", la_ciudad);
                     editor.putString ("id_departamento", id_departamento);
                     editor.commit ();
-
                     ubicacion.setText (la_ciudad + "," + el_departamento);
                 } catch (JSONException e) {
                     e.printStackTrace ();
@@ -189,7 +185,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse (JSONObject response) {
                 listaPublicaciones = new ArrayList<> ();
-                listaDescuentos = new ArrayList<> ();
 
                 JSONArray lista_clientes = response.optJSONArray ("registros_publicaciones");
                 try {
@@ -227,26 +222,6 @@ public class HomeFragment extends Fragment {
 
                         } else if (!valor_envio.equals ("SI")) {
                             envio = "";
-                        }
-
-                        if (valor_descuento.equals ("0")) {
-                            descuento = "";
-
-                        } else if (!valor_descuento.equals ("0")) {
-                            String descuento_des = temp.getString ("descuento");
-                            String id_des = temp.getString ("id_publicacion");
-                            String foto_des = temp.getString ("imagen");
-                            String titulo_des = temp.getString ("titulo");
-                            String precio_des = temp.getString ("precio");
-                            String envio_des = "";
-                            if (valor_envio.equals ("SI")) {
-                                envio_des = "Envio gratis";
-                            } else if (!valor_envio.equals ("SI")) {
-                                envio_des = "";
-                            }
-                            String descripcion_des = temp.getString ("descripcion");
-                            Descuentos des = new Descuentos (titulo_des, precio_des, envio_des, descuento_des, foto_des, id_des, descripcion_des);
-                            listaDescuentos.add (des);
                         }
 
                         Publicaciones pub = new Publicaciones (titulo, precio, envio, descuento, foto, id, descripcion, unidad, stock, valor_unidad);

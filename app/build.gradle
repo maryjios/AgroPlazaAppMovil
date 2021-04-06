@@ -50,6 +50,8 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha05'
+    implementation 'me.zhanghai.android.materialratingbar:library:1.0.2'
+
 
     /* Libreria utilizada para mostrar alerts dialog estilizados */
     implementation 'com.github.f0ris.sweetalert:library:1.5.6'
@@ -60,4 +62,5 @@ dependencies {
     /* Libreria utilizada para mandar mensajes por MQTT*/
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.1'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+
 }

@@ -61,8 +61,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
-                android:layout_marginRight="32dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="32dp"
                 android:fontFamily="@font/open_sans_bold"
                 android:text="TextView"
                 android:textSize="20sp"
@@ -85,9 +85,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:textColor="@color/green"
                     android:fontFamily="@font/open_sans_bold"
                     android:text="TextView"
+                    android:textColor="@color/green"
                     android:textSize="18sp" />
 
                 <TextView
@@ -95,23 +95,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginRight="40dp"
                     android:layout_marginBottom="5dp"
                     android:fontFamily="@font/open_sans_light"
                     android:text="TextView"
-                    android:layout_marginRight="40dp"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/stock_detalle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
-                    android:textSize="14sp"
-                    android:textColor="@color/payment"
-                    android:text="sdsd"
-                    android:drawableLeft="@drawable/ic_stock"
                     android:layout_marginRight="40dp"
-                    />
+                    android:drawableLeft="@drawable/ic_stock"
+                    android:fontFamily="@font/open_sans_bold"
+                    android:text="sdsd"
+                    android:textColor="@color/payment"
+                    android:textSize="14sp" />
             </LinearLayout>
 
 
@@ -150,6 +149,26 @@
                     android:layout_marginTop="8dp"
                     android:text="Comprar"
                     app:layout_constraintTop_toBottomOf="@+id/descripcion_detalle" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentCalificaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="32dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/contentBtnComprar">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_calificaciones_publicacion"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+
+                    android:layout_height="wrap_content" >
+
+                </androidx.recyclerview.widget.RecyclerView>
+
             </LinearLayout>
 
             <LinearLayout
@@ -157,7 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/contentBtnComprar">
+                app:layout_constraintTop_toBottomOf="@+id/contentCalificaciones">
 
                 <TextView
                     style="@style/viewParent.headerText.settingsMiniTitle"
@@ -222,11 +241,11 @@
                     android:id="@+id/sin_pregunta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:visibility="gone"
-                    android:gravity="center"
                     android:layout_marginTop="30dp"
-                    android:textAppearance="?attr/textAppearanceListItem" />
+                    android:gravity="center"
+                    android:text=""
+                    android:textAppearance="?attr/textAppearanceListItem"
+                    android:visibility="gone" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_preguntas_respuestas"

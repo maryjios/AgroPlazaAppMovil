@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,7 +26,6 @@ import com.android.volley.toolbox.Volley;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.agroplazaappmovil.R;
-import com.example.agroplazaappmovil.ui.dashboard.Chat_Activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +47,11 @@ public class DetallePublicacion extends AppCompatActivity {
     RecyclerView recycler;
     AdapterPreguntasRespuestas adapter;
 
+    ArrayList<Calificaciones> listaCalificaciones;
+    RecyclerView recycler_calificaciones;
+    AdapterCalificaciones adapter_calificaciones;
+
+
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
@@ -63,7 +68,7 @@ public class DetallePublicacion extends AppCompatActivity {
         int precio_int = Math.round (valor_precio);
         titulo.setText (intent.getStringExtra ("titulo"));
         precio.setText ("$" + precio_int);
-        unidad.setText ("x " + intent.getStringExtra("valor_unidad") + intent.getStringExtra ("unidad"));
+        unidad.setText ("x " + intent.getStringExtra ("valor_unidad") + intent.getStringExtra ("unidad"));
         stock.setText (" STOCK: " + intent.getStringExtra ("stock") + intent.getStringExtra ("unidad"));
         descripcion.setText (intent.getStringExtra ("descripcion"));
         id_publicacion = intent.getStringExtra ("id");
@@ -114,14 +119,14 @@ public class DetallePublicacion extends AppCompatActivity {
             @Override
             public void onClick (View v) {
                 Intent intent_compra = new Intent (getApplicationContext (), GenerarPedido.class);
-                intent_compra.putExtra ("id_publicacion", intent.getStringExtra("id"));
+                intent_compra.putExtra ("id_publicacion", intent.getStringExtra ("id"));
 
-                if (!intent.getStringExtra("stock").equals("null"))
-                    intent_compra.putExtra ("stock", intent.getStringExtra("stock"));
+                if (!intent.getStringExtra ("stock").equals ("null"))
+                    intent_compra.putExtra ("stock", intent.getStringExtra ("stock"));
 
-                intent_compra.putExtra ("precio", intent.getStringExtra("precio"));
-                intent_compra.putExtra ("descuento", intent.getStringExtra("descuento"));
-                intent_compra.putExtra ("valor_unidad", intent.getStringExtra("valor_unidad"));
+                intent_compra.putExtra ("precio", intent.getStringExtra ("precio"));
+                intent_compra.putExtra ("descuento", intent.getStringExtra ("descuento"));
+                intent_compra.putExtra ("valor_unidad", intent.getStringExtra ("valor_unidad"));
                 startActivity (intent_compra);
             }
         });
@@ -136,16 +141,41 @@ public class DetallePublicacion extends AppCompatActivity {
             }
         });
 
-       consultarPreguntasRespuestas (id_publicacion);
+        consultarPreguntasRespuestas (id_publicacion);
+        llenarContenedorCalificaciones ();
     }
 
+    public void llenarContenedorCalificaciones () {
+        // Recycler preguntas, respuestas
+        recycler_calificaciones = findViewById (R.id.recycler_calificaciones_publicacion);
+        recycler_calificaciones.setLayoutManager (new GridLayoutManager (getApplicationContext (), 1));
+
+
+        listaCalificaciones = new ArrayList<> ();
+
+        String id = "1";
+        String nombre_usuario = "Usuario 1";
+        String total_estrellas = "5";
+        String fecha_calificacion = "Ayer";
+        String descripcion_calificacion = "Muy bien";
+        String foto_evidencia = "foto.png";
+
+
+
+        Calificaciones pub = new Calificaciones (id, nombre_usuario, total_estrellas, fecha_calificacion, descripcion_calificacion, foto_evidencia);
+        listaCalificaciones.add (pub);
+
+
+        adapter_calificaciones = new AdapterCalificaciones (listaCalificaciones);
+        recycler_calificaciones.setAdapter (adapter_calificaciones);
+    }
 
     public void consultarPreguntasRespuestas (String id_publicacion) {
 
         // Recycler preguntas, respuestas
         recycler = findViewById (R.id.recycler_preguntas_respuestas);
-        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.VERTICAL,false));
-        
+        recycler.setLayoutManager (new LinearLayoutManager (getApplicationContext (), LinearLayoutManager.VERTICAL, false));
+
 
         RequestQueue hilo = Volley.newRequestQueue (getApplicationContext ());
         String url = "https://agroplaza.solucionsoftware.co/ModuloPublicaciones/ConsultarPreguntas?publicacion=" + id_publicacion;
@@ -160,7 +190,7 @@ public class DetallePublicacion extends AppCompatActivity {
                 try {
                     Log.i ("DAtos", lista_preguntas_respuestas.toString ());
 
-                    if (lista_preguntas_respuestas.length ()<=0){
+                    if (lista_preguntas_respuestas.length () <= 0) {
                         TextView conten_vacio = findViewById (R.id.sin_pregunta);
                         conten_vacio.setVisibility (View.VISIBLE);
                         conten_vacio.setText ("No hay ninguna pregunta");
