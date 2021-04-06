@@ -51,6 +51,11 @@ public class CalificarPublicacion extends AppCompatActivity {
         setContentView (R.layout.activity_calificar_publicacion);
 
         Intent intent = getIntent ();
+        String id_valoracion = intent.getStringExtra("id_valoracion");
+        if (!id_valoracion.isEmpty()) {
+            CalificarPublicacion.super.onBackPressed();
+        }
+
         id_publicacion = intent.getStringExtra ("id_publicacion");
 
         img_foto = findViewById(R.id.img_foto);

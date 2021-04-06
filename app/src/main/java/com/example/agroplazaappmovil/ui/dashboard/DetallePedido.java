@@ -40,7 +40,7 @@ import java.util.Map;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DetallePedido extends AppCompatActivity {
-    String id_pedido, titulo_pedido, fecha_pedido, estado_pedido,id_publicacion;
+    String id_pedido, titulo_pedido, fecha_pedido, estado_pedido,id_publicacion, id_valoracion;
     TextView nombre_consumidor, id_consumidor, direccion_consumidor, telefono_consumidor;
     TextView TituloProducto, precioPedido, envioPedido, vendedor, textoPrecioUnit, textoCantidad, textoDescuento, textoTotal;
     Button btn_perfilVendedor, boton_calificar;
@@ -91,6 +91,7 @@ public class DetallePedido extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent (getApplicationContext (), CalificarPublicacion.class);
                 intent.putExtra ("id_publicacion", id_publicacion);
+                intent.putExtra ("id_valoracion", id_valoracion);
                 startActivity (intent);
             }
         });
@@ -197,6 +198,11 @@ public class DetallePedido extends AppCompatActivity {
                                 startActivity (intent);
                             }
                         });
+
+                        id_valoracion = dato.getString("id_valoracion");
+                        if (!id_valoracion.isEmpty()) {
+                            boton_calificar.setVisibility(View.GONE);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace ();
