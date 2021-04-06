@@ -86,12 +86,15 @@ public class DetallePedido extends AppCompatActivity {
             }
         });
 
+        if (estado_pedido.equalsIgnoreCase ("FINALIZADO"))
+            btnChatPedido.setVisibility (View.GONE);
+
         boton_calificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (getApplicationContext (), CalificarPublicacion.class);
                 intent.putExtra ("id_publicacion", id_publicacion);
-                intent.putExtra ("id_valoracion", id_valoracion);
+                intent.putExtra ("id_valoracion", id_valoracion + "");
                 startActivity (intent);
             }
         });
@@ -201,7 +204,10 @@ public class DetallePedido extends AppCompatActivity {
 
                         id_valoracion = dato.getString("id_valoracion");
                         if (!id_valoracion.isEmpty()) {
-                            boton_calificar.setVisibility(View.GONE);
+                            boton_calificar.setText("Ya has calificado");
+                            boton_calificar.setBackgroundColor(Color.GRAY);
+                            boton_calificar.setEnabled(false);
+                            boton_calificar.setTextColor(Color.WHITE);
                         }
                     }
                 } catch (JSONException e) {

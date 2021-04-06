@@ -37,7 +37,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class CalificarPublicacion extends AppCompatActivity {
 
-    String id_publicacion;
+    String id_publicacion, valoracion;
     RatingBar puntaje_estrellas;
     EditText campo_descripcion;
     ImageView img_foto;
@@ -52,7 +52,7 @@ public class CalificarPublicacion extends AppCompatActivity {
 
         Intent intent = getIntent ();
         String id_valoracion = intent.getStringExtra("id_valoracion");
-        if (!id_valoracion.isEmpty()) {
+        if (!id_valoracion.equals("null")) {
             CalificarPublicacion.super.onBackPressed();
         }
 
@@ -65,6 +65,7 @@ public class CalificarPublicacion extends AppCompatActivity {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 ratingBar.setRating((int) rating);
+                valoracion = String.valueOf((int) rating);
             }
         });
 
@@ -122,10 +123,9 @@ public class CalificarPublicacion extends AppCompatActivity {
     }
 
     public void enviarCalificacion() {
-        int valoracion = (int) puntaje_estrellas.getRating();
         String descripcion = campo_descripcion.getText().toString();
 
-        if (valoracion > 0 && !descripcion.isEmpty()) {
+        if (!valoracion.equals("0") && !descripcion.isEmpty()) {
             SweetAlertDialog pDialog = new SweetAlertDialog(CalificarPublicacion.this, SweetAlertDialog.PROGRESS_TYPE);
             pDialog.getProgressHelper().setBarColor(Color.GREEN);
             pDialog.setTitleText("Subiendo imagen ...");
@@ -184,7 +184,7 @@ public class CalificarPublicacion extends AppCompatActivity {
                     params.put("imagen", imagen);
                     params.put("id_usuario", id_usuario);
                     params.put("id_publicacion", id_publicacion);
-                    params.put("valoracion", String.valueOf(valoracion));
+                    params.put("valoracion", valoracion);
                     params.put("descripcion", descripcion);
 
                     return params;
